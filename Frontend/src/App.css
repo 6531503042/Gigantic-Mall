@@ -141,14 +141,14 @@
   justify-content: space-between;
   align-items: center;
   position: absolute;
-  width: 72vw;
-  left: 14%;
+  width: 73vw;
+  left: 13.5%;
   
 }
 .next-prev-wrapper a {
   background: white;
-  padding: 1vw;
-  border-radius: 50%; /* Make the border circular */
+  padding: 0.5vw;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -164,7 +164,7 @@
 @media (max-width: 512px) {
   .next-prev-wrapper {
     left: 9.5%;
-    width: 83vw;
+    width: 83.5vw;
   }
 }
 
