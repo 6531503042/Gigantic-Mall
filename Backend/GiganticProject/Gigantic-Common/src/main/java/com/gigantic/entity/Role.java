@@ -2,10 +2,9 @@ package com.gigantic.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "roles")
+@Document("roles")
 public class Role extends IdBasedEntity {
 
     @Column(length = 40, nullable = false, unique = true)
