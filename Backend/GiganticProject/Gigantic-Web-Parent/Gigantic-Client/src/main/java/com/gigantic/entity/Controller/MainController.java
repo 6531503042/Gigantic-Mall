@@ -1,4 +1,4 @@
-package com.gigantic.client.Controller;
+package com.gigantic.entity.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
