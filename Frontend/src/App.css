@@ -58,7 +58,7 @@
 .shopping-cart-style {
   background: white;
   color: rgb(59, 59, 59);
-  padding: 15px;
+  padding: 1vw;
   border-radius: 10px;
 }
 
@@ -74,7 +74,7 @@
 
 .user-profile-style {
   color: black;
-  padding: 15px;
+  padding: 1vw;
   background: white;
   border-radius: 10px;
 }
@@ -129,12 +129,19 @@
     height: auto;
     background-size: 100% 100%;
   }
+
+  .wrapper-width-control {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
 }
 
 .wrapper-home-page .Row-1 a {
   color: white;
   text-decoration: none;
 }
+
 /* >>>>>>>>>>>>>>>>>>>>>> Stop here*/
 .next-prev-wrapper {
   display: flex;
@@ -143,8 +150,9 @@
   position: absolute;
   width: 73vw;
   left: 13.5%;
-  
+
 }
+
 .next-prev-wrapper a {
   background: white;
   padding: 0.5vw;
@@ -173,4 +181,14 @@
   justify-content: center;
   align-items: center;
   flex-direction: row;
+}
+
+
+/* ----------------------------------------------------Wrapper.jsx-------------------------------------------------------------------- */
+
+.shop-top-cate {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
 }
