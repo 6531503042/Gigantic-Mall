@@ -1,0 +1,18 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.gigantic</groupId>
+  <artifactId>GiganticProject</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>GiganticProject</name>
+  <description>This is the main module of the project. It contains Application.java class, that contains main method, 
+    necessary to run Spring Boot applications. It contains all necessary application configuration properties. 
+    It contains all web controllers, views and web resources. It include Service Implementation module
+    as dependency that contains Model Module, Repository Module and Service Api Module.</description>
+    
+    <modules>
+		<module>Gigantic-Common</module>
+		<module>Gigantic-Web-Parent</module>
+	</modules>
+    
+</project>
