@@ -8,11 +8,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Gigantic-Common" />
         <module name="Gigantic-Management" />
+        <module name="Gigantic-Client" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Gigantic-Client" options="-parameters" />
       <module name="Gigantic-Common" options="-parameters" />
       <module name="Gigantic-Management" options="-parameters" />
     </option>

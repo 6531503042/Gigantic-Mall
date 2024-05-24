@@ -17,6 +17,7 @@
 	
 	<modules>
 		<module>Gigantic-Management</module>
+		<module>Gigantic-Client</module>
 	</modules>
 	
 	<description>This is the main module of the project. It contains Application.java class, that contains main method, 
