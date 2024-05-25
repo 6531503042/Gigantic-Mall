@@ -1,4 +1,4 @@
-package com.gigantic.admin;
+package com.gigantic;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
