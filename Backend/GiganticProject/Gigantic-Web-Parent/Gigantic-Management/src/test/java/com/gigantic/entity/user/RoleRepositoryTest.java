@@ -3,6 +3,7 @@ package com.gigantic.entity.user;
 import com.gigantic.admin.Repository.RoleRepository;
 import com.gigantic.entity.Role;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
@@ -14,11 +15,9 @@ import java.util.List;
 @Rollback(value = false)
 public class RoleRepositoryTest {
 
-    private final RoleRepository roleRepository;
+    @Autowired
+    private RoleRepository roleRepository;
 
-    public RoleRepositoryTest(RoleRepository roleRepository) {
-        this.roleRepository = roleRepository;
-    }
 
     @Test
     public void testCreateRole() {
