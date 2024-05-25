@@ -10,9 +10,10 @@ import org.springframework.test.annotation.Rollback;
 
 import java.util.List;
 
-@DataJpaTest
+@DataJpaTest(showSql = false)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Rollback(value = false)
+
 public class RoleRepositoryTest {
 
     @Autowired
