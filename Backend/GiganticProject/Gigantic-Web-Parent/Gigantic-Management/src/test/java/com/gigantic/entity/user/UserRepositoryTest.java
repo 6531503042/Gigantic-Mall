@@ -87,3 +87,4 @@ public class UserRepositoryTest {
         assertThat(updatedUser.hasRole("ROLE_EDITOR")).isTrue();
     }
 }
+

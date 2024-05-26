@@ -3,6 +3,7 @@ package com.gigantic.admin.Service.Impl;
 import com.gigantic.admin.Repository.RoleRepository;
 import com.gigantic.admin.Repository.UserRepository;
 import com.gigantic.admin.Service.UserService;
+import com.gigantic.entity.Role;
 import com.gigantic.entity.User;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +28,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAllUser() {
         return (List<User>) userRepository.findAll();
+    }
+
+    @Override
+    public List<Role> listRoles() {
+        return (List<Role>) roleRepository.findAll();
     }
 }
