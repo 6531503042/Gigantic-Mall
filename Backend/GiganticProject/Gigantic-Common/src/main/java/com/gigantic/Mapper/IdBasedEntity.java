@@ -1,4 +1,4 @@
-package com.gigantic.entity.Mapper;
+package com.gigantic.Mapper;
 
 
 import javax.persistence.GeneratedValue;

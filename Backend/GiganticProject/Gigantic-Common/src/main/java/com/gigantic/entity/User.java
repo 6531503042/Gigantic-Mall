@@ -1,6 +1,6 @@
 package com.gigantic.entity;
 
-import com.gigantic.entity.Mapper.IdBasedEntity;
+import com.gigantic.Mapper.IdBasedEntity;
 
 import javax.persistence.*;
 import java.util.HashSet;

@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import com.gigantic.entity.Mapper.IdBasedEntity;
+import com.gigantic.Mapper.IdBasedEntity;
 
 import java.util.Objects;
 
