@@ -1,6 +1,7 @@
 package com.gigantic.admin.Service.Impl;
 
 import com.gigantic.DTO.UserDTO;
+import com.gigantic.admin.Exception.DuplicateUserException;
 import com.gigantic.admin.Repository.RoleRepository;
 import com.gigantic.admin.Repository.UserRepository;
 import com.gigantic.admin.Service.UserService;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -25,8 +27,17 @@ public class UserServiceImpl implements UserService {
         this.modelMapper = modelMapper;
     }
 
+//    @Override
+//    public User saveUser(User user) {
+//        return userRepository.save(user);
+//    }
+
     @Override
     public User saveUser(User user) {
+        Optional<User> existingUser = userRepository.findByEmail(user.getEmail());
+        if (existingUser.isPresent()) {
+            throw new DuplicateUserException("User with email " + user.getEmail() + " already exists");
+        }
         return userRepository.save(user);
     }
 
