@@ -1,5 +1,6 @@
 package com.gigantic.admin.Service.Impl;
 
+import com.gigantic.DTO.UserDTO;
 import com.gigantic.admin.Repository.RoleRepository;
 import com.gigantic.admin.Repository.UserRepository;
 import com.gigantic.admin.Service.UserService;
@@ -8,6 +9,7 @@ import com.gigantic.entity.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,8 +32,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAllUser() {
-        return (List<User>) userRepository.findAll();
+        return List.of();
     }
+
+//    @Override
+//    public List<User> getAllUser() {
+//        return (List<User>) userRepository.findAll();
+//    }
+
+    @Override
+    public List<UserDTO> getAllUsers() {
+        List<User> userList = (List<User>) userRepository.findAll();
+        List<UserDTO> userDTOList = new ArrayList<>();
+        for (User user : userList) {
+            // Use ModelMapper to convert User entity to UserDTO
+            UserDTO userDTO = modelMapper.map(user, UserDTO.class);
+            userDTOList.add(userDTO);
+        }
+        return userDTOList;
+    }
+
 
     @Override
     public List<Role> listRoles() {
