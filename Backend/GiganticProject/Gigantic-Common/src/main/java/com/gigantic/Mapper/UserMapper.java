@@ -2,7 +2,6 @@ package com.gigantic.Mapper;
 
 import com.gigantic.DTO.UserDTO;
 import com.gigantic.entity.User;
-import com.gigantic.entity.Role;
 
 import java.util.stream.Collectors;
 

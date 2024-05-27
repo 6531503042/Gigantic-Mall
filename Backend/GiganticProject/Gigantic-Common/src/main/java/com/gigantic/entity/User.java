@@ -130,3 +130,4 @@ public class User extends IdBasedEntity {
         return false;
     }
 }
+

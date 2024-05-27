@@ -8,11 +8,12 @@ import com.gigantic.admin.Service.UserService;
 import com.gigantic.entity.Role;
 import com.gigantic.entity.User;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -20,24 +21,36 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(RoleRepository roleRepository, UserRepository userRepository, ModelMapper modelMapper) {
+    public UserServiceImpl(RoleRepository roleRepository, UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
         this.roleRepository = roleRepository;
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    @Override
+    public String encoderPassword(String rawPassword) {
+        return passwordEncoder.encode(rawPassword);
     }
 
 //    @Override
-//    public User saveUser(User user) {
+//    public User.java saveUser(User.java user) {
 //        return userRepository.save(user);
 //    }
 
     @Override
-    public User saveUser(User user) {
-        Optional<User> existingUser = userRepository.findByEmail(user.getEmail());
-        if (existingUser.isPresent()) {
-            throw new DuplicateUserException("User with email " + user.getEmail() + " already exists");
+    public User saveUser(@Valid UserDTO userDTO) throws DuplicateUserException {
+        if (userRepository.existsByEmail(userDTO.getEmail())) {
+            throw new DuplicateUserException("User.java with this email already exists");
         }
+
+        User user = new User();
+        user.setEmail(userDTO.getEmail());
+        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        user.setFirstName(userDTO.getFirstName());
+        user.setLastName(userDTO.getLastName());
         return userRepository.save(user);
     }
 
@@ -47,8 +60,8 @@ public class UserServiceImpl implements UserService {
     }
 
 //    @Override
-//    public List<User> getAllUser() {
-//        return (List<User>) userRepository.findAll();
+//    public List<User.java> getAllUser() {
+//        return (List<User.java>) userRepository.findAll();
 //    }
 
     @Override
@@ -56,7 +69,7 @@ public class UserServiceImpl implements UserService {
         List<User> userList = (List<User>) userRepository.findAll();
         List<UserDTO> userDTOList = new ArrayList<>();
         for (User user : userList) {
-            // Use ModelMapper to convert User entity to UserDTO
+            // Use ModelMapper to convert User.java entity to UserDTO
             UserDTO userDTO = modelMapper.map(user, UserDTO.class);
             userDTOList.add(userDTO);
         }

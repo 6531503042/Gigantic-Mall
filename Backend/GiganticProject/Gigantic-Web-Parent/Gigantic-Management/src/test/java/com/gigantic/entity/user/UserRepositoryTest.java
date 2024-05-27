@@ -2,7 +2,6 @@ package com.gigantic.entity.user;
 
 import com.gigantic.admin.Repository.UserRepository;
 import com.gigantic.entity.Role;
-import com.gigantic.entity.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +58,7 @@ public class UserRepositoryTest {
 
     @Test
     public void testUpdateUserDetails() {
-        User userNam = repo.findById(3L).orElseThrow(() -> new IllegalArgumentException("User not found"));
+        User userNam = repo.findById(3L).orElseThrow(() -> new IllegalArgumentException("User.java not found"));
         userNam.setEnabled(true);
         userNam.setPassword("123456");
         userNam.setEmail("unique3@code.edu.az");
@@ -68,7 +67,7 @@ public class UserRepositoryTest {
 
     @Test
     public void testUpdateUserRoles() {
-        User userNam = repo.findById(3L).orElseThrow(() -> new IllegalArgumentException("User not found"));
+        User userNam = repo.findById(3L).orElseThrow(() -> new IllegalArgumentException("User.java not found"));
 
         // Clear existing roles
         userNam.getRoles().clear();
@@ -81,7 +80,7 @@ public class UserRepositoryTest {
         repo.save(userNam);
 
         // Fetch the updated user to verify changes
-        User updatedUser = repo.findById(3L).orElseThrow(() -> new IllegalArgumentException("User not found"));
+        User updatedUser = repo.findById(3L).orElseThrow(() -> new IllegalArgumentException("User.java not found"));
 
         assertThat(updatedUser.getRoles().size()).isEqualTo(1);
         assertThat(updatedUser.hasRole("ROLE_EDITOR")).isTrue();
