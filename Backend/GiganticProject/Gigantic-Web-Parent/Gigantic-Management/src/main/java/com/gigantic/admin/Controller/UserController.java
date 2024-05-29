@@ -1,6 +1,5 @@
 package com.gigantic.admin.Controller;
 
-import com.gigantic.DTO.UserDTO;
 import com.gigantic.admin.Exception.DuplicateUserException;
 import com.gigantic.admin.Service.Impl.UserServiceImpl;
 import com.gigantic.entity.User;
@@ -27,8 +26,8 @@ public class UserController {
 //    }
 
     @GetMapping("/list")
-    public ResponseEntity<List<UserDTO>> getAllUser() {
-        List<UserDTO> users = services.getAllUsers();
+    public ResponseEntity<List<User>> getAllUser() {
+        List<User> users = services.getAllUsers();
         return ResponseEntity.ok(users);
     }
 
@@ -39,9 +38,9 @@ public class UserController {
 //    }
 
     @PostMapping("/add")
-    public ResponseEntity<?> createUser(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<?> createUser(@RequestBody User user) {
         try {
-            User savedUser = services.saveUser(userDTO);
+            User savedUser = services.saveUser(user);
             return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
         } catch (DuplicateUserException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);

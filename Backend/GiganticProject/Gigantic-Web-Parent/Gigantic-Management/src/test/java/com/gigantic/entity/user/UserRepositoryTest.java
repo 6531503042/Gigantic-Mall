@@ -2,6 +2,7 @@ package com.gigantic.entity.user;
 
 import com.gigantic.admin.Repository.UserRepository;
 import com.gigantic.entity.Role;
+import com.gigantic.entity.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,5 @@
 package com.gigantic.admin.Service.Impl;
 
-import com.gigantic.DTO.UserDTO;
 import com.gigantic.admin.Exception.DuplicateUserException;
 import com.gigantic.admin.Repository.RoleRepository;
 import com.gigantic.admin.Repository.UserRepository;
@@ -20,13 +19,11 @@ public class UserServiceImpl implements UserService {
 
     private final RoleRepository roleRepository;
     private final UserRepository userRepository;
-    private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(RoleRepository roleRepository, UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(RoleRepository roleRepository, UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.roleRepository = roleRepository;
         this.userRepository = userRepository;
-        this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -41,16 +38,12 @@ public class UserServiceImpl implements UserService {
 //    }
 
     @Override
-    public User saveUser(@Valid UserDTO userDTO) throws DuplicateUserException {
-        if (userRepository.existsByEmail(userDTO.getEmail())) {
-            throw new DuplicateUserException("User.java with this email already exists");
+    public User saveUser(@Valid User user) throws DuplicateUserException {
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new DuplicateUserException("User with this email already exists");
         }
 
-        User user = new User();
-        user.setEmail(userDTO.getEmail());
-        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-        user.setFirstName(userDTO.getFirstName());
-        user.setLastName(userDTO.getLastName());
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
@@ -65,15 +58,8 @@ public class UserServiceImpl implements UserService {
 //    }
 
     @Override
-    public List<UserDTO> getAllUsers() {
-        List<User> userList = (List<User>) userRepository.findAll();
-        List<UserDTO> userDTOList = new ArrayList<>();
-        for (User user : userList) {
-            // Use ModelMapper to convert User.java entity to UserDTO
-            UserDTO userDTO = modelMapper.map(user, UserDTO.class);
-            userDTOList.add(userDTO);
-        }
-        return userDTOList;
+    public List<User> getAllUsers() {
+        return (List<User>) userRepository.findAll();
     }
 
 
