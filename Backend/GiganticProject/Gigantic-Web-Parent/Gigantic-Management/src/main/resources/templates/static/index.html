@@ -1,64 +1,219 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns: xmlns:th="http://www.w3.org/1999/xhtml" th="https://www.thvmeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-commerce Management Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-100 h-screen flex">
-<!-- Sidebar -->
-<div class="bg-red-600 text-white w-64 min-h-full flex flex-col">
-    <div class="px-6 py-4 flex items-center justify-between">
-        <span class="text-2xl font-bold">Promage</span>
-        <i class="fas fa-times cursor-pointer"></i>
-    </div>
-    <div class="px-6 py-4">
-        <button class="w-full py-2 bg-white text-red-600 rounded-lg flex items-center justify-center">
-            <i class="fas fa-plus mr-2"></i> Create new project
-        </button>
-    </div>
-    <nav class="flex-1 px-2 py-4">
-        <ul>
-            <li class="mb-2">
-                <a href="#" class="flex items-center px-4 py-2 text-white hover:bg-red-700 rounded">
-                    <i class="fas fa-home mr-3"></i> Dashboard
-                </a>
-            </li>
-            <li class="mb-2">
-                <a href="#" class="flex items-center px-4 py-2 text-white hover:bg-red-700 rounded">
-                    <i class="fas fa-tasks mr-3"></i> Projects
-                </a>
-            </li>
-            <li class="mb-2">
-                <a href="#" class="flex items-center px-4 py-2 text-white hover:bg-red-700 rounded">
-                    <i class="fas fa-check-square mr-3"></i> Tasks
-                </a>
-            </li>
-            <li class="mb-2">
-                <a href="#" class="flex items-center px-4 py-2 text-white hover:bg-red-700 rounded">
-                    <i class="fas fa-clock mr-3"></i> Time log
-                </a>
-            </li>
-            <li class="mb-2">
-                <a href="#" class="flex items-center px-4 py-2 text-white hover:bg-red-700 rounded">
-                    <i class="fas fa-user-friends mr-3"></i> Users
-                </a>
-            </li>
-            <li class="mb-2">
-                <a href="#" class="flex items-center px-4 py-2 text-white hover:bg-red-700 rounded">
-                    <i class="fas fa-cogs mr-3"></i> Settings
-                </a>
-            </li>
-        </ul>
-    </nav>
-</div>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-<!-- Main Content -->
-<div class="flex-1 p-10">
-    <h2 class="text-3xl font-semibold text-gray-800">Welcome to the Admin Dashboard</h2>
-    <!-- Add your main content here -->
-</div>
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 16rem;
+            background: linear-gradient(180deg, #794D4D 0%, #860101 100%);
+            color: #ffffff;
+            transition: all 0.3s;
+            z-index: 1000;
+            padding-top: 4rem;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sidebar-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .sidebar-menu {
+            padding: 1rem;
+        }
+
+        .menu-item {
+            margin-bottom: 0.5rem;
+
+        }
+
+        .menu-link {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            color: #ffffff;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            border-radius: 0.5rem;
+        }
+
+        .menu-link:hover {
+            background-color: #f0c18f;
+            border-radius: 0.5rem;
+        }
+
+        .submenu {
+            display: none;
+            background-color: #2d3748;
+            padding-left: 2rem;
+        }
+
+        .submenu.active {
+            display: block;
+        }
+
+        .submenu-link {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: #ffffff;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .submenu-link:hover {
+            background-color: #4a5568;
+            border-radius: 1.5rem; /* Adjust as needed for desired roundness */
+        }
+
+
+
+        .content {
+            margin-left: 16rem;
+            padding: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                padding-top: 1rem;
+                height: auto;
+                max-height: calc(100vh - 4rem);
+                overflow-y: scroll;
+            }
+
+            .content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Sidebar -->
+<div class="sidebar">
+    <div class="sidebar">
+        <div class="sidebar-header">
+<!--            <img th:src="@{/assets/logo.png}" alt="Logo">-->
+            <img src="assets/logo.png" alt="Logo">
+        </div>
+        <div class="px-6 py-4">
+            <button class="w-full py-2 bg-white text-red-600 rounded-lg flex items-center justify-center">
+                <i class="fas fa-plus mr-2"></i> Create New Products
+            </button>
+        </div>
+        <div class="sidebar-menu">
+
+            <div class="menu-item toggle-submenu">
+                <a href="#" class="menu-link"><i class="fas fa-home mr-3"></i> Dashboard</a>
+            </div>
+            <div class="menu-item toggle-submenu">
+                <a href="#" class="menu-link"><i class="fas fa-users mr-3"></i> Users</a>
+                <div class="submenu">
+                    <a href="#" class="submenu-link">All Users</a>
+                    <a href="#" class="submenu-link">Add User</a>
+                </div>
+            </div>
+            <div class="menu-item toggle-submenu">
+                <a href="#" class="menu-link"><i class="fas fa-tags mr-3"></i> Categories</a>
+                <div class="submenu">
+                    <a href="#" class="submenu-link">All Categories</a>
+                    <a href="#" class="submenu-link">Add Category</a>
+                </div>
+            </div>
+            <div class="menu-item toggle-submenu">
+                <a href="#" class="menu-link"><i class="fas fa-store mr-3"></i> Brands</a>
+                <div class="submenu">
+                    <a href="#" class="submenu-link">All Brands</a>
+                    <a href="#" class="submenu-link">Add Brand</a>
+                </div>
+            </div>
+            <div class="menu-item toggle-submenu">
+                <a href="#" class="menu-link"><i class="fas fa-cubes mr-3"></i> Products</a>
+                <div class="submenu">
+                    <a href="#" class="submenu-link">All Products</a>
+                    <a href="#" class="submenu-link">Add Product</a>
+                </div>
+            </div>
+            <div class="menu-item toggle-submenu">
+                <a href="#" class="menu-link"><i class="fas fa-shipping-fast mr-3"></i> Shipping</a>
+                <div class="submenu">
+                    <a href="#" class="submenu-link">All Shipments</a>
+                    <a href="#" class="submenu-link">New Shipment</a>
+                </div>
+            </div>
+            <div class="menu-item toggle-submenu">
+                <a href="#" class="menu-link"><i class="fas fa-shopping-cart mr-3"></i> Orders</a>
+                <div class="submenu">
+                    <a href="#" class="submenu-link">All Orders</a>
+                    <a href="#" class="submenu-link">New Order</a>
+                </div>
+            </div>
+            <div class="menu-item toggle-submenu">
+                <a href="#" class="menu-link"><i class="fas fa-users-cog mr-3"></i> Customers</a>
+                <div class="submenu">
+                    <a href="#" class="submenu-link">All Customers</a>
+                    <a href="#" class="submenu-link">Add Customer</a>
+                </div>
+            </div>
+            <div class="menu-item toggle-submenu">
+                <a href="#" class="menu-link"><i class="fas fa-newspaper mr-3"></i> Articles</a>
+                <div class="submenu">
+                    <a href="#" class="submenu-link">All Articles</a>
+                    <a href="#" class="submenu-link">Add Article</a>
+                </div>
+            </div>
+            <div class="menu-item toggle-submenu">
+                <a href="#" class="menu-link"><i class="fas fa-cog mr-3"></i> Settings</a>
+                <div class="submenu">
+                    <a href="#" class="submenu-link">General</a>
+                    <a href="#" class="submenu-link">Appearance</a>
+                    <a href="#" class="submenu-link">Security</a>
+                </div>
+            </div>
+        </div>
+        <div class="px-6 py-4">
+            <a href="#" class="menu-link"><i class="fas fa-user-cog mr-3"></i> Profile</a>
+            <div class="submenu">
+                <a href="#" class="submenu-link">Edit Profile</a>
+                <a href="#" class="submenu-link">Change Password</a>
+            </div>
+            </button>
+        </div>
+    </div>
+    <!-- Main Content -->
+    <div class="content">
+        <h2>Welcome to the Admin Dashboard</h2>
+        <!-- Add your main content here -->
+    </div>
+    <!-- JavaScript to toggle submenu visibility -->
+    <script>
+        const toggleSubmenu = document.querySelectorAll('.toggle-submenu');
+        toggleSubmenu.forEach(item => {
+            item.addEventListener('click', () => {
+                item.nextElementSibling.classList.toggle('active');
+            });
+        });
+    </script>
 </body>
 </html>
