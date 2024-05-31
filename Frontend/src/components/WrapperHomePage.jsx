@@ -19,13 +19,13 @@ function WrapperHomePage() {
             <h1 className="ms-5" style={{ color: 'white', fontSize: '4vw' }}>off Voucher</h1>
           </div>
           <div className="ms-2 mb-3">
-            <a className="ms-5" href='#' style={{ color: 'white', fontSize: '1.3vw' }}>Shop Now</a>
+            <a className="" href='#' style={{ color: 'white', fontSize: '1.3vw' ,display:'inline-block'}}>Shop Now</a>
             <a className="ms-1" href='#'><FontAwesomeIcon icon={faAngleRight} style={{ color: 'white', fontSize: '1.2vw' }} /></a>
           </div>
-          <div className="Dotter-ads ms-5 mb-3" style={{ fontSize: '1.4vw' }}>
-            <a className="ms-5"><FontAwesomeIcon icon={faDotCircle} style={{ color: 'white', }} /></a>
-            <a className="ms-2"><FontAwesomeIcon icon={faDotCircle} style={{ color: 'white', }} /></a>
-            <a className="ms-2"><FontAwesomeIcon icon={faDotCircle} style={{ color: 'white', }} /></a>
+          <div className="Dotter-ads mb-3" style={{ fontSize: '1.4vw' }}>
+            <a className=""><FontAwesomeIcon icon={faDotCircle} style={{ color: 'white', }} /></a>
+            <a className=""><FontAwesomeIcon icon={faDotCircle} style={{ color: 'white', }} /></a>
+            <a className=""><FontAwesomeIcon icon={faDotCircle} style={{ color: 'white', }} /></a>
           </div>
         </div>
       </div>
