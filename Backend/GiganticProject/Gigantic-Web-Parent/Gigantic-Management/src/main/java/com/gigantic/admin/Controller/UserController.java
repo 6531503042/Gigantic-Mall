@@ -1,6 +1,7 @@
 package com.gigantic.admin.Controller;
 
 import com.gigantic.admin.Exception.DuplicateUserException;
+import com.gigantic.admin.Exception.UserNotFoundException;
 import com.gigantic.admin.Service.Impl.UserServiceImpl;
 import com.gigantic.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,18 @@ public class UserController {
         User updatedUser = services.updateUser(id, userDetails);
         return ResponseEntity.ok(updatedUser);
     }
+
+    @DeleteMapping("/users/delete/{id}")
+    public ResponseEntity<String> deleteById(@PathVariable Long id) {
+        try {
+            services.deleteById(id);
+            return ResponseEntity.ok("User with id " + id + " has been deleted");
+        } catch (UserNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
 
 
 //    @PostMapping("/add")

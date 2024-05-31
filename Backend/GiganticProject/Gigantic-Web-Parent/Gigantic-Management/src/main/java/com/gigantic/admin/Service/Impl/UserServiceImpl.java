@@ -83,7 +83,8 @@ public class UserServiceImpl implements UserService {
 //    user.setPassword(userDetails.getPassword());
 //    // Update other fields as necessary
 //    return userRepository.save(user);
-//}
+// }
+
 
     public User updateUser(Long id, User userDetails) {
         User user = get(id);
@@ -114,6 +115,17 @@ public class UserServiceImpl implements UserService {
     public User get(Long id) {
         return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Couldn't find user with id: " + id));
     }
+
+    public String deleteById(Long id) {
+        User user = get(id); // Fetch the user by id
+        if (user == null) { // Check if the user exists
+            throw new UserNotFoundException("Couldn't find user with id: " + id);
+        } else {
+            userRepository.deleteById(id); // Delete the user
+        }
+        return "User with id " + id + " has been deleted"; // Return a custom message
+    }
+
 
 
 
