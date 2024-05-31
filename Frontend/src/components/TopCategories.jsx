@@ -4,7 +4,7 @@ import React from 'react'
 
 function TopCategories() {
     return (
-        <div className='shop-top-cate mt-1 '>
+        <div className='shop-top-cate'>
             <a style={{ marginLeft: '3rem', }}>
                 <a style={{ marginRight: '5px', fontSize: '1.5vw', fontWeight: 'bold' }}>Shop From</a>
                 <a style={{ fontSize: '1.5vw', fontWeight: 'bold', color: '#AD00FF' }}>Top Categories</a>

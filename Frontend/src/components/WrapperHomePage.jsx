@@ -8,7 +8,7 @@ import { faAngleLeft, faAngleRight, faDotCircle } from "@fortawesome/free-solid-
 function WrapperHomePage() {
   return (
     <div className="wrapper-con">
-      <div className="wrapper-home-page mx-auto my-4">
+      <div className="wrapper-home-page mx-auto" style={{marginTop:'20px', marginBottom:'20px'}}>
         <div className="wrapper-width-control ms-5">
           <div className="Row-1 ms-2 mt-3">
             <a ><FontAwesomeIcon className="mt-1" icon={faAppleWhole} style={{ color: 'white', fontSize: '3vw' }} /></a>
@@ -22,7 +22,7 @@ function WrapperHomePage() {
             <a className="" href='#' style={{ color: 'white', fontSize: '1.3vw' ,display:'inline-block'}}>Shop Now</a>
             <a className="ms-1" href='#'><FontAwesomeIcon icon={faAngleRight} style={{ color: 'white', fontSize: '1.2vw' }} /></a>
           </div>
-          <div className="Dotter-ads mb-3" style={{ fontSize: '1.4vw' }}>
+          <div className="Dotter-ads mb-3 ms-2" style={{ fontSize: '1.4vw' }}>
             <a className=""><FontAwesomeIcon icon={faDotCircle} style={{ color: 'white', }} /></a>
             <a className=""><FontAwesomeIcon icon={faDotCircle} style={{ color: 'white', }} /></a>
             <a className=""><FontAwesomeIcon icon={faDotCircle} style={{ color: 'white', }} /></a>
