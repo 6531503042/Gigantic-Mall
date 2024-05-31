@@ -13,9 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -102,11 +100,21 @@ public class UserServiceImpl implements UserService {
             user.setPassword(passwordEncoder.encode(userDetails.getPassword()));
         }
 
+        if (userDetails.getRoles() != null && !userDetails.getRoles().isEmpty()) {
+            Set<Role> newRoles = new HashSet<>();
+            for (Role role : userDetails.getRoles()) {
+                newRoles.add(roleRepository.findById(role.getId()).orElseThrow(() -> new IllegalArgumentException("Role not found")));
+            }
+            user.setRoles(newRoles);
+        }
+
         return userRepository.save(user);
     }
 
     public User get(Long id) {
         return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Couldn't find user with id: " + id));
     }
+
+
 
 }
