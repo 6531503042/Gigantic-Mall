@@ -5,10 +5,7 @@ import com.gigantic.admin.Service.Impl.UserServiceImpl;
 import com.gigantic.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -46,6 +43,18 @@ public class UserController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
         }
     }
+
+//    @GetMapping("/users/edit/{id}")
+//    public String editUser(User user) {
+//
+//    }
+
+    @PutMapping("/users/edit/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetails) {
+        User updatedUser = services.updateUser(id, userDetails);
+        return ResponseEntity.ok(updatedUser);
+    }
+
 
 //    @PostMapping("/add")
 //    public String addUser(@RequestBody User.java user) {

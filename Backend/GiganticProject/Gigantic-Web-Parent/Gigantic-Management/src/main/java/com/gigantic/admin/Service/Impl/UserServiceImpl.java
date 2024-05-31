@@ -1,6 +1,7 @@
 package com.gigantic.admin.Service.Impl;
 
 import com.gigantic.admin.Exception.DuplicateUserException;
+import com.gigantic.admin.Exception.UserNotFoundException;
 import com.gigantic.admin.Repository.RoleRepository;
 import com.gigantic.admin.Repository.UserRepository;
 import com.gigantic.admin.Service.UserService;
@@ -9,10 +10,12 @@ import com.gigantic.entity.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -67,4 +70,43 @@ public class UserServiceImpl implements UserService {
     public List<Role> listRoles() {
         return (List<Role>) roleRepository.findAll();
     }
+
+//    public User get(Long id) {
+//        try {
+//            return userRepository.findById(id).get();
+//        } catch (NoSuchElementException e) {
+//            throw new UserNotFoundException("Couldn't find user with this id" + id );
+//        }
+//    }
+//public User updateUser(Long id, User userDetails) {
+//    User user = get(id);
+//    user.setFirstName(userDetails.getFirstName());
+//    user.setEmail(userDetails.getEmail());
+//    user.setPassword(userDetails.getPassword());
+//    // Update other fields as necessary
+//    return userRepository.save(user);
+//}
+
+    public User updateUser(Long id, User userDetails) {
+        User user = get(id);
+
+        if (!user.getEmail().equals(userDetails.getEmail()) && userRepository.existsByEmail(userDetails.getEmail())) {
+            throw new DuplicateUserException("Email already in use: " + userDetails.getEmail());
+        }
+
+        user.setFirstName(userDetails.getFirstName());
+        user.setLastName(userDetails.getLastName());
+        user.setEmail(userDetails.getEmail());
+
+        if (userDetails.getPassword() != null && !userDetails.getPassword().isEmpty()) {
+            user.setPassword(passwordEncoder.encode(userDetails.getPassword()));
+        }
+
+        return userRepository.save(user);
+    }
+
+    public User get(Long id) {
+        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Couldn't find user with id: " + id));
+    }
+
 }
