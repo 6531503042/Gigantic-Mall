@@ -1,0 +1,21 @@
+/* src/index.css */
+body {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .MuiPaper-root {
+    margin-top: 20px;
+  }
+  
+  .MuiTableCell-head {
+    font-weight: bold;
+  }
+  
+  .MuiTableCell-body {
+    font-size: 14px;
+  }
+  
+  .MuiButton-containedPrimary {
+    background-color: #794D4D;
+  }
+  

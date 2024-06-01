@@ -1,13 +1,18 @@
-import HomePage from './utils/HomePage'
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import UserManagementPage from './pages/UserManagementPage';
+import HomePage from './pages/HomePage';
 
 function App() {
-
   return (
-    <>
-     <HomePage />
-    </>
-  )
+    <Router>
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/users" component={UserManagementPage} />
+        {/* Add other routes here */}
+      </Switch>
+    </Router>
+  );
 }
 
-export default App
+export default App;
