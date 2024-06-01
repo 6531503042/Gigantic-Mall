@@ -86,20 +86,15 @@ public class UserController {
                 .orElseThrow(() -> new UserNotFoundException("User with email " + email + " not found"));
     }
 
-//    @PostMapping("/add")
-//    public String addUser(@RequestBody User.java user) {
-//        services.saveUser(user);
-//        return "New user is added";
-//    }
-
-//    //For Controller
-//    @GetMapping("/list")
-//    public String listAll(Model model) {
-//        List<User.java> users = serviecs.getAllUser();
-//        model.addAttribute("users", users);
-//        return "list";
-//
-//    }
+    @GetMapping("/users/{id}/enabled/{status}")
+    public ResponseEntity<String> updateUserEnabledStatus(@PathVariable Long id, @PathVariable boolean status) {
+        try {
+            services.updateUserEnabledStatus(id, status);
+            return ResponseEntity.ok("User with id " + id + " has been updated to " + status);
+        } catch (UserNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
 
 }
