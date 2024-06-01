@@ -2,6 +2,7 @@ package com.gigantic.admin.Controller;
 
 import com.gigantic.admin.Exception.DuplicateUserException;
 import com.gigantic.admin.Exception.UserNotFoundException;
+import com.gigantic.admin.Repository.UserRepository;
 import com.gigantic.admin.Service.Impl.UserServiceImpl;
 import com.gigantic.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +11,16 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 @RestController
 public class UserController {
 
     @Autowired
     private UserServiceImpl services;
+    @Autowired
+    private UserRepository userRepository;
 
     //For RestController
 //    @GetMapping("/list")
@@ -56,14 +61,24 @@ public class UserController {
         return ResponseEntity.ok(updatedUser);
     }
 
-    @DeleteMapping("/users/delete/{id}")
+    @DeleteMapping("/users/deleteById/{id}")
     public ResponseEntity<String> deleteById(@PathVariable Long id) {
-        try {
-            services.deleteById(id);
-            return ResponseEntity.ok("User with id " + id + " has been deleted");
-        } catch (UserNotFoundException e) {
-            return ResponseEntity.notFound().build();
-        }
+        return Stream.of(id)
+                .map(services::deleteById)
+                .findFirst()
+                .map(user -> ResponseEntity.ok("User with id " + id + " has been deleted"))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+
+    @DeleteMapping("/users/deleteByEmail/{email}")
+    public ResponseEntity<String> deleteByEmail(@PathVariable String email) {
+        Optional<User> userOptional = Optional.ofNullable(userRepository.getUserByEmail(email));
+        userOptional.ifPresent(user -> {
+            userRepository.delete(user);
+        });
+        return userOptional.map(user -> ResponseEntity.ok("User with email " + email + " has been deleted"))
+                .orElseThrow(() -> new UserNotFoundException("User with email " + email + " not found"));
     }
 
 
