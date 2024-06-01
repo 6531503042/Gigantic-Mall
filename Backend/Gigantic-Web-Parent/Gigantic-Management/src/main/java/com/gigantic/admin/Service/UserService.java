@@ -14,7 +14,9 @@ public interface UserService {
 
     User saveUser(User user) throws DuplicateUserException;
 
-    List<User> getAllUsers();
+//    List<User> getAllUsers();
+
+    List<User> getAllUsers(String firstName, String lastName, String email, String role, String sortField, String sortDirection);
 
     List<Role> listRoles();
 

@@ -1,5 +1,6 @@
 package com.gigantic.admin.Service.Impl;
 
+import com.gigantic.admin.Config.UserSpecificationConfig;
 import com.gigantic.admin.Exception.DuplicateUserException;
 import com.gigantic.admin.Exception.UserNotFoundException;
 import com.gigantic.admin.Repository.RoleRepository;
@@ -7,6 +8,8 @@ import com.gigantic.admin.Repository.UserRepository;
 import com.gigantic.admin.Service.UserService;
 import com.gigantic.entity.Role;
 import com.gigantic.entity.User;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -50,8 +53,15 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public List<User> getAllUsers() {
-        return (List<User>) userRepository.findAll();
+    public List<User> getAllUsers(String firstName, String lastName, String email, String role, String sortField, String sortDirection) {
+        Specification<User> specs = Specification.where(UserSpecificationConfig.hasFirstName(firstName))
+                .and(UserSpecificationConfig.hasLastName(lastName))
+                .and(UserSpecificationConfig.hasEmail(email))
+                .and(UserSpecificationConfig.hasRole(role));
+
+        Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortField);
+
+        return userRepository.findAll(specs, sort);
     }
 
 
@@ -68,7 +78,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUser(Long id, User userDetails) {
-        User user = get(id);
+        User user = userRepository.findById(userDetails.getId()).get();
 
         if (!user.getEmail().equals(userDetails.getEmail()) && userRepository.existsByEmail(userDetails.getEmail())) {
             throw new DuplicateUserException("Email already in use: " + userDetails.getEmail());

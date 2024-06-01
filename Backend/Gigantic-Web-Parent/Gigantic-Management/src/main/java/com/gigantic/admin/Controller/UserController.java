@@ -34,10 +34,22 @@ public class UserController {
 //        return serviecs.getAllUser();
 //    }
 
-    @GetMapping("/list")
-    public ResponseEntity<List<User>> getAllUser() {
-        List<User> users = services.getAllUsers();
-        return ResponseEntity.ok(users);
+//    @GetMapping("/list")
+//    public ResponseEntity<List<User>> getAllUser() {
+//        List<User> users = services.getAllUsers();
+//        return ResponseEntity.ok(users);
+//    }
+
+    @GetMapping("/users/list")
+    public List<User> getAllUsers(
+            @RequestParam(required = false) String firstName,
+            @RequestParam(required = false) String lastName,
+            @RequestParam(required = false) String email,
+            @RequestParam(required = false) String role,
+            @RequestParam(defaultValue = "id") String sortField,
+            @RequestParam(defaultValue = "asc") String sortDirection) {
+
+        return services.getAllUsers(firstName, lastName, email, role, sortField, sortDirection);
     }
 
     @PostMapping("/users/add")

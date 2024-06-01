@@ -1,5 +1,8 @@
 package com.gigantic.admin.Repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -10,7 +13,7 @@ import com.gigantic.entity.User;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends CrudRepository<User,Long> {
+public interface UserRepository extends CrudRepository<User,Long>, JpaSpecificationExecutor<User> {
 
     boolean existsByEmail(String email);
 
@@ -26,5 +29,9 @@ public interface UserRepository extends CrudRepository<User,Long> {
 
     @Query("SELECT COUNT(u) FROM User u WHERE u.id = ?1")
     public Long countById(Long id);
+
+    //For Page React
+//    @Query("Select u FROM User u WHERE CONCAT(u.id, u.email, u.firstName, u.lastName) LIKE  %?1% ")
+//    public Page<User> findAll(String keyword, Pageable pageable);
 
 }
