@@ -111,6 +111,13 @@ public class User extends IdBasedEntity {
                 + ", roles=" + roles + "]";
     }
 
+    @Transient
+    public String getPhotosImagePath() {
+        if (id == null || photos == null) return "/images/default.jpeg";
+
+        return "/user-photos/" + this.id + "/" + this.photos;
+    }
+
 
     @Transient
     public String getFullName() {
