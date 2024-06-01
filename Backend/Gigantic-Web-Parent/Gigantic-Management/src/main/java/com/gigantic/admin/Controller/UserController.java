@@ -57,17 +57,22 @@ public class UserController {
 
     @PutMapping("/users/edit/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetails) {
-        User updatedUser = services.updateUser(id, userDetails);
-        return ResponseEntity.ok(updatedUser);
+        try {
+            User updatedUser = services.updateUser(id, userDetails);
+            return ResponseEntity.ok(updatedUser);
+        } catch (UserNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/users/deleteById/{id}")
     public ResponseEntity<String> deleteById(@PathVariable Long id) {
-        return Stream.of(id)
-                .map(services::deleteById)
-                .findFirst()
-                .map(user -> ResponseEntity.ok("User with id " + id + " has been deleted"))
-                .orElse(ResponseEntity.notFound().build());
+        Optional<User> userOptional = Optional.ofNullable(services.getUserById(id));
+        userOptional.ifPresent(user -> {
+            services.deleteById(id);
+        });
+        return userOptional.map(user -> ResponseEntity.ok("User with id " + id + " has been deleted"))
+                .orElseThrow(() -> new UserNotFoundException("User with id " + id + " not found"));
     }
 
 
@@ -80,9 +85,6 @@ public class UserController {
         return userOptional.map(user -> ResponseEntity.ok("User with email " + email + " has been deleted"))
                 .orElseThrow(() -> new UserNotFoundException("User with email " + email + " not found"));
     }
-
-
-
 
 //    @PostMapping("/add")
 //    public String addUser(@RequestBody User.java user) {
