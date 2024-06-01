@@ -18,6 +18,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+import static org.aspectj.weaver.tools.cache.SimpleCacheFactory.enabled;
+
 @RestController
 public class UserController {
 
@@ -38,15 +40,15 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
-//    @PostMapping("/add")
-//    public ResponseEntity<?> createUser(@RequestBody User user) {
-//        try {
-//            User savedUser = services.saveUser(user);
-//            return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
-//        } catch (DuplicateUserException e) {
-//            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
-//        }
-//    }
+    @PostMapping("/users/add")
+    public ResponseEntity<?> createUser(@RequestBody User user) {
+        try {
+            User savedUser = services.saveUser(user);
+            return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+        } catch (DuplicateUserException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        }
+    }
 
     /**
      * Creates a new user and uploads the user's photo.
@@ -55,33 +57,33 @@ public class UserController {
      * @param multipartFile The user's photo.
      * @return A ResponseEntity with the created user or an error message.
      */
-    @PostMapping("/users/add")
-    public ResponseEntity<?> createUser(@RequestBody User user, @RequestParam("image") MultipartFile multipartFile) {
-        try {
-            // Save the user details first to get the user ID
-            User savedUser = services.saveUser(user);
-
-            // Check if the file is not empty
-            if (!multipartFile.isEmpty()) {
-                // Clean and get the filename
-                String filename = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
-                // Define the directory to upload the file using the user's ID
-                String uploadDir = "user-photos/" + savedUser.getId();
-
-                // Save the file to the specified directory
-                FileUploadConfig.saveFile(uploadDir, filename, multipartFile);
-            }
-
-            // Return the saved user details with a 201 Created status
-            return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
-        } catch (DuplicateUserException e) {
-            // Return a 409 Conflict status if the user already exists
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
-        } catch (Exception e) {
-            // Throw a runtime exception for any other errors
-            throw new RuntimeException(e);
-        }
-    }
+//    @PostMapping("/users/add")
+//    public ResponseEntity<?> createUser(@RequestBody User user, @RequestParam("image") MultipartFile multipartFile) {
+//        try {
+//            // Save the user details first to get the user ID
+//            User savedUser = services.saveUser(user);
+//
+//            // Check if the file is not empty
+//            if (!multipartFile.isEmpty()) {
+//                // Clean and get the filename
+//                String filename = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
+//                // Define the directory to upload the file using the user's ID
+//                String uploadDir = "user-photos/" + savedUser.getId();
+//
+//                // Save the file to the specified directory
+//                FileUploadConfig.saveFile(uploadDir, filename, multipartFile);
+//            }
+//
+//            // Return the saved user details with a 201 Created status
+//            return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+//        } catch (DuplicateUserException e) {
+//            // Return a 409 Conflict status if the user already exists
+//            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+//        } catch (Exception e) {
+//            // Throw a runtime exception for any other errors
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     @PutMapping("/users/edit/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetails) {
@@ -115,9 +117,10 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}/enabled/{status}")
-    public ResponseEntity<String> updateUserEnabledStatus(@PathVariable Long id, @PathVariable boolean status) {
+    public ResponseEntity<String> updateUserEnabledStatus(@PathVariable Long id, @PathVariable boolean enabled) {
         try {
-            services.updateUserEnabledStatus(id, status);
+            services.updateUserEnabledStatus(id, enabled);
+            String status = enabled ? "Enabled" : "Disabled";
             return ResponseEntity.ok("User with id " + id + " has been updated to " + status);
         } catch (UserNotFoundException e) {
             return ResponseEntity.notFound().build();

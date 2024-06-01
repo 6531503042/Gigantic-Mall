@@ -29,6 +29,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getByEmail(String email) {
+        return userRepository.getUserByEmail(email);
+    }
+
+    @Override
     public String encoderPassword(String rawPassword) {
         return passwordEncoder.encode(rawPassword);
     }
@@ -113,7 +118,22 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public boolean isEmailUnique(Long id, String email) {
+        User userByEmail =  userRepository.getUserByEmail(email);
 
+        if (userByEmail == null) return true;
 
+        boolean isCreatingNew = (id == null);
 
+        if (isCreatingNew) {
+            if (userByEmail != null) return false;
+
+        } else {
+            if (userByEmail.getId() != id) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

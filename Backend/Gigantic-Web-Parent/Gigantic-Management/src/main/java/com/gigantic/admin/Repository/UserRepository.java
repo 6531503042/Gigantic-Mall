@@ -24,4 +24,7 @@ public interface UserRepository extends CrudRepository<User,Long> {
     @Modifying
     public void updateEnabledStatus(Long id, boolean enabled);
 
+    @Query("SELECT COUNT(u) FROM User u WHERE u.id = ?1")
+    public Long countById(Long id);
+
 }
