@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../css/AdminManagementPage.css';
 import logo from '../assets/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faBox, faBraille, faCarCrash, faCircle, faCodePullRequest, faGroupArrowsRotate, faHandPaper, faHome, faHouse, faMapLocation, faMarsAndVenusBurst, faPaperPlane, faPlus, faShip, faUserCircle, faUserGroup } from '@fortawesome/free-solid-svg-icons';
 
 const SideBarAdmin = () => {
     const [activeSubmenu, setActiveSubmenu] = useState(null);
@@ -36,7 +36,7 @@ const SideBarAdmin = () => {
                 <div className='col-sidebar-nav'>
                     <div className='menu-list'>
                         <div className='space-of-ui'>
-                            <a><FontAwesomeIcon icon={faHouse} style={{borderRadius:'100px',}}/></a>
+                            <a><FontAwesomeIcon icon={faUserGroup} style={{borderRadius:'100px',}}/></a>
                             <a>Users</a>
                         </div>
                     </div>
@@ -44,7 +44,7 @@ const SideBarAdmin = () => {
                 <div className='col-sidebar-nav'>
                     <div className='menu-list'>
                         <div className='space-of-ui'>
-                            <a><FontAwesomeIcon icon={faHouse} style={{borderRadius:'100px',}}/></a>
+                            <a><FontAwesomeIcon icon={faMapLocation} style={{borderRadius:'100px',}}/></a>
                             <a>Categories</a>
                         </div>
                     </div>
@@ -52,7 +52,7 @@ const SideBarAdmin = () => {
                 <div className='col-sidebar-nav'>
                     <div className='menu-list'>
                         <div className='space-of-ui'>
-                            <a><FontAwesomeIcon icon={faHouse} style={{borderRadius:'100px',}}/></a>
+                            <a><FontAwesomeIcon icon={faBraille} style={{borderRadius:'100px',}}/></a>
                             <a>Brands</a>
                         </div>
                     </div>
@@ -60,7 +60,7 @@ const SideBarAdmin = () => {
                 <div className='col-sidebar-nav'>
                     <div className='menu-list'>
                         <div className='space-of-ui'>
-                            <a><FontAwesomeIcon icon={faHouse} style={{borderRadius:'100px',}}/></a>
+                            <a><FontAwesomeIcon icon={faBox} style={{borderRadius:'100px',}}/></a>
                             <a>Products</a>
                         </div>
                     </div>
@@ -68,7 +68,7 @@ const SideBarAdmin = () => {
                 <div className='col-sidebar-nav'>
                     <div className='menu-list'>
                         <div className='space-of-ui'>
-                            <a><FontAwesomeIcon icon={faHouse} style={{borderRadius:'100px',}}/></a>
+                            <a><FontAwesomeIcon icon={faPaperPlane} style={{borderRadius:'100px',}}/></a>
                             <a>Shipping</a>
                         </div>
                     </div>
@@ -76,7 +76,7 @@ const SideBarAdmin = () => {
                 <div className='col-sidebar-nav'>
                     <div className='menu-list'>
                         <div className='space-of-ui'>
-                            <a><FontAwesomeIcon icon={faHouse} style={{borderRadius:'100px',}}/></a>
+                            <a><FontAwesomeIcon icon={faHandPaper} style={{borderRadius:'100px',}}/></a>
                             <a>Orders</a>
                         </div>
                     </div>
@@ -84,7 +84,7 @@ const SideBarAdmin = () => {
                 <div className='col-sidebar-nav'>
                     <div className='menu-list'>
                         <div className='space-of-ui'>
-                            <a><FontAwesomeIcon icon={faHouse} style={{borderRadius:'100px',}}/></a>
+                            <a><FontAwesomeIcon icon={faCodePullRequest} style={{borderRadius:'100px',}}/></a>
                             <a>Customers</a>
                         </div>
                     </div>
@@ -92,7 +92,7 @@ const SideBarAdmin = () => {
                 <div className='col-sidebar-nav'>
                     <div className='menu-list'>
                         <div className='space-of-ui'>
-                            <a><FontAwesomeIcon icon={faHouse} style={{borderRadius:'100px',}}/></a>
+                            <a><FontAwesomeIcon icon={faHome} style={{borderRadius:'100px',}}/></a>
                             <a>Menu setting</a>
                         </div>
                     </div>
