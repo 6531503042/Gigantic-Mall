@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="sidebar-container"></div>
+    <div class="content">
+        <a>DashBoard</a>
+        <!-- Add your main content here -->
+    </div>
+    <script>
+        // Load the sidebar HTML from sidebar.html
+        fetch('sidebar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('sidebar-container').innerHTML = data;
+
+                // JavaScript to toggle submenu visibility
+                const toggleSubmenu = document.querySelectorAll('.toggle-submenu');
+                toggleSubmenu.forEach(item => {
+                    item.addEventListener('click', () => {
+                        item.nextElementSibling.classList.toggle('active');
+                    });
+                });
+            })
+            .catch(error => console.error('Error loading sidebar:', error));
+    </script>
+</body>
+</html>
