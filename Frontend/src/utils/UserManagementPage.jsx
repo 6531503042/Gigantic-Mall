@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import '../css/UserManagement.css';
 import SideBar from '../components/SideBar';
+import '../css/UserManagementPage.css';
 import { Helmet } from 'react-helmet';
 
 const UserManagementPage = () => {
@@ -100,8 +100,8 @@ const UserManagementPage = () => {
       <Helmet>
         <title>Admin Management</title>
       </Helmet>
-      <SideBar />
-      <div>a</div>
+      <SideBar/>
+      <div></div>
     </div>
     
   );

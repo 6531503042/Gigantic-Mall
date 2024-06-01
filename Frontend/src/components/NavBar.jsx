@@ -13,7 +13,7 @@ function NavBar() {
                 </div>
                 <SearchingBar />
                 <div className='nav-bar-user mt-4 me-4 ms-4'>
-                    <a href="#"><FontAwesomeIcon icon={faCartShopping} className='shopping-cart-style me-4 ' style={{fontSize:'15px'}}/></a>
+                    <a href="/AdminPage"><FontAwesomeIcon icon={faCartShopping} className='shopping-cart-style me-4 ' style={{fontSize:'15px'}}/></a>
                     <a className='user-account-name ms-3' href="#">
                         <a href="/UserManagementPage"><FontAwesomeIcon className='user-profile-style' icon={faUser} style={{fontSize:'15px'}}/></a>
                         <a href="#">

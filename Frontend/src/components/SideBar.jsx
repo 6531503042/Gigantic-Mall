@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../css/UserManagement.css';
+import '../css/UserManagementPage.css';
 import logo from '../assets/logo.png';
 
 const SideBar = () => {
@@ -10,12 +10,12 @@ const SideBar = () => {
     };
 
     return (
-        <div className="sidebar">
+        <div className="sidebar-1">
             <div className="sidebar-header">
                 <a href="/"><img src={logo} alt="Logo" className="logo" /></a>
             </div>
-            <div className="px-6 py-4">
-                <button className="w-full py-2 bg-white text-red-600 rounded-lg flex items-center justify-center">
+            <div className="">
+                <button className="">
                     <i className="fas fa-plus mr-2"></i> Create New Products
                 </button>
             </div>

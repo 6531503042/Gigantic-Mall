@@ -5,6 +5,7 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import HomePage from './utils/HomePage.jsx'
 import UserManagementPage from './utils/UserManagementPage.jsx'
+import AdminManagementPage from './utils/AdminManagementPage.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const router = createBrowserRouter([
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
   path: "/UserManagementPage",
   element: <UserManagementPage />,
+  },
+  {
+  path: "/AdminPage",
+  element: <AdminManagementPage />,
   }
 ])
 
