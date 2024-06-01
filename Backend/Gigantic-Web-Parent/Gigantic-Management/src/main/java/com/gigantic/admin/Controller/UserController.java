@@ -1,5 +1,7 @@
 package com.gigantic.admin.Controller;
 
+import com.gigantic.admin.Config.Export.UserCSVExporter;
+import com.gigantic.admin.Config.Export.UserExcelExporter;
 import com.gigantic.admin.Config.FileUploadConfig;
 import com.gigantic.admin.Exception.DuplicateUserException;
 import com.gigantic.admin.Exception.UserNotFoundException;
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -138,6 +143,34 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    //Export CSV & EXCEL & PDF
+    @GetMapping("/users/export/csv")
+    public void exportToCSV(HttpServletResponse response, String firstName, String lastName, String email, String role, String sortField, String sortDirection) throws IOException {
+        try {
+            List<User> listUsers = services.getAllUsers(firstName, lastName, email, role, sortField, sortDirection);
+
+            UserCSVExporter exporter = new UserCSVExporter();
+            exporter.export(listUsers, response);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @GetMapping("/users/export/excel")
+    public void exportToExcel(HttpServletResponse response, String firstName, String lastName, String email, String role, String sortField, String sortDirection) throws IOException {
+        try {
+            List<User> listUsers = services.getAllUsers(firstName, lastName, email, role, sortField, sortDirection);
+
+            UserExcelExporter exporter = new UserExcelExporter();
+            exporter.export(listUsers, response);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 
 
 

@@ -16,7 +16,7 @@ public class FileUploadConfig {
         Path uploadPath = Paths.get(uploadDir);
 
         // Create the directory if it does not exist
-        if(!Files.exists(uploadPath)) {
+        if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
         }
 

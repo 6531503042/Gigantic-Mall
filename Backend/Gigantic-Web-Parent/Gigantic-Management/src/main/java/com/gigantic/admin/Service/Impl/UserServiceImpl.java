@@ -54,6 +54,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAllUsers(String firstName, String lastName, String email, String role, String sortField, String sortDirection) {
+        firstName = (firstName != null) ? firstName : "";
+        lastName = (lastName != null) ? lastName : "";
+        email = (email != null) ? email : "";
+        role = (role != null) ? role : "";
+        sortField = (sortField != null) ? sortField : "id";
+        sortDirection = (sortDirection != null) ? sortDirection : "asc";
+
         Specification<User> specs = Specification.where(UserSpecificationConfig.hasFirstName(firstName))
                 .and(UserSpecificationConfig.hasLastName(lastName))
                 .and(UserSpecificationConfig.hasEmail(email))
@@ -63,6 +70,7 @@ public class UserServiceImpl implements UserService {
 
         return userRepository.findAll(specs, sort);
     }
+
 
 
     @Override
