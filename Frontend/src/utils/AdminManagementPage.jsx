@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import '../css/AdminManagementPage.css';
 import SideBar from '../components/SideBarAdmin.jsx';
 import { Helmet } from 'react-helmet';
+import DashBoard from './widget_admin/DashBoard.jsx';
 
 const AdminManagementPage = () => {
     const [users, setUsers] = useState([]);
@@ -100,7 +101,7 @@ const AdminManagementPage = () => {
                 <title>Admin Management</title>
             </Helmet>
             <SideBar/>
-            <div>a</div>
+            <DashBoard/>
         </div>
 
     );
