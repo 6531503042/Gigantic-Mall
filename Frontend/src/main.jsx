@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import HomePage from './utils/HomePage.jsx'
 import UserManagementPage from './utils/UserManagementPage.jsx'
 import AdminManagementPage from './utils/AdminManagementPage.jsx'
+import ManagementPage from './utils/ManagementPage.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const router = createBrowserRouter([
@@ -20,7 +21,11 @@ const router = createBrowserRouter([
   {
   path: "/AdminPage",
   element: <AdminManagementPage />,
-  }
+  },
+  {
+  path: "/ManagementPage",
+  element: <ManagementPage />,
+  },
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
