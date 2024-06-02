@@ -2,7 +2,7 @@ import React from 'react';
 import Sidebar from '../components/Sidebar.jsx';
 import { Helmet } from 'react-helmet';
 import '../App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, BrowserRouter} from 'react-router-dom';
 import Brands from '../utils/widget_admin/Brands.jsx';
 import Categories from '../utils/widget_admin/Categories.jsx';
 import Create_new_products from '../utils/widget_admin/Create_new_products.jsx';
@@ -22,6 +22,7 @@ const ManagementPage = () => {
             </Helmet>
             <Sidebar>
                 <Routes>
+                    <Route path="/" element={<DashBoard />} />
                     <Route path="/DashBoard" element={<DashBoard />} />
                     <Route path="/Brands" element={<Brands />} />
                     <Route path="/Categories" element={<Categories />} />

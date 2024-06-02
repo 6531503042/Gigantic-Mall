@@ -10,7 +10,7 @@ const Sidebar = ({ children }) => {
     const toggle = () => setIsOpen(!isOpen);
 
     const menuItem = [
-        { path: "/DashBoard", name: "DashBoard", icon: <FontAwesomeIcon icon={faTh} /> },
+        { path: "/", name: "DashBoard", icon: <FontAwesomeIcon icon={faTh} /> },
         { path: "/Brands", name: "Brands", icon: <FontAwesomeIcon icon={faTh} /> },
         { path: "/Categories", name: "Categories", icon: <FontAwesomeIcon icon={faTh} /> },
         { path: "/Create_new_products", name: "Create New Products", icon: <FontAwesomeIcon icon={faTh} /> },
