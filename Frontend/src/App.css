@@ -200,3 +200,15 @@
   font-size: 1.5vw;
 }
 
+
+
+.management-page {
+  display: flex;
+  height: 100vh;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #f4f4f4; /* Or any other background color */
+}

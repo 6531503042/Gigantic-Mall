@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.sidebar-container {
+    display: flex;
+}
+
+.sidebar-body {
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+}
+
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo-admin img {
+    width: 100px;
+}
+
+.bars {
+    cursor: pointer;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.link:hover, .link.active {
+    background-color: #444;
+}
+
+.icon {
+    margin-right: 10px;
+}
+
+.link-text {
+    font-size: 16px;
+}
+
+main {
+    flex-grow: 1;
+    padding: 20px;
+}
