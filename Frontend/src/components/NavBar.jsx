@@ -9,7 +9,7 @@ function NavBar() {
         <div>
             <div className='nav-bar-con'>
                 <div >
-                    <a href="/"><img className='container mt-2 mb-1 ms-3 w-75' src={Logo} /></a>
+                    <a href="/HomePage"><img className='container mt-2 mb-1 ms-3 w-75' src={Logo} /></a>
                 </div>
                 <SearchingBar />
                 <div className='nav-bar-user mt-4 me-4 ms-4'>
