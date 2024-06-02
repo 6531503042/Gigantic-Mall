@@ -9,7 +9,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DataJpaTest(showSql = false)
@@ -29,22 +28,20 @@ public class CategoryRepositoryTest {
         entityManager.getEntityManager().createQuery("DELETE FROM Category ").executeUpdate();
     }
 
-//    @Test
-//    public void testCreateRootCategory() {
-//        Category category = new Category("Electronics", "electronics", "default.png");
-//        Category savedCategory = repo.save(category);
-//        assertThat(savedCategory.getId()).isGreaterThan(0);
-//    }
+    @Test
+    public void testCreateRootCategory() {
+        Category category = new Category("Electronics");
+        Category savedCategory = repo.save(category);
 
-//    @Test
-//    public void testCreateSubCategory() {
-//        Category parent = new Category(4L);
-//        Category subCategory = new Category("SmartPhone", parent);
-//        Category savedSubCategory = repo.save(subCategory);
-//
-//        assertThat(savedSubCategory.getId()).isGreaterThan(0);
-//        assertThat(savedSubCategory.getId()).isGreaterThan(0);
-//        assertThat(savedSubCategory.getName()).isEqualTo("SmartPhone");
-//        assertThat(savedSubCategory.getParent()).isEqualTo(parent);
-//    }
+        assertThat(savedCategory.getId()).isGreaterThan(0);
+    }
+
+    @Test
+    public void testCreateSubCategory() {
+        Category parent = new Category(1L);
+        Category subCategory = new Category("iPhone", parent);
+        Category savedCategory = repo.save(subCategory);
+
+        assertThat(savedCategory.getId()).isGreaterThan(0);
+    }
 }
