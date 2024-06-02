@@ -4,7 +4,6 @@ import '../css/AdminManagementPage.css';
 import logo from '../assets/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBox, faBraille, faCarCrash, faCircle, faCodePullRequest, faGroupArrowsRotate, faHandPaper, faHome, faHouse, faMapLocation, faMarsAndVenusBurst, faPaperPlane, faPlus, faShip, faUserCircle, faUserGroup } from '@fortawesome/free-solid-svg-icons';
-import Users from '../utils/widget_admin/Users';
 
 const SideBarAdmin = () => {
     const [activeSubmenu, setActiveSubmenu] = useState(null);
@@ -27,7 +26,7 @@ const SideBarAdmin = () => {
                 </div>
                 <div className='col-sidebar-nav'>
                     <div className='menu-list'>
-                        <a href={Users} className='space-of-ui'>
+                        <a href="/users" className='space-of-ui'>
                             <a><FontAwesomeIcon icon={faHouse} style={{borderRadius:'100px',}}/></a>
                             <a>Dashboard</a>
                         </a>
