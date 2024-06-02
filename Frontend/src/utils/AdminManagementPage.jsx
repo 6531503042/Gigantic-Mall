@@ -104,12 +104,8 @@ const AdminManagementPage = () => {
             <SideBar />
             <DashBoard />
         </div>
-
     );
-
-
-
 };
 
-
 export default AdminManagementPage
+

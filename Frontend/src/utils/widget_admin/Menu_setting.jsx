@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Menu_setting() {
+const Menu_setting = () => {
   return (
     <div>Menu_setting</div>
   )

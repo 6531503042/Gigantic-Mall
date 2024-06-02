@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-function Brands() {
+const Brands = () => {
   return (
-    <div>Brands</div>
-  )
-}
+    <div>
+      <h1>Brands</h1>
+    </div>
+  );
+};
 
-export default Brands
+export default Brands;
