@@ -2,6 +2,7 @@ package com.gigantic.admin.Controller;
 
 import com.gigantic.admin.Config.Export.UserCSVExporter;
 import com.gigantic.admin.Config.Export.UserExcelExporter;
+import com.gigantic.admin.Config.Export.UserPDFExporter;
 import com.gigantic.admin.Config.FileUploadConfig;
 import com.gigantic.admin.Exception.DuplicateUserException;
 import com.gigantic.admin.Exception.UserNotFoundException;
@@ -163,6 +164,18 @@ public class UserController {
             List<User> listUsers = services.getAllUsers(firstName, lastName, email, role, sortField, sortDirection);
 
             UserExcelExporter exporter = new UserExcelExporter();
+            exporter.export(listUsers, response);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @GetMapping("/users/export/pdf")
+    public void exportToPdf(HttpServletResponse response , String fristName, String lastName, String email, String role, String sortField, String sortDirection) throws IOException {
+
+        try {
+            List<User> listUsers = services.getAllUsers(fristName, lastName, email, role, sortField, sortDirection);
+            UserPDFExporter exporter = new UserPDFExporter();
             exporter.export(listUsers, response);
         } catch (IOException e) {
             e.printStackTrace();
