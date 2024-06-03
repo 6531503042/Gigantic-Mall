@@ -1,16 +1,17 @@
 // src/App.jsx
 import React from 'react';
-import { Outlet } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
+import { BrowserRouter as Router } from 'react-router-dom';
+import HomePage from './utils/HomePage.jsx';
+import Layout from './utils/Layout.jsx';
 
 function App() {
   return (
-    <div className="App">
-      <Sidebar />
-      <div className="content">
-        <Outlet />
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/layout" element={<Layout />} />
+      </Routes>
+    </Router>
   );
 }
 
