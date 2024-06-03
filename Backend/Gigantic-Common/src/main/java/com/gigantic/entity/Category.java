@@ -4,7 +4,9 @@ import com.gigantic.Mapper.IdBasedEntity;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -25,11 +27,13 @@ public class Category extends IdBasedEntity {
     @Column(name = "all_parent_ids", length = 256, nullable = true)
     private String allParentIDs;
 
+    // Many categories can have one parent category
     @ManyToOne
     @JoinColumn(name = "parent_id")
     private Category parent;
 
-    @OneToMany(mappedBy = "parent")
+    // One category can have many child categories
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderBy("name asc")
     private Set<Category> children = new HashSet<>();
 
@@ -38,41 +42,6 @@ public class Category extends IdBasedEntity {
 
     public Category(Long id) {
         this.id = id;
-    }
-
-    public static Category copyIdAndName(Category category) {
-        Category copyCategory = new Category();
-        copyCategory.setId(category.getId());
-        copyCategory.setName(category.getName());
-
-        return copyCategory;
-    }
-
-    public static Category copyIdAndName(Long id, String name) {
-        Category copyCategory = new Category();
-        copyCategory.setId(id);
-        copyCategory.setName(name);
-
-        return copyCategory;
-    }
-
-    public static Category copyFull(Category category) {
-        Category copyCategory = new Category();
-        copyCategory.setId(category.getId());
-        copyCategory.setName(category.getName());
-        copyCategory.setImage(category.getImage());
-        copyCategory.setAlias(category.getAlias());
-        copyCategory.setEnabled(category.isEnabled());
-        copyCategory.setHasChildren(category.getChildren().size() > 0);
-
-        return copyCategory;
-    }
-
-    public static Category copyFull(Category category, String name) {
-        Category copyCategory = Category.copyFull(category);
-        copyCategory.setName(name);
-
-        return copyCategory;
     }
 
     public Category(String name) {
