@@ -40,9 +40,15 @@ public class CategoryServiceImpl implements CategoryService {
         return repo.findById(id).orElseThrow(() -> new RuntimeException("Category not found"));
     }
 
+
+    @Override
+    public Category getParentCategory(Long id) {
+        return repo.getParentCategory(id);
+    }
+
     @Override
     public Category getAllCategories() {
-        return repo.findAllCategories();
+        return (Category) repo.findAllCategories();
     }
 
 

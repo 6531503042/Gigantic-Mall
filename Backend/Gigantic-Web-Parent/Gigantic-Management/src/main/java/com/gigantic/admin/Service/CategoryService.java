@@ -9,5 +9,7 @@ public interface CategoryService {
 
     Category getCategoryById(Long id);
 
+    Category getParentCategory(Long id);
+
     Category getAllCategories();
 }

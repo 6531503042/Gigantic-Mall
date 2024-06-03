@@ -20,14 +20,14 @@ public class CategoryController {
     @Autowired
     private CategoryRepository repository;
 
-//    @GetMapping("category/list")
-//    public ResponseEntity<List<Category>> getAllCategories() {
-//        List<Category> categories = (List<Category>) services.getAllCategories();
-//        if (categories.isEmpty()) {
-//            throw new RuntimeException("Categories not found");
-//        }
-//        return ResponseEntity.ok(categories);
-//    }
+    @GetMapping("category/list")
+    public ResponseEntity<List<Category>> getAllCategories() {
+        List<Category> categories = (List<Category>) services.getAllCategories();
+        if (categories.isEmpty()) {
+            throw new RuntimeException("Categories not found");
+        }
+        return ResponseEntity.ok(categories);
+    }
 
     @GetMapping("/category/{id}")
     public ResponseEntity<?> getCategoryById(@PathVariable Long id) {
