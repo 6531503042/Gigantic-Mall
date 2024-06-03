@@ -21,6 +21,8 @@ public class CategoryServiceImpl implements CategoryService {
     public Category createRootCategory(String name) {
         Category category =  new Category();
         category.setName(name);
+        category.setAlias(name);
+        category.setImage("default.png");
         return repo.save(category);
     }
 
