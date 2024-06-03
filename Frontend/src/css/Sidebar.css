@@ -1,54 +1,30 @@
-.sidebar-container {
-    display: flex;
-}
-
+/* src/components/Sidebar.css */
 .sidebar {
+    height: 100%;
     width: 250px;
-    height: 100vh;
-    background: #333;
-    color: white;
     position: fixed;
-    transition: width 0.3s;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    padding-top: 20px;
 }
 
-.sidebar.open {
-    width: 250px;
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-.sidebar .top-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
+.sidebar ul li {
+    padding: 8px;
+    text-align: center;
 }
 
-.sidebar .logo-admin img {
-    width: 100px;
-}
-
-.sidebar .bars {
-    cursor: pointer;
-}
-
-.sidebar .link {
-    display: flex;
-    align-items: center;
-    padding: 15px 20px;
+.sidebar ul li a {
     color: white;
     text-decoration: none;
-    transition: background 0.3s;
+    display: block;
 }
 
-.sidebar .link.active, .sidebar .link:hover {
-    background: #575757;
-}
-
-.sidebar .link .icon {
-    margin-right: 10px;
-}
-
-.main-content {
-    margin-left: 250px;
-    padding: 20px;
-    width: calc(100% - 250px);
+.sidebar ul li a:hover {
+    background-color: #575757;
 }

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import SideBar from '../components/SideBar';
 import '../css/UserManagementPage.css';
 import { Helmet } from 'react-helmet';
 
