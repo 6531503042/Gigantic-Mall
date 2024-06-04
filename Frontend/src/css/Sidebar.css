@@ -18,9 +18,9 @@
     flex-direction: column;
     background: linear-gradient(180deg, #794D4D 0%, #860101 100%);
     color: #ffffff;
-    width: 260px;
-    height: max-content;
-    overflow-y:unset;
+    width: 290px;
+    height: 100vh;
+    overflow-y: scroll;
 }
 
 .top-section {
