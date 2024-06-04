@@ -10,14 +10,16 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@DataJpaTest(showSql = false)
+@DataJpaTest(showSql = true)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@Transactional
 @Rollback(false)
 public class CategoryRepositoryTest {
 
@@ -35,7 +37,7 @@ public class CategoryRepositoryTest {
 
     @Test
     public void testCreateRootCategory() {
-        Category category = new Category("Electronics");
+        Category category = new Category("Furniture");
         Category savedCategory = repo.save(category);
 
         assertThat(savedCategory.getId()).isGreaterThan(0);
@@ -57,8 +59,8 @@ public class CategoryRepositoryTest {
 
     @Test
     public void testCreateSubCategory() {
-        Category parent = new Category(1L);
-        Category subCategory = new Category("iPhone", parent);
+        Category parent = new Category(6L);
+        Category subCategory = new Category("Chair", parent);
         Category savedCategory = repo.save(subCategory);
 
         assertThat(savedCategory.getId()).isGreaterThan(0);
