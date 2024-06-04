@@ -9,7 +9,7 @@
 }
 
 .logo_admin img {
-    width: 250px;
+    width: 230px;
     height: auto;
 }
 
@@ -26,22 +26,31 @@
 .top-section {
     display: flex;
     align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 
 .bars {
-    color: black;
-    background-color: white;
-
+    color: rgb(218, 218, 218);
+    background-color: rgb(0, 0, 0);
+    font-size: 2rem;
+    border-radius: 50%;
+    padding: 0.4rem;
 }
 
-.bars-body {    
+.bars-body :hover{
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    font-size: 2rem;
+    border-radius: 50%;
+    padding: 0.4rem;
 }
 
 .link {
     display: flex;
-    text-decoration: none;
-    gap: 20px;
+    justify-content: flex-start; 
     margin-left: 2rem;
     margin-right: 2rem;
     margin-top: 1rem;
@@ -50,18 +59,29 @@
     padding-right: 1rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
+    text-decoration: none;
+}
+
+.link-line {
+    display: flex;
     color: white;
+    text-decoration: none;
+    gap: 20px;
     align-items: center;
 }
 
 .link:hover {
     background-color: #4d4d4d;
     border-radius: 20px;
+    color: white;
 }
 
 
 .active {
     background-color: #ffffff;
     border-radius: 20px;
+}
+
+.active a {
     color: black;
 }
