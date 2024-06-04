@@ -1,15 +1,24 @@
 package com.gigantic.admin.Service;
 
+import com.gigantic.admin.Exception.CategoryNotFoundException;
+import com.gigantic.admin.Exception.ResourceNotFoundException;
 import com.gigantic.entity.Category;
 
+import java.util.List;
+import java.util.Set;
+
 public interface CategoryService {
-    Category createRootCategory(String name);
+    Category saveCategory(Category category);
 
-    Category createSubCategory(String name, Long parentId);
+    Category createRootCategory(String name, String alias);
 
-    Category getCategoryById(Long id);
+    Category createSubCategory(String name, Long parentId) throws CategoryNotFoundException;
 
-    Category getParentCategory(Long id);
+    Set<Category> getChildren(Long id) throws CategoryNotFoundException;
 
-    Category getAllCategories();
+    List<Category> listAll();
+
+    void deleteCategory(Long categoryId) throws ResourceNotFoundException;
+
+    List<Category> listRootCategory();
 }

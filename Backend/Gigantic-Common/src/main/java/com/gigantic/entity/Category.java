@@ -13,10 +13,10 @@ import java.util.Set;
 @Table(name = "categories")
 public class Category extends IdBasedEntity {
 
-    @Column(length = 128, nullable = false, unique = true)
+    @Column(length = 128, nullable = false, unique = false)
     private String name;
 
-    @Column(length = 64, nullable = false, unique = true)
+    @Column(length = 64, nullable = false, unique = false)
     private String alias;
 
     @Column(length = 128, nullable = false)
@@ -34,7 +34,7 @@ public class Category extends IdBasedEntity {
 
     // One category can have many child categories
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
-    @OrderBy("name asc")
+//    @OrderBy("name asc")
     private Set<Category> children = new HashSet<>();
 
     public Category() {
