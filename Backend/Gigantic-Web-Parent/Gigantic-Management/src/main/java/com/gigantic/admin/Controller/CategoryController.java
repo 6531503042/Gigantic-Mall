@@ -44,13 +44,21 @@ public class CategoryController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<Category>> getAllCategories() {
-        List<Category> categories = (List<Category>) services.listAll();
+    public ResponseEntity<List<Category>> getAllCategories(
+            @RequestParam(required = false) String name,
+            @RequestParam(defaultValue = "id") String sortField,
+            @RequestParam(defaultValue = "asc") String sortDirection,
+            @RequestParam(required = false) String keyword) {
+
+        List<Category> categories = services.listAll(name, sortDirection, sortField, keyword);
+
         if (categories.isEmpty()) {
             throw new RuntimeException("Categories not found");
         }
         return ResponseEntity.ok(categories);
     }
+
+
 
     @PostMapping("/save")
     public ResponseEntity<Category> saveCategory(@RequestBody Category category) throws CategoryNotFoundException{
@@ -86,8 +94,8 @@ public class CategoryController {
     }
 
     @GetMapping("/export/csv")
-    public void exportToCsv(HttpServletResponse response) throws IOException {
-        List<Category> listCategories = services.listAll();
+    public void exportToCsv(HttpServletResponse response, String name, String sortField, String sortDirection, String keywords) throws IOException {
+        List<Category> listCategories = services.listAll(name, sortField, sortDirection, keywords);
 
         CategoryCsvExporter exporter = new CategoryCsvExporter();
         exporter.export(listCategories, response);

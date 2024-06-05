@@ -17,7 +17,7 @@ public interface CategoryService {
 
     Set<Category> getChildren(Long id) throws CategoryNotFoundException;
 
-    List<Category> listAll();
+    List<Category> listAll(String name, String sortDirection, String sortField, String keyword);
 
     void deleteCategory(Long categoryId) throws ResourceNotFoundException;
 

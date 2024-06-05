@@ -1,10 +1,13 @@
 package com.gigantic.admin.Service.Impl;
 
+import com.gigantic.admin.Config.Export.CategorySpecificationConfig;
 import com.gigantic.admin.Exception.CategoryNotFoundException;
 import com.gigantic.admin.Exception.ResourceNotFoundException;
 import com.gigantic.admin.Repository.CategoryRepository;
 import com.gigantic.admin.Service.CategoryService;
 import com.gigantic.entity.Category;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -63,8 +66,22 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<Category> listAll() {
-        return (List<Category>) repo.findAll();
+    public List<Category> listAll(String name, String sortDirection, String sortField, String keyword) {
+        name = (name != null) ? name : "";
+        sortField = (sortField != null) ? sortField : "id";
+        sortDirection = (sortDirection != null) ? sortDirection : "asc";
+
+        // Build sort object
+        Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortField);
+
+        // Build specifications
+        Specification<Category> specs = Specification.where(CategorySpecificationConfig.hasName(name));
+        if (keyword != null && !keyword.isEmpty()) {
+            specs = specs.and(CategorySpecificationConfig.containsKeyword(keyword));
+        }
+
+        // Fetch and return sorted and filtered categories
+        return repo.findAll(specs, sort);
     }
 
     @Override
