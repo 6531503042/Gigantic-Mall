@@ -39,6 +39,9 @@ public class Category extends IdBasedEntity {
     @JsonBackReference // Breaks the cycle for parent reference
     private Set<Category> children = new HashSet<>();
 
+    @Transient
+    private String parentName;
+
     public Category() {
     }
 
@@ -62,6 +65,18 @@ public class Category extends IdBasedEntity {
         this.id = id;
         this.name = name;
         this.alias = alias;
+    }
+
+    public Category(Long id, String name, String alias, String image, boolean enabled, String allParentIDs, Category parent, Set<Category> children) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.alias = alias;
+        this.image = image;
+        this.enabled = enabled;
+        this.allParentIDs = allParentIDs;
+        this.parent = parent;
+        this.children = children;
     }
 
     public static Category copyIdAndName(Category category) {
@@ -137,6 +152,14 @@ public class Category extends IdBasedEntity {
 
     public void setParent(Category parent) {
         this.parent = parent;
+    }
+
+    public String getParentName() {
+        return parentName;
+    }
+
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
     }
 
     public Set<Category> getChildren() {

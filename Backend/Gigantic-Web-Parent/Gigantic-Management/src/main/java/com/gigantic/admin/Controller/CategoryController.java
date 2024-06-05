@@ -2,7 +2,9 @@ package com.gigantic.admin.Controller;
 
 import com.gigantic.DTO.RootCategoryRequest;
 import com.gigantic.DTO.SubCategoryRequest;
+import com.gigantic.admin.Config.Export.Category.CategoryCsvExporter;
 import com.gigantic.admin.Exception.CategoryNotFoundException;
+import com.gigantic.admin.Exception.ResourceNotFoundException;
 import com.gigantic.admin.Repository.CategoryRepository;
 import com.gigantic.admin.Service.Impl.CategoryServiceImpl;
 import com.gigantic.entity.Category;
@@ -12,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -73,6 +77,20 @@ public class CategoryController {
     public ResponseEntity<Category> updateCategoryEnabledStatus(Long id, boolean enabled) throws CategoryNotFoundException{
             Category categories = services.updatedCategoryEnabledstatus(id, enabled);
             return ResponseEntity.ok(categories);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteCategory(Long id) throws ResourceNotFoundException {
+        services.deleteCategory(id);
+        return ResponseEntity.ok("Category with id " + id + " has been deleted");
+    }
+
+    @GetMapping("/export/csv")
+    public void exportToCsv(HttpServletResponse response) throws IOException {
+        List<Category> listCategories = services.listAll();
+
+        CategoryCsvExporter exporter = new CategoryCsvExporter();
+        exporter.export(listCategories, response);
     }
 
 
