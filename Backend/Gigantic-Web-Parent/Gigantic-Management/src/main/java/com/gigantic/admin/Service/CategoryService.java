@@ -1,6 +1,7 @@
 package com.gigantic.admin.Service;
 
 import com.gigantic.admin.Exception.CategoryNotFoundException;
+import com.gigantic.admin.Exception.DuplicateCategoryException;
 import com.gigantic.admin.Exception.ResourceNotFoundException;
 import com.gigantic.entity.Category;
 
@@ -10,6 +11,8 @@ import java.util.Set;
 import java.util.SortedSet;
 
 public interface CategoryService {
+
+    Category getById(Long id) throws CategoryNotFoundException;
 
     List<Category> listHierachicalCategories(List<Category> rootCategories) throws NoSuchElementException;
 
@@ -30,4 +33,6 @@ public interface CategoryService {
     SortedSet<Category> sortSubCategories(Set<Category> children, String sortDir);
 
     Category updatedCategoryEnabledstatus(Long id, boolean enabled);
+
+    Category updatedCategories(Long id, Category category) throws DuplicateCategoryException;
 }

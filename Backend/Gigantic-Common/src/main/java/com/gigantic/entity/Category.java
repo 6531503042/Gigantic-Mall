@@ -1,6 +1,7 @@
 package com.gigantic.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.gigantic.Mapper.IdBasedEntity;
 
 
@@ -31,12 +32,12 @@ public class Category extends IdBasedEntity {
     // Many categories can have one parent category
     @ManyToOne
     @JoinColumn(name = "parent_id")
-    @JsonBackReference // Breaks the cycle for parent reference
+//    @JsonManagedReference // Breaks the cycle for parent reference
     private Category parent;
 
     @OneToMany(mappedBy = "parent")
     @OrderBy("name asc")
-    @JsonBackReference // Breaks the cycle for parent reference
+//    @JsonBackReference // Breaks the cycle for child reference
     private Set<Category> children = new HashSet<>();
 
     @Transient

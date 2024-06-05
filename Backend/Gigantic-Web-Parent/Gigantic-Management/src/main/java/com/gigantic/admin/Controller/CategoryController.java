@@ -4,11 +4,12 @@ import com.gigantic.DTO.RootCategoryRequest;
 import com.gigantic.DTO.SubCategoryRequest;
 import com.gigantic.admin.Config.Export.Category.CategoryCsvExporter;
 import com.gigantic.admin.Exception.CategoryNotFoundException;
+import com.gigantic.admin.Exception.DuplicateCategoryException;
 import com.gigantic.admin.Exception.ResourceNotFoundException;
 import com.gigantic.admin.Repository.CategoryRepository;
 import com.gigantic.admin.Service.Impl.CategoryServiceImpl;
 import com.gigantic.entity.Category;
-import org.apache.coyote.Response;
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @RestController
@@ -65,19 +67,29 @@ public class CategoryController {
         return ResponseEntity.ok(services.save(category));
     }
 
+//    @PutMapping("/update/{id}")
+//    public ResponseEntity<Category> updateCategory(@PathVariable Long id, @RequestBody Category category) throws CategoryNotFoundException {
+//        try {
+//            Category categories = services.getById(id);
+//            categories.setName(category.getName());
+//            categories.setAlias(category.getAlias());
+//            Optional.ofNullable(category.getParent()).ifPresent(parent -> {
+//                categories.setEnabled(parent.isEnabled());
+//                categories.setParent(parent);
+//            });
+//            return ResponseEntity.ok(services.save(categories));
+//        } catch (CategoryNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+
     @PutMapping("/update/{id}")
-    public ResponseEntity<Category> updateCategory(@PathVariable Long id, @RequestBody Category category) throws CategoryNotFoundException {
+    public ResponseEntity<Category> updateCategory(@PathVariable Long id, @RequestBody Category category) {
         try {
-            Category categories = services.getById(id);
-            categories.setName(category.getName());
-            categories.setAlias(category.getAlias());
-            Optional.ofNullable(category.getParent()).ifPresent(parent -> {
-                categories.setEnabled(parent.isEnabled());
-                categories.setParent(parent);
-            });
-            return ResponseEntity.ok(services.save(categories));
-        } catch (CategoryNotFoundException e) {
-            throw new RuntimeException(e);
+            Category updatedCategory = services.updatedCategories(id, category);
+            return ResponseEntity.ok(updatedCategory);
+        } catch (DuplicateCategoryException e) {
+            return ResponseEntity.notFound().build();
         }
     }
 
@@ -100,6 +112,8 @@ public class CategoryController {
         CategoryCsvExporter exporter = new CategoryCsvExporter();
         exporter.export(listCategories, response);
     }
+
+
 
 
 

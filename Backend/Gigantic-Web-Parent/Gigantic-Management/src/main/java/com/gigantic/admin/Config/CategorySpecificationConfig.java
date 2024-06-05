@@ -1,4 +1,4 @@
-package com.gigantic.admin.Config.Export;
+package com.gigantic.admin.Config;
 
 import com.gigantic.entity.Category;
 import org.springframework.data.jpa.domain.Specification;

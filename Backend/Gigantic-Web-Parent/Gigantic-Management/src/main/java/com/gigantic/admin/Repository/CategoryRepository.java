@@ -24,4 +24,9 @@ public interface CategoryRepository extends PagingAndSortingRepository<Category,
     @Query("UPDATE Category c SET c.enabled = ?2 WHERE c.id = ?1")
     @Modifying
     Category updatedEnabledStatus(Long id, boolean enabled);
+
+    @Query("SELECT c FROM Category c WHERE c.name = :name")
+    Category findByName(String name);
+
+    Category getById(Long id);
 }
