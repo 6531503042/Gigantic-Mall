@@ -9,16 +9,16 @@ const Sidebar = ({ children }) => {
     const toggle = () => setIsOpen(!isOpen);
 
     const menuItem = [
-        { path: "/layout/create_new_products", name: "Create New Products", icon: <FaPlus className="create-new-icon" />, className: 'create-new'},
-        { path: "/layout/dashboard", name: "Dashboard", icon: <FaHome className='normally-menu-bar'/>},
-        { path: "/layout/users", name: "Users", icon: <FaUser className='normally-menu-bar'/> },
-        { path: "/layout/categories", name: "Categories", icon: <FaTags className='normally-menu-bar'/> },
-        { path: "/layout/brands", name: "Brands", icon: <FaBoxes className='normally-menu-bar'/> },
-        { path: "/layout/products", name: "Products", icon: <FaShoppingCart className='normally-menu-bar'/> },
-        { path: "/layout/shipping", name: "Shipping", icon: <FaShippingFast className='normally-menu-bar'/> },
-        { path: "/layout/orders", name: "Orders", icon: <FaClipboardList className='normally-menu-bar'/> },
-        { path: "/layout/customers", name: "Customers", icon: <FaUsersCog className='normally-menu-bar'/> },
-        { path: "/layout/menu_setting", name: "Menu Setting", icon: <FaCog className='normally-menu-bar'/> },
+        { path: "/AdminPage/create_new_products", name: "Create New Products", icon: <FaPlus className="create-new-icon" />, className: 'create-new'},
+        { path: "/AdminPage/dashboard", name: "Dashboard", icon: <FaHome className='normally-menu-bar'/>},
+        { path: "/AdminPage/users", name: "Users", icon: <FaUser className='normally-menu-bar'/> },
+        { path: "/AdminPage/categories", name: "Categories", icon: <FaTags className='normally-menu-bar'/> },
+        { path: "/AdminPage/brands", name: "Brands", icon: <FaBoxes className='normally-menu-bar'/> },
+        { path: "/AdminPage/products", name: "Products", icon: <FaShoppingCart className='normally-menu-bar'/> },
+        { path: "/AdminPage/shipping", name: "Shipping", icon: <FaShippingFast className='normally-menu-bar'/> },
+        { path: "/AdminPage/orders", name: "Orders", icon: <FaClipboardList className='normally-menu-bar'/> },
+        { path: "/AdminPage/customers", name: "Customers", icon: <FaUsersCog className='normally-menu-bar'/> },
+        { path: "/AdminPage/menu_setting", name: "Menu Setting", icon: <FaCog className='normally-menu-bar'/> },
     ];
 
     return (

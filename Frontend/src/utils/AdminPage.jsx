@@ -1,18 +1,18 @@
 import React from 'react';
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../components/Sidebar.jsx';
 import { Route, Routes } from 'react-router-dom';
-import Dashboard from '../menu_adminpage/Dashboard';
-import Orders from '../menu_adminpage/Orders';
-import Users from '../menu_adminpage/Users';
-import Categories from '../menu_adminpage/Categories';
-import Create_new_products from '../menu_adminpage/Create_new_products';
-import Customers from '../menu_adminpage/Customers';
-import Menu_setting from '../menu_adminpage/Menu_setting';
-import Products from '../menu_adminpage/Products';
-import Shipping from '../menu_adminpage/Shipping';
+import Dashboard from '../menu_adminpage/Dashboard.jsx';
+import Orders from '../menu_adminpage/Orders.jsx';
+import Users from '../menu_adminpage/Users.jsx';
+import Categories from '../menu_adminpage/Categories.jsx';
+import Create_new_products from '../menu_adminpage/Create_new_products.jsx';
+import Customers from '../menu_adminpage/Customers.jsx';
+import Menu_setting from '../menu_adminpage/Menu_setting.jsx';
+import Products from '../menu_adminpage/Products.jsx';
+import Shipping from '../menu_adminpage/Shipping.jsx';
 import Brands from '../menu_adminpage/Brands.jsx';
 
-const Layout = () => {
+const AdminPage = () => {
     return (
         <div className='main-con-manage'>
             <Sidebar>
@@ -34,4 +34,4 @@ const Layout = () => {
     );
 };
 
-export default Layout;
+export default AdminPage;

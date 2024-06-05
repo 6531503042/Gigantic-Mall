@@ -1,0 +1,14 @@
+.body-of-users {
+    display: flex;
+    flex-direction: column;
+}
+
+.row-1-space {
+    display: flex;
+    flex-direction: row;
+}
+
+.body-con-row-1 {
+    background-color: aqua;
+
+}
