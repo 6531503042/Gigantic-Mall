@@ -88,7 +88,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteCategory(Long id) throws ResourceNotFoundException {
+    public ResponseEntity<String> deleteCategory(@PathVariable Long id) throws ResourceNotFoundException {
         services.deleteCategory(id);
         return ResponseEntity.ok("Category with id " + id + " has been deleted");
     }

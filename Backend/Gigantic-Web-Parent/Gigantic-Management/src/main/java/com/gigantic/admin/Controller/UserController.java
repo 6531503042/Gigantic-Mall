@@ -50,6 +50,11 @@ public class UserController {
         return services.getAllUsers(firstName, lastName, email, role, sortField, sortDirection);
     }
 
+    /**
+     * Creates a new user and uploads the user's photo.
+     * @param user         The user details.
+     * @return A ResponseEntity with the created user or an error message.
+     */
     @PostMapping("/users/add")
     public ResponseEntity<?> createUser(@RequestBody User user) {
         try {

@@ -97,6 +97,7 @@ public class CategoryServiceImpl implements CategoryService {
         repo.delete(category);
     }
 
+
     @Override
     public List<Category> listRootCategory() {
         return repo.findByParentIsNull();
