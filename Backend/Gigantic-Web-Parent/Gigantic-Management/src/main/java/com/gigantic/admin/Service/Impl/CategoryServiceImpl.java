@@ -8,8 +8,7 @@ import com.gigantic.entity.Category;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static javax.swing.UIManager.get;
 
@@ -23,37 +22,39 @@ public class CategoryServiceImpl implements CategoryService {
         this.repo = repo;
     }
 
+    public Category getById(Long id) throws CategoryNotFoundException {
+        try {
+            return repo.findById(id).get();
+        } catch (NoSuchElementException e) {
+            throw new CategoryNotFoundException("Could not find any category with ID " + id);
+        }
+    }
+
     @Override
-    public Category saveCategory(Category category) {
+    public List<Category> listHierachicalCategories(List<Category> rootCategories) throws NoSuchElementException{
+        List<Category> hierachicalCategories = new ArrayList<>();
+
+        for (Category rootCategry : rootCategories) {
+            hierachicalCategories.add(rootCategry);
+
+            Set<Category> children = sortSubCategories(rootCategry.getChildren(), "asc");
+        }
+
+        return hierachicalCategories;
+    }
+
+    @Override
+    public Category save(Category category) {
+        Category parent = category.getParent();
+        if (parent != null) {
+            String allParentIds = parent.getAllParentIDs() == null ? "-" : parent.getAllParentIDs();
+            allParentIds += parent.getId() + "-";
+            category.setAllParentIDs(allParentIds);
+        }
+
         return repo.save(category);
     }
 
-    @Override
-    public Category createRootCategory(String name, String alias) {
-        Category category = new Category();
-        category.setName(name);
-        category.setAlias(alias);
-        category.setImage("default.png");
-        category.setEnabled(true);
-        return repo.save(category);
-    }
-
-    @Override
-    public Category createSubCategory(String name, Long parentId) throws CategoryNotFoundException {
-        Category parentCategory = repo.findById(parentId)
-                .orElseThrow(() -> new CategoryNotFoundException("Parent category not found"));
-        Category subCategory =  new Category();
-        subCategory.setName(name);
-        subCategory.setParent(parentCategory);
-        subCategory.setEnabled(true);
-//        parentCategory.getChildren().add(subCategory);
-        return repo.save(subCategory);
-    }
-
-//    @Override
-//    public Category getParentCategory(Long id) {
-//        return repo.findById(id).get();
-//    }
 
     @Override
     public Set<Category> getChildren(Long id) throws CategoryNotFoundException{
@@ -63,7 +64,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> listAll() {
-        return (List<Category>) repo.findAllCategories();
+        return (List<Category>) repo.findAll();
     }
 
     @Override
@@ -84,6 +85,48 @@ public class CategoryServiceImpl implements CategoryService {
         return repo.findByParentIsNull();
     }
 
+    @Override
+    public void listSubGierarchy(List<Category> hierarchicalCategories, Category parent, int suLevel, String sortDir) {
+        Set<Category> children = sortSubCategories(parent.getChildren(), sortDir);
+        int newSubLevel = suLevel + 1;
+
+        for (Category subCategory : children) {
+            String name = "";
+            for (int i = 0;i < newSubLevel; i++) {
+                name += " - ";
+            }
+
+            hierarchicalCategories.add(subCategory);
+            listSubGierarchy(hierarchicalCategories, subCategory, newSubLevel, sortDir);
+        }
+    }
+
+    @Override
+    public SortedSet<Category> sortSubCategories(Set<Category> children) {
+        return sortSubCategories(children, "asc");
+    }
+
+    @Override
+    public SortedSet<Category> sortSubCategories(Set<Category> children, String sortDir) {
+        SortedSet<Category> sorted = new TreeSet<Category>(new Comparator<Category>() {
+            @Override
+            public int compare(Category c1, Category c2) {
+                if (sortDir.equals("asc")) {
+                    return c1.getName().compareTo(c2.getName());
+                } else {
+                    return c2.getName().compareTo(c1.getName());
+                }
+            }
+    });
+
+        sorted.addAll(children);
+        return sorted;
+    }
+
+    @Override
+    public Category updatedCategoryEnabledstatus(Long id, boolean enabled) {
+        return repo.updatedEnabledStatus(id, enabled);
+    }
 
 
 

@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/category")
@@ -29,59 +30,51 @@ public class CategoryController {
         return "category-api working !";
     }
 
-//    @GetMapping("/list")
-//    public ResponseEntity<List<Category>> getAllCategories() {
-//        List<Category> categories = (List<Category>) services.getAllCategories();
-//        if (categories.isEmpty()) {
-//            throw new RuntimeException("Categories not found");
-//        }
-//        return ResponseEntity.ok(categories);
-//    }
-
-//    @GetMapping("/{id}")
-//    public ResponseEntity<?> getCategoryById(@PathVariable Long id) {
-//        return ResponseEntity.ok(services.getCategoryById(id));
-//    }
-
-
-
-//    @PostMapping("/root")
-//    public Category createRootCategory(@RequestParam String name) {
-//        Category category = new Category();
-//        category.setName(name);
-//        category.setAlias(name);
-//        category.setImage("default.png");
-//        return repo.save(category);
-//    }
+    @GetMapping("/{id}")
+    public ResponseEntity<Category> getById(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(services.getById(id));
+        } catch (CategoryNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @GetMapping("/list")
-    public List<Category> listAll() {
-        return services.listAll();
+    public ResponseEntity<List<Category>> getAllCategories() {
+        List<Category> categories = (List<Category>) services.listAll();
+        if (categories.isEmpty()) {
+            throw new RuntimeException("Categories not found");
+        }
+        return ResponseEntity.ok(categories);
     }
 
-    @PostMapping("/root")
-    public Category createRootCategory(@RequestBody RootCategoryRequest request) {
-        return services.createRootCategory(request.getName(), request.getAlias());
+    @PostMapping("/save")
+    public ResponseEntity<Category> saveCategory(@RequestBody Category category) throws CategoryNotFoundException{
+        return ResponseEntity.ok(services.save(category));
     }
 
-    @PostMapping("/sub")
-    public ResponseEntity<Category> createSubCategory(@RequestParam SubCategoryRequest request) throws CategoryNotFoundException {
-        Category category = services.createSubCategory(request.getName(), request.getParentId());
-        return new ResponseEntity<>(category, HttpStatus.CREATED);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Category> updateCategory(@PathVariable Long id, @RequestBody Category category) throws CategoryNotFoundException {
+        try {
+            Category categories = services.getById(id);
+            categories.setName(category.getName());
+            categories.setAlias(category.getAlias());
+            Optional.ofNullable(category.getParent()).ifPresent(parent -> {
+                categories.setEnabled(parent.isEnabled());
+                categories.setParent(parent);
+            });
+            return ResponseEntity.ok(services.save(categories));
+        } catch (CategoryNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
+    @PutMapping("/{id}/enable/{enabled}")
+    public ResponseEntity<Category> updateCategoryEnabledStatus(Long id, boolean enabled) throws CategoryNotFoundException{
+            Category categories = services.updatedCategoryEnabledstatus(id, enabled);
+            return ResponseEntity.ok(categories);
+    }
 
-
-//    @PostMapping("/root")
-//    public Category createRootCategory(@RequestBody RootCategoryRequest request) {
-//        return services.createRootCategory(request.getName(), request.getAlias());
-//    }
-
-//    @PostMapping("/sub")
-//    public ResponseEntity<Category> createSubCategory(@RequestParam String name, @RequestParam Long parentId) {
-//        Category category = services.createSubCategory(name, parentId);
-//        return new ResponseEntity<>(category, HttpStatus.CREATED);
-//    }
 
 
 

@@ -1,5 +1,6 @@
 package com.gigantic.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.gigantic.Mapper.IdBasedEntity;
 
 
@@ -30,11 +31,12 @@ public class Category extends IdBasedEntity {
     // Many categories can have one parent category
     @ManyToOne
     @JoinColumn(name = "parent_id")
+    @JsonBackReference // Breaks the cycle for parent reference
     private Category parent;
 
-    // One category can have many child categories
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
-//    @OrderBy("name asc")
+    @OneToMany(mappedBy = "parent")
+    @OrderBy("name asc")
+    @JsonBackReference // Breaks the cycle for parent reference
     private Set<Category> children = new HashSet<>();
 
     public Category() {
@@ -60,6 +62,41 @@ public class Category extends IdBasedEntity {
         this.id = id;
         this.name = name;
         this.alias = alias;
+    }
+
+    public static Category copyIdAndName(Category category) {
+        Category copy = new Category();
+        copy.setId(category.getId());
+        copy.setName(category.getName());
+        return copy;
+    }
+
+    public static Category copyIdAndName(Long id,String name) {
+        Category copy = new Category();
+        copy.setId(id);
+        copy.setName(name);
+        return copy;
+    }
+
+    public static Category copyFull(Category category) {
+        Category copy = new Category();
+        copy.setId(category.getId());
+        copy.setName(category.getName());
+        copy.setAlias(category.getAlias());
+        copy.setImage(category.getImage());
+        copy.setHasChildren(category.isHasChildren());
+        copy.setEnabled(category.isEnabled());
+        copy.setAllParentIDs(category.getAllParentIDs());
+        copy.setParent(category.getParent());
+
+        return copy;
+    }
+
+    public static Category copyFull(Category category, String name) {
+        Category copyCategory = Category.copyFull(category);
+        copyCategory.setName(name);
+
+        return copyCategory;
     }
 
     public String getName() {
