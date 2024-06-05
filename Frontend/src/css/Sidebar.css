@@ -18,7 +18,6 @@
     flex-direction: column;
     background: linear-gradient(180deg, #794D4D 0%, #860101 100%);
     color: #ffffff;
-    width: 290px;
     height: 100vh;
     overflow-y: scroll;
     transition: all 0.5s;
@@ -103,7 +102,7 @@
     font-size: 1.8rem;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1528px) {
     .sidebar-container {
         display: flex;
         flex-direction:row;
@@ -112,11 +111,18 @@
 
     .sidebar {
         width: 60%; 
-        height: auto; 
-        position: static; 
+        height: 100vh; 
     }
 
     .main-show{
         width: 40%; 
+        display: flex;
+        flex-direction:row;
+        overflow-x: none; 
     }
+}
+
+main {
+    background-color: #474747;
+    width: 100%;
 }

@@ -1,14 +1,60 @@
 .body-of-users {
-    display: flex;
-    flex-direction: column;
+    width: 65rem;
 }
 
 .row-1-space {
+    padding: 10px;
+    text-decoration: none;
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .body-con-row-1 {
-    background-color: aqua;
+    background-color: rgb(255, 255, 255);
+    
+}
 
+.Search-but {
+    color: rgb(82, 82, 82);
+    text-decoration: none;
+    background-color: silver;  
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+    width: 30rem;
+    border-radius: 10px;
+}
+.Search-but a{
+    margin-left: 0.7rem;
+    margin-right: 1rem;
+}
+
+.add-user{
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: aliceblue;
+    background-color: rgb(0, 110, 255);
+    padding: 0.5rem;
+    border-radius: 10px;
+    gap: 10px;
+}
+
+.sort-by {
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    color: rgb(46, 46, 46);
+}
+
+.saved-search {
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    color: rgb(46, 46, 46);
 }

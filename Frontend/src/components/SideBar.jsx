@@ -23,7 +23,7 @@ const Sidebar = ({ children }) => {
 
     return (
         <div className='sidebar-container'>
-            <div className='sidebar' style={{ width: isOpen ? "290px" : "140px" }}>
+            <div className='sidebar' style={{ width: isOpen ? "370px" : "155px" }}>
                 <div className='top-section'>
                     <h1 className='logo_admin' style={{ display: isOpen ? "block" : "none" }}>
                         <a href="/"><img src={logo} alt="Logo" /></a>

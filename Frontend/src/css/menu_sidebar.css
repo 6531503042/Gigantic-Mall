@@ -5,7 +5,10 @@
 }
 
 .container-information {
-    width: 40rem;
+    display: flex;
+    justify-content: center;
     margin-top: 4rem;
     margin-left: 6rem;
+    margin-right: 6rem;
 }
+
