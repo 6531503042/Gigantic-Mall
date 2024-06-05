@@ -45,7 +45,7 @@ const Sidebar = ({ children }) => {
                     </NavLink>
                 ))}
             </div>
-            <main>{children}</main>
+            <main className='main-show'>{children}</main>
         </div>
     );
 };

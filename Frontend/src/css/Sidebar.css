@@ -102,3 +102,21 @@
     padding: 0.3rem;
     font-size: 1.8rem;
 }
+
+@media (max-width: 900px) {
+    .sidebar-container {
+        display: flex;
+        flex-direction:row;
+        overflow-x: scroll; 
+    }
+
+    .sidebar {
+        width: 60%; 
+        height: auto; 
+        position: static; 
+    }
+
+    .main-show{
+        width: 40%; 
+    }
+}
