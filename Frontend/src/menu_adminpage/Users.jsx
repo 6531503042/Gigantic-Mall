@@ -10,16 +10,20 @@ const Users = () => {
           <a className='row-1-space'>
             <a className='Search-but'>
               <a><FaSearch style={{ fontSize: '12px' }} /></a>
-              <input type="Search" placeholder='Search' style={{border:'none', width:'25rem'}}/>
+              <input className='search-hint' type="Search" placeholder='Search'/>
             </a>
             <a className='add-user'>Add user <FaPlus style={{ fontSize: '12px' }}/></a>
             <a className='sort-by'>Sort by <FaAngleDown style={{ fontSize: '12px' }}/></a>
             <a className='saved-search'>Saved search <FaAngleDown style={{ fontSize: '12px' }}/></a>
-            <a><FaContao /></a>
+            <a><FaContao style={{ fontSize: '12px',  color:'black'}}/></a>
           </a>
         </div>
-        <div>
-          aaaa
+        <div className='information-users'>
+          <div>
+            <div>Lists</div>
+            <div>Topic</div>
+            <div>information</div>
+          </div>
         </div>
       </div>
     </div>

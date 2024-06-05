@@ -16,14 +16,15 @@
 }
 
 .Search-but {
-    color: rgb(82, 82, 82);
+    color: rgb(54, 54, 54);
     text-decoration: none;
-    background-color: silver;  
+    background-color: rgb(231, 231, 231);  
     padding-top: 0.4rem;
     padding-bottom: 0.4rem;
-    width: 30rem;
+    width: 38rem;
     border-radius: 10px;
 }
+
 .Search-but a{
     margin-left: 0.7rem;
     margin-right: 1rem;
@@ -57,4 +58,23 @@
     align-items: center;
     gap: 10px;
     color: rgb(46, 46, 46);
+}
+
+.search-hint {
+    background-color: transparent;
+    width: 32rem;
+    border: none;
+    outline: none;
+    color: #000000;
+}
+
+
+.search-hint::placeholder {
+    color: #646464; 
+}
+
+.information-users {
+    margin-top: 2rem;
+    background-color: aliceblue;
+    border-radius: 10px;
 }
