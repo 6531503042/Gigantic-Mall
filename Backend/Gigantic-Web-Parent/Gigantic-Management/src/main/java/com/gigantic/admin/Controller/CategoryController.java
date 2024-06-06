@@ -1,7 +1,6 @@
 package com.gigantic.admin.Controller;
 
-import com.gigantic.DTO.RootCategoryRequest;
-import com.gigantic.DTO.SubCategoryRequest;
+import com.gigantic.DTO.CategoryDTO;
 import com.gigantic.admin.Config.Export.Category.CategoryCsvExporter;
 import com.gigantic.admin.Exception.CategoryNotFoundException;
 import com.gigantic.admin.Exception.DuplicateCategoryException;
@@ -9,17 +8,14 @@ import com.gigantic.admin.Exception.ResourceNotFoundException;
 import com.gigantic.admin.Repository.CategoryRepository;
 import com.gigantic.admin.Service.Impl.CategoryServiceImpl;
 import com.gigantic.entity.Category;
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/category")
@@ -46,7 +42,7 @@ public class CategoryController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<Category>> getAllCategories(
+    public ResponseEntity<List<CategoryDTO>> getAllCategories(
             @RequestParam(required = false) String name,
             @RequestParam(defaultValue = "id") String sortField,
             @RequestParam(defaultValue = "asc") String sortDirection,
@@ -57,14 +53,21 @@ public class CategoryController {
         if (categories.isEmpty()) {
             throw new RuntimeException("Categories not found");
         }
-        return ResponseEntity.ok(categories);
+
+        List<CategoryDTO> categoryDTOs = categories.stream()
+                .map(services::toDTO)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(categoryDTOs);
     }
 
 
 
     @PostMapping("/save")
-    public ResponseEntity<Category> saveCategory(@RequestBody Category category) throws CategoryNotFoundException{
-        return ResponseEntity.ok(services.save(category));
+    public ResponseEntity<CategoryDTO> saveCategory(@RequestBody CategoryDTO categoryDTO) throws CategoryNotFoundException{
+        Category category = services.toEntity(categoryDTO);
+        Category savedCategory = services.save(category);
+        return ResponseEntity.ok(services.toDTO(savedCategory));
     }
 
 //    @PutMapping("/update/{id}")
@@ -112,13 +115,4 @@ public class CategoryController {
         CategoryCsvExporter exporter = new CategoryCsvExporter();
         exporter.export(listCategories, response);
     }
-
-
-
-
-
-
-
-
-
 }

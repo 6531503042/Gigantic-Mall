@@ -1,5 +1,6 @@
 package com.gigantic.admin.Service.Impl;
 
+import com.gigantic.DTO.CategoryDTO;
 import com.gigantic.admin.Config.CategorySpecificationConfig;
 import com.gigantic.admin.Exception.CategoryNotFoundException;
 import com.gigantic.admin.Exception.DuplicateCategoryException;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static javax.swing.UIManager.get;
 
@@ -178,19 +180,62 @@ public class CategoryServiceImpl implements CategoryService {
         return repo.save(existingCategory);
     }
 
-//    private CategoryDTO convertToDTO(Category category) {
-//        CategoryDTO dto = new CategoryDTO();
-//        dto.setId(category.getId());
-//        dto.setName(category.getName());
-//        dto.setAlias(category.getAlias());
-//        dto.setImage(category.getImage());
-//        dto.setEnabled(category.isEnabled());
-//        dto.setHasChildren(category.getChildren());
+    @Override
+    public Category toEntity(CategoryDTO dto) {
+        return null;
+    }
+
+    @Override
+    public CategoryDTO toDTO(Category category) {
+        return toDTO(category, new HashMap<>());
+    }
+
+    @Override
+    public CategoryDTO toDTO(Category category, Map<Long, CategoryDTO> categoryMap) {
+
+        //Check statement
+        if (categoryMap.containsKey(category.getId())) {
+            return categoryMap.get(category.getId());
+        }
+
+        //Based on the Constructor Category Builder
+        CategoryDTO dto = new CategoryDTO();
+        dto.setId(category.getId());
+        dto.setName(category.getName());
+        dto.setAlias(category.getAlias());
+        dto.setImage(category.getImage());
+        dto.setEnabled(category.isEnabled());
+        dto.setAllParentIDs(category.getAllParentIDs());
+        dto.setParentId(category.getParent() != null ? category.getParent().getId() : null);
+        dto.setHasChildren(category.getChildren() != null && !category.getChildren().isEmpty());
+
+        categoryMap.put(category.getId(), dto);
+        if (category.getChildren() != null) {
+            Set<CategoryDTO> childrenDTOs = category.getChildren().
+                    stream().
+                    map(child -> toDTO(child, categoryMap))
+                    .collect(Collectors.toSet());
+            dto.setChildren(childrenDTOs);
+        }
+        return dto;
+    }
+}
+
+//    @Override
+//    public Category toEntity(CategoryDTO dto) {
+//        if (dto == null) return null;
 //
-//        return dto;
+//        Category category = new Category();
+//        category.setId(dto.getId());
+//        category.setName(dto.getName());
+//        category.setAlias(dto.getAlias());
+//        category.setImage(dto.getImage());
+//        category.setEnabled(dto.isEnabled());
+//        category.setAllParentIDs(dto.getAllParentIDs());
+//        category.setParent(dto.getParentId() != null ? new Category(dto.getParentId()) : null);
+//        category.setChildren(dto.getChildren() != null ? dto.getChildren().stream().map(this::toEntity).collect(Collectors.toSet()) : null);
+//        category.setHasChildren(dto.isHasChildren());
+//
+//        return category;
 //    }
 
-
-
-
-}

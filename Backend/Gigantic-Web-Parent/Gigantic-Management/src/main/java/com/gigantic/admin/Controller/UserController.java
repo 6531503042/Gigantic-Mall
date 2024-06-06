@@ -168,21 +168,14 @@ public class UserController {
     }
 
     @GetMapping("/users/export/pdf")
-    public void exportToPdf(HttpServletResponse response , String fristName, String lastName, String email, String role, String sortField, String sortDirection) throws IOException {
+    public void exportToPdf(HttpServletResponse response , String firstName, String lastName, String email, String role, String sortField, String sortDirection) throws IOException {
 
         try {
-            List<User> listUsers = services.getAllUsers(fristName, lastName, email, role, sortField, sortDirection);
+            List<User> listUsers = services.getAllUsers(firstName, lastName, email, role, sortField, sortDirection);
             UserPDFExporter exporter = new UserPDFExporter();
             exporter.export(listUsers, response);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-
-
-
-
-
-
 }

@@ -17,8 +17,16 @@ public class CategoryDTO {
     private String alias;
     private String image;
     private boolean enabled;
-    private String allParentId;
+    private String allParentIDs;
     private Long parentId;
     private Set<CategoryDTO> children;
     private boolean hasChildren;
+
+    public boolean getEnabled() {
+        return enabled;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
 }

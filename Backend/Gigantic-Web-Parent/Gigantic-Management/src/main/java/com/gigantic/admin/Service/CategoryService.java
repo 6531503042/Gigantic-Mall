@@ -1,11 +1,13 @@
 package com.gigantic.admin.Service;
 
+import com.gigantic.DTO.CategoryDTO;
 import com.gigantic.admin.Exception.CategoryNotFoundException;
 import com.gigantic.admin.Exception.DuplicateCategoryException;
 import com.gigantic.admin.Exception.ResourceNotFoundException;
 import com.gigantic.entity.Category;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.SortedSet;
 
@@ -32,4 +34,11 @@ public interface CategoryService {
     Category updatedCategoryEnabledstatus(Long id, boolean enabled);
 
     Category updatedCategories(Long id, Category category) throws DuplicateCategoryException;
+
+
+    Category toEntity(CategoryDTO dto);
+
+    CategoryDTO toDTO(Category category);
+
+    CategoryDTO toDTO(Category category, Map<Long, CategoryDTO> categoryMap);
 }
