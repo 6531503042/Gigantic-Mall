@@ -36,19 +36,6 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<Category> listHierachicalCategories(List<Category> rootCategories) throws NoSuchElementException{
-        List<Category> hierachicalCategories = new ArrayList<>();
-
-        for (Category rootCategry : rootCategories) {
-            hierachicalCategories.add(rootCategry);
-
-            Set<Category> children = sortSubCategories(rootCategry.getChildren(), "asc");
-        }
-
-        return hierachicalCategories;
-    }
-
-    @Override
     public Category save(Category category) {
         Category parent = category.getParent();
         if (parent != null) {
@@ -104,7 +91,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void listSubGierarchy(List<Category> hierarchicalCategories, Category parent, int suLevel, String sortDir) {
+    public void listSubHierarchical(List<Category> hierarchicalCategories, Category parent, int suLevel, String sortDir) {
         Set<Category> children = sortSubCategories(parent.getChildren(), sortDir);
         int newSubLevel = suLevel + 1;
 
@@ -115,7 +102,7 @@ public class CategoryServiceImpl implements CategoryService {
             }
 
             hierarchicalCategories.add(subCategory);
-            listSubGierarchy(hierarchicalCategories, subCategory, newSubLevel, sortDir);
+            listSubHierarchical(hierarchicalCategories, subCategory, newSubLevel, sortDir);
         }
     }
 
@@ -190,6 +177,18 @@ public class CategoryServiceImpl implements CategoryService {
 
         return repo.save(existingCategory);
     }
+
+//    private CategoryDTO convertToDTO(Category category) {
+//        CategoryDTO dto = new CategoryDTO();
+//        dto.setId(category.getId());
+//        dto.setName(category.getName());
+//        dto.setAlias(category.getAlias());
+//        dto.setImage(category.getImage());
+//        dto.setEnabled(category.isEnabled());
+//        dto.setHasChildren(category.getChildren());
+//
+//        return dto;
+//    }
 
 
 
