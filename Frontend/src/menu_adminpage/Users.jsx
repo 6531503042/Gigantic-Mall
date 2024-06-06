@@ -21,8 +21,8 @@ const Users = () => {
         <div className='information-users'>
           <div>
             <div>Lists</div>
-            <div>Topic</div>
-            <div>information</div>
+            <div>Topics</div>
+            <div>informations</div>
           </div>
         </div>
       </div>
