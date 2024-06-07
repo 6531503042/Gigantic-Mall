@@ -21,6 +21,8 @@ public class Brand extends IdBasedEntity {
     @Column(nullable = false, length = 128)
     private String logo;
 
+    private boolean status;
+
     @ManyToMany
     @JoinTable(
             name = "brand_categories",
@@ -59,11 +61,29 @@ public class Brand extends IdBasedEntity {
         this.categories = categories;
     }
 
+    public boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Brand [id=" + id + ", name=" + name + ", categories=" + categories + "]";
     }
 
 
+    public void setCategory(Category category) {
+        this.categories.add(category);
+    }
 
+    public void setCategoryIds(Set<Long> categoryIds) {
+        Set<Category> categories = new HashSet<>();
+        for (Long categoryId : categoryIds) {
+            categories.add(new Category(categoryId));
+        }
+        this.categories = categories;
+    }
 }

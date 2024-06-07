@@ -22,6 +22,7 @@ public class BrandServiceImpl  implements BrandService {
         name = (name != null) ? name : "";
         sortDirection = (sortDirection != null) ? sortDirection : "asc";
         sortField = (sortField != null) ? sortField : "id";
+        keyword = (keyword != null) ? keyword : "";
 
         // Build sort object
         Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortField);
