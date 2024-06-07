@@ -86,13 +86,18 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void deleteCategory(Long categoryId) throws ResourceNotFoundException {
-        Category category = repo.findById(categoryId).orElseThrow(() -> new ResourceNotFoundException("Category not found"));
-        for (Category child : category.getChildren()) {
-            child.setParent(null);
-            repo.save(child);
+        CategoryDTO categoryDTO = repo.findById(categoryId)
+                .map(this::toDTO)
+                .orElseThrow(() -> new ResourceNotFoundException("Category not found"));
+
+        for (CategoryDTO child : categoryDTO.getChildren()) {
+            child.setParentId(null);
+            repo.save(toEntity(child));
         }
-        repo.delete(category);
+
+        repo.delete(toEntity(categoryDTO));
     }
+
 
     @Override
     public List<Category> listRootCategory() {

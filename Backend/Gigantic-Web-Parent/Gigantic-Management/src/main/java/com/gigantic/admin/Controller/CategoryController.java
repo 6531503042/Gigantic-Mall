@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -73,34 +74,34 @@ public class CategoryController {
         return new ResponseEntity<>(services.toDTO(savedCategory), HttpStatus.CREATED);
     }
 
-//    @PutMapping("/update/{id}")
-//    public ResponseEntity<Category> updateCategory(@PathVariable Long id, @RequestBody Category category) throws CategoryNotFoundException {
-//        try {
-//            Category categories = services.getById(id);
-//            categories.setName(category.getName());
-//            categories.setAlias(category.getAlias());
-//            Optional.ofNullable(category.getParent()).ifPresent(parent -> {
-//                categories.setEnabled(parent.isEnabled());
-//                categories.setParent(parent);
-//            });
-//            return ResponseEntity.ok(services.save(categories));
-//        } catch (CategoryNotFoundException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-
     @PutMapping("/update/{id}")
-    public ResponseEntity<CategoryDTO> updateCategory(@PathVariable Long id, @RequestBody CategoryDTO categoryDTO) {
+    public ResponseEntity<Category> updateCategory(@PathVariable Long id, @RequestBody Category category) throws CategoryNotFoundException {
         try {
-            Category updatedCategory = services.updateCategories(id, categoryDTO);
-            CategoryDTO updatedCategoryDTO = services.toDTO(updatedCategory);
-            return ResponseEntity.ok(updatedCategoryDTO);
+            Category categories = services.getById(id);
+            categories.setName(category.getName());
+            categories.setAlias(category.getAlias());
+            Optional.ofNullable(category.getParent()).ifPresent(parent -> {
+                categories.setEnabled(parent.isEnabled());
+                categories.setParent(parent);
+            });
+            return ResponseEntity.ok(services.save(categories));
         } catch (CategoryNotFoundException e) {
-            return ResponseEntity.notFound().build();
-        } catch (DuplicateCategoryException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+            throw new RuntimeException(e);
         }
     }
+
+//    @PutMapping("/update/{id}")
+//    public ResponseEntity<CategoryDTO> updateCategory(@PathVariable Long id, @RequestBody CategoryDTO categoryDTO) {
+//        try {
+//            Category updatedCategory = services.updateCategories(id, categoryDTO);
+//            CategoryDTO updatedCategoryDTO = services.toDTO(updatedCategory);
+//            return ResponseEntity.ok(updatedCategoryDTO);
+//        } catch (CategoryNotFoundException e) {
+//            return ResponseEntity.notFound().build();
+//        } catch (DuplicateCategoryException e) {
+//            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+//        }
+//    }
 
     @PutMapping("/{id}/enable/{enabled}")
     public ResponseEntity<CategoryDTO> updateCategoryEnabledStatus(@PathVariable Long id, @PathVariable boolean enabled) throws CategoryNotFoundException{

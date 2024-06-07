@@ -1,5 +1,6 @@
 package com.gigantic.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.gigantic.Mapper.IdBasedEntity;
 import lombok.Setter;
 
@@ -34,6 +35,7 @@ public class Category extends IdBasedEntity {
 
     @OneToMany(mappedBy = "parent")
     @OrderBy("name asc")
+    @JsonBackReference
 //    @JsonBackReference // Breaks the cycle for child reference
     private Set<Category> children = new HashSet<>();
 
