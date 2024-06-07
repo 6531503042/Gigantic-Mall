@@ -1,4 +1,4 @@
-//package com.gigantic.Mapper;
+//package com.gigantic.admin.Mapper;
 //import com.gigantic.DTO.CategoryDTO;
 //import com.gigantic.entity.Category;
 //
@@ -7,22 +7,31 @@
 //import org.mapstruct.factory.Mappers;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import com.gigantic.admin.Repository.CategoryRepository;
+//import org.springframework.stereotype.Component;
 //
 //import java.util.HashMap;
 //import java.util.Map;
 //import java.util.Set;
 //import java.util.stream.Collectors;
 //
-//@Mapper
+//@Mapper(componentModel = "spring")
+//@Component
 //public class CategoryMapper {
 //
-//    @Autowired
-//    private CategoryRepository repo;
 //
-//    public CategoryMapper INSTANCE = Mappers.getMapper(CategoryMapper.class);
+//    private final CategoryRepository repo;
+//
+//    @Autowired
+//    public CategoryMapper(CategoryRepository repo) {
+//        this.repo = repo;
+//    }
+//
+//    public static final CategoryMapper INSTANCE = Mappers.getMapper(CategoryMapper.class);
+//
 //    public Category toEntity(CategoryDTO dto) {
 //        return toEntity(dto, new HashMap<>());
 //    }
+//
 //    public Category toEntity(CategoryDTO dto, Map<Long, Category> categoryMap) {
 //
 //        if (categoryMap.containsKey(dto.getId())) {

@@ -9,6 +9,7 @@ import com.gigantic.admin.Repository.CategoryRepository;
 import com.gigantic.admin.Service.Impl.CategoryServiceImpl;
 import com.gigantic.entity.Category;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -63,11 +64,13 @@ public class CategoryController {
 
 
 
+
+
     @PostMapping("/save")
-    public ResponseEntity<CategoryDTO> saveCategory(@RequestBody CategoryDTO categoryDTO) throws CategoryNotFoundException{
+    public ResponseEntity<CategoryDTO> createCategory(@RequestBody CategoryDTO categoryDTO) {
         Category category = services.toEntity(categoryDTO);
         Category savedCategory = services.save(category);
-        return ResponseEntity.ok(services.toDTO(savedCategory));
+        return new ResponseEntity<>(services.toDTO(savedCategory), HttpStatus.CREATED);
     }
 
 //    @PutMapping("/update/{id}")
@@ -87,19 +90,27 @@ public class CategoryController {
 //    }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Category> updateCategory(@PathVariable Long id, @RequestBody Category category) {
+    public ResponseEntity<CategoryDTO> updateCategory(@PathVariable Long id, @RequestBody CategoryDTO categoryDTO) {
         try {
-            Category updatedCategory = services.updatedCategories(id, category);
-            return ResponseEntity.ok(updatedCategory);
-        } catch (DuplicateCategoryException e) {
+            Category updatedCategory = services.updateCategories(id, categoryDTO);
+            CategoryDTO updatedCategoryDTO = services.toDTO(updatedCategory);
+            return ResponseEntity.ok(updatedCategoryDTO);
+        } catch (CategoryNotFoundException e) {
             return ResponseEntity.notFound().build();
+        } catch (DuplicateCategoryException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
     }
 
     @PutMapping("/{id}/enable/{enabled}")
-    public ResponseEntity<Category> updateCategoryEnabledStatus(Long id, boolean enabled) throws CategoryNotFoundException{
-            Category categories = services.updatedCategoryEnabledstatus(id, enabled);
-            return ResponseEntity.ok(categories);
+    public ResponseEntity<CategoryDTO> updateCategoryEnabledStatus(@PathVariable Long id, @PathVariable boolean enabled) throws CategoryNotFoundException{
+            try {
+                Category updatedCategory = services.updateCategoryEnabledStatus(id, enabled);
+                CategoryDTO updatedCategoryDTO = services.toDTO(updatedCategory);
+                return ResponseEntity.ok(updatedCategoryDTO);
+            } catch (CategoryNotFoundException e) {
+                return ResponseEntity.notFound().build();
+            }
     }
 
     @DeleteMapping("/delete/{id}")

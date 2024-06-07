@@ -1,10 +1,12 @@
 package com.gigantic.DTO;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Setter
@@ -19,7 +21,9 @@ public class CategoryDTO {
     private boolean enabled;
     private String allParentIDs;
     private Long parentId;
-    private Set<CategoryDTO> children;
+
+    @JsonBackReference
+    private Set<CategoryDTO> children = new HashSet<>();
     private boolean hasChildren;
 
     public boolean getEnabled() {

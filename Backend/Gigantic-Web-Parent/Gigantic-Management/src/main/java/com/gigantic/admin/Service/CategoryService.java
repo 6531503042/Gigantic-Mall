@@ -12,16 +12,17 @@ import java.util.Set;
 import java.util.SortedSet;
 
 public interface CategoryService {
-
     Category getById(Long id) throws CategoryNotFoundException;
 
     Category save(Category category);
 
     Set<Category> getChildren(Long id) throws CategoryNotFoundException;
 
+    SortedSet<Category> sortSubCategories(Set<Category> children, String sortDir);
+
     List<Category> listAll(String name, String sortDirection, String sortField, String keyword);
 
-    void listSubHierarchical(List<Category> hierarchicalCategories, Category parent, int suLevel, String sortDir);
+    void listSubHierarchical(List<Category> hierarchicalCategories, Category parent, int subLevel, String sortDir);
 
     void deleteCategory(Long categoryId) throws ResourceNotFoundException;
 
@@ -29,16 +30,11 @@ public interface CategoryService {
 
     SortedSet<Category> sortSubCategories(Set<Category> children);
 
-    SortedSet<Category> sortSubCategories(Set<Category> children, String sortDir);
+    Category updateCategoryEnabledStatus(Long id, boolean enabled) throws CategoryNotFoundException;
 
-    Category updatedCategoryEnabledstatus(Long id, boolean enabled);
-
-    Category updatedCategories(Long id, Category category) throws DuplicateCategoryException;
-
+    Category updateCategories(Long id, CategoryDTO categoryDTO) throws DuplicateCategoryException, CategoryNotFoundException;
 
     Category toEntity(CategoryDTO dto);
 
     CategoryDTO toDTO(Category category);
-
-    CategoryDTO toDTO(Category category, Map<Long, CategoryDTO> categoryMap);
 }
