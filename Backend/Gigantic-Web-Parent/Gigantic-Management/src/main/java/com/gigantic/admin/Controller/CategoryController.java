@@ -125,6 +125,6 @@ public class CategoryController {
         List<Category> listCategories = services.listAll(name, sortField, sortDirection, keywords);
 
         CategoryCsvExporter exporter = new CategoryCsvExporter();
-        exporter.export(listCategories, response);
+         exporter.export(listCategories, response);
     }
 }

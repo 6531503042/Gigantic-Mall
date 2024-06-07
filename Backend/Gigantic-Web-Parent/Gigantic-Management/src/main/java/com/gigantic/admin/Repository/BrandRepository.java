@@ -24,4 +24,7 @@ public interface BrandRepository extends CrudRepository<Brand, Long> {
 
     @Query("SELECT b FROM Brand b WHERE b.name = :name")
     boolean existsByName(String name);
+
+    @Query("SELECT b FROM Brand b WHERE b.name = :name")
+    Brand findByName(String name);
 }

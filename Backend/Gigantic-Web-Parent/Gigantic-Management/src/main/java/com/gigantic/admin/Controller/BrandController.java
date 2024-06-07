@@ -72,8 +72,23 @@ public class BrandController {
         return ResponseEntity.status(HttpStatus.CREATED).body(newBrand);
     }
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Brand> updateBrand(@PathVariable Long id, @RequestBody Brand brand) throws Exception {
 
+        // Extract only the categoryId from each category
+        if (brand.getCategories() != null) {
+            Set<Long> categoryIds = brand.getCategories().stream()
+                    .map(Category::getId)
+                    .collect(Collectors.toSet());
+            brand.setCategoryIds(categoryIds);
+        }
+        Brand updatedBrand = services.updatedBrand(id, brand, (Category) categoryRepository);
+        return ResponseEntity.ok(updatedBrand);
+    }
 
-
-
+    @PutMapping("/update/status/{id}")
+    public ResponseEntity<Brand> updateBrandStatus(@PathVariable Long id, @RequestBody Boolean status) throws Exception {
+        Brand updatedBrand = services.updatedBrandStatus(id, status);
+        return ResponseEntity.ok(updatedBrand);
+    }
 }

@@ -37,7 +37,7 @@ public class Brand extends IdBasedEntity {
     }
 
      //Getter & Setter
-    public String getName() {
+    public static String getName() {
         return name;
     }
 

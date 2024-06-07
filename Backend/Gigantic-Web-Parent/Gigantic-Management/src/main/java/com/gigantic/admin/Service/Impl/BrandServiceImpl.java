@@ -1,21 +1,30 @@
 package com.gigantic.admin.Service.Impl;
 import com.gigantic.admin.Config.BrandSpecificationConfig;
 import com.gigantic.admin.Exception.BrandNotFoundException;
+import com.gigantic.admin.Exception.DuplicateBrandException;
 import com.gigantic.admin.Repository.BrandRepository;
 import com.gigantic.admin.Service.BrandService;
 import com.gigantic.entity.Brand;
+import com.gigantic.entity.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class BrandServiceImpl  implements BrandService {
 
     @Autowired
     private BrandRepository repo;
+
+    @Override
+    public Brand getById(Long id) throws Exception {
+        return repo.findById(id).orElseThrow(() -> new BrandNotFoundException("Could not find any brand with ID " + id));
+    }
 
     @Override
     public List<Brand> listAll(String name, String sortDirection, String sortField, String keyword) {
@@ -59,6 +68,41 @@ public class BrandServiceImpl  implements BrandService {
             throw new BrandNotFoundException("Brand not found");
         }
         repo.deleteById(id);
+    }
+
+    @Override
+    public Brand updatedBrandStatus(Long id, Boolean status) throws BrandNotFoundException {
+        Brand brand = get(id);
+        brand.setStatus(status);
+        return repo.save(brand);
+    }
+
+    @Override
+    public Brand updatedBrand(Long id, Brand brand, Category category) throws Exception {
+        Brand existingBrand = getById(id);
+
+        if (Brand.getName() != null && !Brand.getName().equals(existingBrand.getName())) {
+            Brand duplicateBrand = repo.findByName(Brand.getName());
+            if (duplicateBrand != null && !duplicateBrand.getId().equals(existingBrand.getId())) {
+                throw new DuplicateBrandException("Brand already exists" + Brand.getName());
+            }
+            existingBrand.setName(Brand.getName());
+
+            if (brand.getLogo() != null && !brand.getLogo().equals(existingBrand.getLogo())) {
+                existingBrand.setLogo(brand.getLogo());
+            }
+
+            if (brand.getCategories() != null) {
+                Set<Long> categoryIds = brand.getCategories().stream()
+                        .map(Category::getId)
+                        .collect(Collectors.toSet());
+                existingBrand.setCategoryIds(categoryIds);
+            }
+        }
+        existingBrand.setStatus(brand.getStatus());
+        existingBrand.getLogo();
+
+        return repo.save(existingBrand);
     }
 
 
