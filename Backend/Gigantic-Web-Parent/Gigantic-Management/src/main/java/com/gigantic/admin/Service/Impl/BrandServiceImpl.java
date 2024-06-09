@@ -78,32 +78,33 @@ public class BrandServiceImpl  implements BrandService {
     }
 
     @Override
-    public Brand updatedBrand(Long id, Brand brand, Category category) throws Exception {
+    public Brand updateBrand(Long id, Brand brand, Category category) throws Exception {
         Brand existingBrand = getById(id);
 
-        if (Brand.getName() != null && !Brand.getName().equals(existingBrand.getName())) {
-            Brand duplicateBrand = repo.findByName(Brand.getName());
+        if (brand.getName() != null && !brand.getName().equals(existingBrand.getName())) {
+            Brand duplicateBrand = repo.findByName(brand.getName());
             if (duplicateBrand != null && !duplicateBrand.getId().equals(existingBrand.getId())) {
-                throw new DuplicateBrandException("Brand already exists" + Brand.getName());
+                throw new DuplicateBrandException("Brand already exists: " + brand.getName());
             }
-            existingBrand.setName(Brand.getName());
-
-            if (brand.getLogo() != null && !brand.getLogo().equals(existingBrand.getLogo())) {
-                existingBrand.setLogo(brand.getLogo());
-            }
-
-            if (brand.getCategories() != null) {
-                Set<Long> categoryIds = brand.getCategories().stream()
-                        .map(Category::getId)
-                        .collect(Collectors.toSet());
-                existingBrand.setCategoryIds(categoryIds);
-            }
+            existingBrand.setName(brand.getName());
         }
+
+        if (brand.getLogo() != null && !brand.getLogo().equals(existingBrand.getLogo())) {
+            existingBrand.setLogo(brand.getLogo());
+        }
+
+        if (brand.getCategories() != null) {
+            Set<Long> categoryIds = brand.getCategories().stream()
+                    .map(Category::getId)
+                    .collect(Collectors.toSet());
+            existingBrand.setCategoryIds(categoryIds);
+        }
+
         existingBrand.setStatus(brand.getStatus());
-        existingBrand.getLogo();
 
         return repo.save(existingBrand);
     }
+
 
 
 

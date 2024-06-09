@@ -20,5 +20,5 @@ public interface BrandService {
 
     Brand updatedBrandStatus(Long id, Boolean status) throws BrandNotFoundException;
 
-    Brand updatedBrand(Long id, Brand brand, Category category) throws Exception;
+    Brand updateBrand(Long id, Brand brand, Category category) throws Exception;
 }

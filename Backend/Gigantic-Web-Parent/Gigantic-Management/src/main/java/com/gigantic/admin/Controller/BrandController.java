@@ -82,7 +82,7 @@ public class BrandController {
                     .collect(Collectors.toSet());
             brand.setCategoryIds(categoryIds);
         }
-        Brand updatedBrand = services.updatedBrand(id, brand, (Category) categoryRepository);
+        Brand updatedBrand = services.updateBrand(id, brand, (Category) categoryRepository);
         return ResponseEntity.ok(updatedBrand);
     }
 
