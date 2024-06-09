@@ -4,22 +4,6 @@ import { FaAngleDown, FaContao, FaPlus, FaSearch } from 'react-icons/fa';
 
 const Users = () => {
 
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    fetchUsers();
-  }, []);
-
-  const fetchUsers = async () => {
-    try {
-      const response = await fetch('/api/users/list');
-      const data = await response.json();
-      setUsers(data);
-    } catch (error) {
-      console.error('Error fetching users:', error);
-    }
-  };
-
   return (
     <div className='container-information'>
       <div className='body-of-users'>
@@ -49,17 +33,7 @@ const Users = () => {
               <a>Role</a>
               <a>Action</a></div>
             <div className='data-style'>
-            {users.length > 0 ? (
-              users.map((user) => (
-                <div key={user.id} className='user-item'>
-                  <div>{user.firstName} {user.lastName}</div>
-                  <div>{user.email}</div>
-                  <div>{user.roles.map(role => role.name).join(', ')}</div>
-                </div>
-              ))
-            ) : (
-              <div>No users found</div>
-            )}
+            Data
             </div>
           </div>
         </div>
