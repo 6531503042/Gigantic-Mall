@@ -88,7 +88,6 @@
 }
 
 .list-style {
-
     padding: 1%;
 }
 
@@ -98,18 +97,18 @@
 }
 
 .Topics-style {
-    background-color: #b0dfff;
+    background-color: #EFF4FA;
     padding: 1%;
     display: flex;
     justify-content: space-around;
     border-top: 1px solid #C9C9C9;
     border-bottom: 1px solid #C9C9C9;
-
+    color:#999999;
 }
 
 .Topics-style a{
-    font-size: small;
-
+    font-size: smaller;
+    font-weight: 500;
 }
 
 .data-style {
