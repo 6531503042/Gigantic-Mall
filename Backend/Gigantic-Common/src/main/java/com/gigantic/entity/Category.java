@@ -2,7 +2,6 @@ package com.gigantic.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.gigantic.Mapper.IdBasedEntity;
-import lombok.Setter;
 
 
 import javax.persistence.*;
@@ -39,7 +38,7 @@ public class Category extends IdBasedEntity {
 //    @JsonBackReference // Breaks the cycle for child reference
     private Set<Category> children = new HashSet<>();
 
-    @Setter
+
     @Transient
     private String parentName;
 
@@ -113,6 +112,14 @@ public class Category extends IdBasedEntity {
         copyCategory.setName(name);
 
         return copyCategory;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -190,6 +197,11 @@ public class Category extends IdBasedEntity {
 
     public void setAllParentIDs(String allParentIDs) {
         this.allParentIDs = allParentIDs;
+    }
+
+    
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
     }
 
 

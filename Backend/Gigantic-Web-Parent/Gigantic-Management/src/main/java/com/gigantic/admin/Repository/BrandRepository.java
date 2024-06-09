@@ -16,6 +16,7 @@ public interface BrandRepository extends CrudRepository<Brand, Long> {
     @Query("SELECT b FROM Brand b WHERE b.id = :id")
     Brand get(Long id);
 
+    @Query("SELECT b FROM Brand b")
     List<Brand> findAll(Specification<Brand> spec, Sort sort);
 
     Long countById(Long id);
