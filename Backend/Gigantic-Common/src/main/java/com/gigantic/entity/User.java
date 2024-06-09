@@ -45,6 +45,14 @@ public class User extends IdBasedEntity {
         this.lastName = lastName;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getEmail() {
         return email;
     }

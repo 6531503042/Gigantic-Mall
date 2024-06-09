@@ -1,7 +1,6 @@
 
 package com.gigantic.admin.Controller;
 
-import com.gigantic.admin.Exception.CategoryNotFoundException;
 import com.gigantic.admin.Exception.DuplicateBrandException;
 import com.gigantic.admin.Repository.BrandRepository;
 import com.gigantic.admin.Repository.CategoryRepository;

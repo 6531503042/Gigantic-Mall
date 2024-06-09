@@ -36,6 +36,14 @@ public class Brand extends IdBasedEntity {
         //Default constructor
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
      //Getter & Setter
     public String getName() {
         return name;
