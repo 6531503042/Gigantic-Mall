@@ -19,10 +19,19 @@ const Users = () => {
           </a>
         </div>
         <div className='information-users'>
-          <div>
-            <div>Lists</div>
-            <div>Topics</div>
-            <div>informations</div>
+          <div className='information-user-1'>
+            <div className='list-style'>
+              <a>List Users</a>
+            </div>
+            <div className='Topics-style'>
+              <a>Photo</a>
+              <a>Name</a>
+              <a>Role</a>
+              <a>Create Date</a>
+              <a>UserID</a>
+              <a>Role</a>
+              <a>Action</a></div>
+            <div className='data-style'>information</div>
           </div>
         </div>
       </div>

@@ -75,6 +75,43 @@
 
 .information-users {
     margin-top: 2rem;
-    background-color: aliceblue;
     border-radius: 10px;
+    background-color: white;
+    border: 1px solid #C9C9C9;
+}
+
+.information-users-1 {
+    margin-top: 2rem;
+    border-radius: 10px;
+    background-color: #F9F9F9;
+    
+}
+
+.list-style {
+
+    padding: 1%;
+}
+
+.list-style a{
+    margin-left: 5%;
+    font-weight: 500;
+}
+
+.Topics-style {
+    background-color: #b0dfff;
+    padding: 1%;
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid #C9C9C9;
+    border-bottom: 1px solid #C9C9C9;
+
+}
+
+.Topics-style a{
+    font-size: small;
+
+}
+
+.data-style {
+    padding: 1%;
 }
