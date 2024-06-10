@@ -1,0 +1,14 @@
+.body-of-dashboard {
+    width: 65rem;
+    background-color: aqua;
+}
+
+.first-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.block-each-first-row {
+    margin: 1rem;
+}
