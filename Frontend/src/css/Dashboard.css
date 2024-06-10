@@ -97,23 +97,29 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding-left: 2rem;
-    padding-right: 2rem;
+
 }
 
 .third-row .cate-name-body {
     display: flex;
     justify-content: center;
 }
+
 .third-row .cate-name {
     display: flex;
     justify-content: space-between;
-    width: 90%;
+    width: 100%;
     margin-top: 1rem;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.8rem;
     border-bottom: 0.5px solid grey;
     color: grey;
     font-size: 14px;
+}
+
+.third-row  .product-info {
+    margin-top: 0.8rem;
+    display: flex;
+    flex-direction: column;
 }

@@ -146,7 +146,14 @@ const Dashboard = () => {
               <a>Sales</a>
             </div>
           </div>
-          <div></div>
+          <div className='product-info'>
+            <div><a>aaaaaaaaaaaaa</a></div>
+            <div><a>aaaaaaaaaaaaa</a></div>
+            <div><a>aaaaaaaaaaaaa</a></div>
+            <div><a>aaaaaaaaaaaaa</a></div>
+            <div><a>aaaaaaaaaaaaa</a></div>
+            <div><a>aaaaaaaaaaaaa</a></div>
+          </div>
         </div>
       </div>
     </div>
