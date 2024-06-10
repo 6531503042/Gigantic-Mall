@@ -7,11 +7,13 @@ import com.gigantic.entity.Brand;
 import com.gigantic.entity.Category;
 import com.gigantic.entity.Product.Product;
 import com.gigantic.admin.Exception.ProductNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+@Service
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository repo;
