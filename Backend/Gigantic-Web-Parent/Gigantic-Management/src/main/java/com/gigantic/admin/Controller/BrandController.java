@@ -1,6 +1,7 @@
 
 package com.gigantic.admin.Controller;
 
+import com.gigantic.DTO.BrandDTO;
 import com.gigantic.admin.Exception.DuplicateBrandException;
 import com.gigantic.admin.Repository.BrandRepository;
 import com.gigantic.admin.Repository.CategoryRepository;
@@ -12,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -43,7 +45,7 @@ public class BrandController {
             @RequestParam(defaultValue = "id") String sortField,
             @RequestParam(defaultValue = "asc") String sortDirection,
             @RequestParam(required = false) String keyword) {
-        List<Brand> brands = services.listAll(name, sortDirection, sortField, keyword);
+        List<BrandDTO> brands = services.listAll(name, sortDirection, sortField, keyword);
         if (brands.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).
                     body("There're no brands found");
@@ -64,7 +66,7 @@ public class BrandController {
             Set<Long> categoryIds = brand.getCategories().stream()
                     .map(Category::getId)
                     .collect(Collectors.toSet());
-            brand.setCategoryIds(categoryIds);
+            brand.setCategoryIds(Collections.singleton(categoryIds));
         }
 
         Brand newBrand = services.save(brand);
@@ -79,7 +81,7 @@ public class BrandController {
             Set<Long> categoryIds = brand.getCategories().stream()
                     .map(Category::getId)
                     .collect(Collectors.toSet());
-            brand.setCategoryIds(categoryIds);
+            brand.setCategoryIds(Collections.singleton(categoryIds));
         }
         Brand updatedBrand = services.updateBrand(id, brand, (Category) categoryRepository);
         return ResponseEntity.ok(updatedBrand);

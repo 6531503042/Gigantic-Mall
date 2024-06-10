@@ -1,4 +1,5 @@
 package com.gigantic.admin.Service.Impl;
+import com.gigantic.DTO.BrandDTO;
 import com.gigantic.admin.Config.BrandSpecificationConfig;
 import com.gigantic.admin.Exception.BrandNotFoundException;
 import com.gigantic.admin.Exception.DuplicateBrandException;
@@ -11,8 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,17 +26,40 @@ public class BrandServiceImpl  implements BrandService {
         return repo.findById(id).orElseThrow(() -> new BrandNotFoundException("Could not find any brand with ID " + id));
     }
 
+    //Problem with Recursive Query
+//    @Override
+//    public List<Brand> listAll(String name, String sortDirection, String sortField, String keyword) {
+//        name = (name != null) ? name : "";
+//        sortDirection = (sortDirection != null) ? sortDirection : "asc";
+//        sortField = (sortField != null) ? sortField : "id";
+//        keyword = (keyword != null) ? keyword : "";
+//
+//        // Build sort object
+//        Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortField);
+//
+//        //Build Specifications
+//        Specification<Brand> spec = Specification.where(null);
+//        if (!name.isEmpty()) {
+//            spec = spec.and(BrandSpecificationConfig.hasName(name));
+//        }
+//        if (!keyword.isEmpty()) {
+//            spec = spec.and(BrandSpecificationConfig.containKeywords(keyword));
+//        }
+//        spec = spec.and(BrandSpecificationConfig.withCategories());
+//
+//        return repo.findAll(spec, sort);
+//    }
+
+    //Using DTO to avoid Recursive Query due join table with associated entities
     @Override
-    public List<Brand> listAll(String name, String sortDirection, String sortField, String keyword) {
+    public List<BrandDTO> listAll(String name, String sortDirection, String sortField, String keyword) {
         name = (name != null) ? name : "";
         sortDirection = (sortDirection != null) ? sortDirection : "asc";
         sortField = (sortField != null) ? sortField : "id";
         keyword = (keyword != null) ? keyword : "";
 
-        // Build sort object
         Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortField);
 
-        //Build Specifications
         Specification<Brand> spec = Specification.where(null);
         if (!name.isEmpty()) {
             spec = spec.and(BrandSpecificationConfig.hasName(name));
@@ -44,8 +67,12 @@ public class BrandServiceImpl  implements BrandService {
         if (!keyword.isEmpty()) {
             spec = spec.and(BrandSpecificationConfig.containKeywords(keyword));
         }
-        return repo.findAll(spec, sort);
+        spec = spec.and(BrandSpecificationConfig.withCategories());
+
+        List<Brand> brands = repo.findAll(spec, sort);
+        return brands.stream().map(this::toDTO).collect(Collectors.toList());
     }
+
 
     @Override
     public Brand save(Brand brand) throws Exception{
@@ -94,20 +121,42 @@ public class BrandServiceImpl  implements BrandService {
         }
 
         if (brand.getCategories() != null) {
-            Set<Long> categoryIds = brand.getCategories().stream()
-                    .map(Category::getId)
-                    .collect(Collectors.toSet());
+            Set<Set<Long>> categoryIds = Collections.singleton(repo.findById(id).get().getCategoryIds());
+            existingBrand.setCategories(brand.getCategories());
             existingBrand.setCategoryIds(categoryIds);
         }
 
-        existingBrand.setStatus(brand.getStatus());
+        existingBrand.setStatus(brand.isStatus());
 
         return repo.save(existingBrand);
     }
 
 
+    @Override
+    public BrandDTO toDTO(Brand brand) {
+        BrandDTO dto = new BrandDTO();
+        dto.setId(brand.getId());
+        dto.setName(brand.getName());
+        dto.setLogo(brand.getLogo());
+        dto.setStatus(brand.isStatus());
+        dto.setCategories(brand.getCategories().stream()
+                .map(category -> String.valueOf(category.getId()))
+                .collect(Collectors.toSet()));
+        return dto;
+    }
 
-
+    public Brand toEntity(BrandDTO dto) {
+        Brand brand = new Brand();
+        brand.setId(dto.getId());
+        brand.setName(dto.getName());
+        brand.setLogo(dto.getLogo());
+        brand.setStatus(dto.isStatus());
+        brand.setCategories(dto.getCategories().stream()
+                .map(Long::valueOf)
+                .map(Category::new)
+                .collect(Collectors.toSet()));
+        return brand;
+    }
 
 
 

@@ -31,11 +31,12 @@ public class Brand extends IdBasedEntity {
     )
     private Set<Category> categories = new HashSet<>();
 
-    //Constructor
+    // Constructor
     public Brand() {
-        //Default constructor
+        // Default constructor
     }
 
+    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -44,7 +45,6 @@ public class Brand extends IdBasedEntity {
         this.id = id;
     }
 
-     //Getter & Setter
     public String getName() {
         return name;
     }
@@ -69,29 +69,35 @@ public class Brand extends IdBasedEntity {
         this.categories = categories;
     }
 
-    public boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
     @Override
     public String toString() {
         return "Brand [id=" + id + ", name=" + name + ", categories=" + categories + "]";
     }
 
-
-    public void setCategory(Category category) {
-        this.categories.add(category);
-    }
-
-    public void setCategoryIds(Set<Long> categoryIds) {
+    public void setCategoryIds(Set<Set<Long>> categoryIds) {
         Set<Category> categories = new HashSet<>();
-        for (Long categoryId : categoryIds) {
-            categories.add(new Category(categoryId));
+        for (Set<Long> categoryId : categoryIds) {
+            categories.add(new Category(String.valueOf(categoryId)));
         }
         this.categories = categories;
+    }
+
+    public Set<Long> getCategoryIds() {
+        if (categories == null) {
+            return null;
+        }
+        Set<Long> categoryIds = new HashSet<>();
+        for (Category category : categories) {
+            categoryIds.add(category.getId());
+        }
+        return categoryIds;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

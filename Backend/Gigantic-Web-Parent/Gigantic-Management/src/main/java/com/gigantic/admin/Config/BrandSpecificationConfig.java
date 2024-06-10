@@ -5,8 +5,6 @@ import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.JoinType;
 
-import static antlr.build.ANTLR.root;
-
 public class BrandSpecificationConfig {
 
     public static Specification<Brand> hasName(String name) {
@@ -16,15 +14,13 @@ public class BrandSpecificationConfig {
 
     public static Specification<Brand> containKeywords(String keyword) {
         return (root, query, criteriaBuilder) ->
-                criteriaBuilder.or(
-                        criteriaBuilder.like(criteriaBuilder.lower(root.get("name")), "%" + keyword.toLowerCase() + "%")
-                );
+                criteriaBuilder.like(criteriaBuilder.lower(root.get("name")), "%" + keyword.toLowerCase() + "%");
     }
 
-//    public static Specification<Brand> withCategories() {
-//        return (root, query builder) -> {
-//            root.fetch("categories", JoinType.LEFT);
-//            return builder.conjunction();
-//        };
-//    }
+    public static Specification<Brand> withCategories() {
+        return (root, query, builder) -> {
+            root.fetch("categories", JoinType.LEFT);
+            return builder.conjunction();
+        };
+    }
 }
