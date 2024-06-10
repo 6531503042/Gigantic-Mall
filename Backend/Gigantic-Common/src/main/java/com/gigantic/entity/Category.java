@@ -38,6 +38,9 @@ public class Category extends IdBasedEntity {
 //    @JsonBackReference // Breaks the cycle for child reference
     private Set<Category> children = new HashSet<>();
 
+    @ManyToMany(mappedBy = "categories")
+    private Set<Brand> brands = new HashSet<>();
+
 
     @Transient
     private String parentName;
@@ -202,6 +205,14 @@ public class Category extends IdBasedEntity {
     
     public void setParentName(String parentName) {
         this.parentName = parentName;
+    }
+
+    public Set<Brand> getBrands() {
+        return brands;
+    }
+
+    public void setBrands(Set<Brand> brands) {
+        this.brands = brands;
     }
 
 
