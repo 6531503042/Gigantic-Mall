@@ -3,6 +3,7 @@ import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { FaMoneyBill, FaVectorSquare } from 'react-icons/fa';
 import '../css/Dashboard.css';
+import { FaCircleDot } from 'react-icons/fa6';
 
 // Register necessary components
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
@@ -87,8 +88,27 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className='chart-container'>
-          <Line data={data} options={options} />
+        <div className='second-row'>
+          <div className='chart-container'>
+            <Line data={data} options={options} />
+          </div>
+          <div className='line-1'>
+            <a>Product</a>
+            <a></a>
+          </div>
+          <div className='info-chart'>
+            <div className='info-chart-block'>
+              <div className='in-1-line'>
+                <a style={{ fontWeight: '500' }}>Products</a>
+                <a><FaMoneyBill /></a>
+              </div>
+              <div className='in-2-line'>
+                <a style={{ fontWeight: '500', fontSize: '25px' }}>104</a>
+              </div>
+            </div>
+            
+            <div></div>
+          </div>
         </div>
       </div>
     </div>

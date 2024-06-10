@@ -36,10 +36,34 @@
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    width: 80%;
 }
 
 .chart-container canvas {
-    width: 100% !important;
-    height: auto !important;
+}
+
+.second-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.second-row .line-1{
+    display: flex;
+    flex-direction: row;
+}
+
+.info-chart {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    margin: 1rem;
+    background-color: antiquewhite;
+}
+
+.info-chart-block {
+    margin: 1rem;
+    border: 0.5px solid rgba(185, 185, 185, 0.459);
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
