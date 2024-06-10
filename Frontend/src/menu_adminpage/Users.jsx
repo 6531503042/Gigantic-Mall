@@ -3,6 +3,7 @@ import '../css/Users.css';
 import { FaAngleDown, FaContao, FaPlus, FaSearch } from 'react-icons/fa';
 
 const Users = () => {
+
   return (
     <div className='container-information'>
       <div className='body-of-users'>
@@ -31,7 +32,9 @@ const Users = () => {
               <a>UserID</a>
               <a>Role</a>
               <a>Action</a></div>
-            <div className='data-style'>information</div>
+            <div className='data-style'>
+            Data
+            </div>
           </div>
         </div>
       </div>
