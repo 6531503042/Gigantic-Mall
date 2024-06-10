@@ -1,7 +1,7 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
-import { FaEllipsisH, FaMoneyBill, FaPlus, FaVectorSquare } from 'react-icons/fa';
+import { FaAngleDown, FaEllipsisH, FaMoneyBill, FaPlus, FaVectorSquare } from 'react-icons/fa';
 import '../css/Dashboard.css';
 import { FaCircleDot } from 'react-icons/fa6';
 
@@ -129,6 +129,24 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
+        </div>
+        <div className='third-row'>
+          <div className='top-selling'>
+            <a> 
+              <a style={{marginRight:'1rem',borderRight:'0.5px solid grey',paddingRight:'1rem'}}>Top Selling Products</a>
+              <a>This week<FaAngleDown/></a>
+            </a>
+            <a><FaEllipsisH/></a>
+          </div>
+          <div className='cate-name-body'>
+            <div className='cate-name'>
+              <a>Product Name</a>
+              <a>Price</a>
+              <a>Sold</a>
+              <a>Sales</a>
+            </div>
+          </div>
+          <div></div>
         </div>
       </div>
     </div>

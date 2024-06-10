@@ -1,5 +1,5 @@
 .body-of-dashboard {
-    width: 65rem;
+    width: 60rem;
 }
 
 .first-row {
@@ -79,8 +79,41 @@
 
 .spacing1{
     margin-left: 1rem;
-    margin-top: 1rem;
+    margin-top: 1.2rem;
     gap: 10px;
-    font-size: 13px;
-    font-weight: normal;
+    font-size: 11px;
+    font-weight: bolder;
+}
+
+.third-row {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin-left: 3rem;
+    margin-top: 1.5rem;
+}
+
+.third-row .top-selling{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.third-row .cate-name-body {
+    display: flex;
+    justify-content: center;
+}
+.third-row .cate-name {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin-top: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.5px solid grey;
+    color: grey;
+    font-size: 14px;
 }
