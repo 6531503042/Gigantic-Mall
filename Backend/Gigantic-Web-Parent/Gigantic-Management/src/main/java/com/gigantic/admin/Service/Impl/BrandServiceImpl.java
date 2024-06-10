@@ -2,8 +2,10 @@ package com.gigantic.admin.Service.Impl;
 import com.gigantic.DTO.BrandDTO;
 import com.gigantic.admin.Config.BrandSpecificationConfig;
 import com.gigantic.admin.Exception.BrandNotFoundException;
+import com.gigantic.admin.Exception.CategoryNotFoundException;
 import com.gigantic.admin.Exception.DuplicateBrandException;
 import com.gigantic.admin.Repository.BrandRepository;
+import com.gigantic.admin.Repository.CategoryRepository;
 import com.gigantic.admin.Service.BrandService;
 import com.gigantic.entity.Brand;
 import com.gigantic.entity.Category;
@@ -20,6 +22,9 @@ public class BrandServiceImpl  implements BrandService {
 
     @Autowired
     private BrandRepository repo;
+
+    @Autowired
+    private CategoryRepository categoryRepo;
 
     @Override
     public Brand getById(Long id) throws Exception {
@@ -52,7 +57,7 @@ public class BrandServiceImpl  implements BrandService {
 
     //Using DTO to avoid Recursive Query due join table with associated entities
     @Override
-    public List<BrandDTO> listAll(String name, String sortDirection, String sortField, String keyword) {
+    public List<Brand> listAll(String name, String sortDirection, String sortField, String keyword) {
         name = (name != null) ? name : "";
         sortDirection = (sortDirection != null) ? sortDirection : "asc";
         sortField = (sortField != null) ? sortField : "id";
@@ -70,14 +75,50 @@ public class BrandServiceImpl  implements BrandService {
         spec = spec.and(BrandSpecificationConfig.withCategories());
 
         List<Brand> brands = repo.findAll(spec, sort);
-        return brands.stream().map(this::toDTO).collect(Collectors.toList());
+
+        return repo.findAll(spec, sort);
     }
 
+
+//    @Override
+//    public Brand save(Brand brand) throws Exception {
+//        // Check if the brand already exists
+//        Brand existingBrand = repo.findByName(brand.getName());
+//        if (existingBrand != null && !existingBrand.getId().equals(brand.getId())) {
+//            throw new DuplicateBrandException("Brand already exists");
+//        }
+//
+//        // Set categories
+//        if (brand.getCategoryIds() != null && !brand.getCategoryIds().isEmpty()) {
+//            Set<Category> categories = new HashSet<>();
+//            for (Long categoryId : brand.getCategoryIds()) {
+//                Category category = categoryRepo.findById(categoryId).orElseThrow(() -> new CategoryNotFoundException("Category not found"));
+//                categories.add(category);
+//            }
+//            brand.setCategories(categories);
+//        }
+//
+//        return repo.save(brand);
+//    }
 
     @Override
-    public Brand save(Brand brand) throws Exception{
+    public Brand save(Brand brand) {
         return repo.save(brand);
     }
+
+
+
+//        // Map category IDs to Category entities
+//        if (brand.getCategoryIds() != null && !brand.getCategoryIds().isEmpty()) {
+//            Set<Category> categories = new HashSet<>();
+//            for (Long categoryId : brand.getCategoryIds()) {
+//                Category category = categoryRepo.findById(categoryId).orElseThrow(() -> new CategoryNotFoundException("Category not found"));
+//                categories.add(category);
+//            }
+
+
+
+
 
     @Override
     public Brand get(Long id) throws BrandNotFoundException {

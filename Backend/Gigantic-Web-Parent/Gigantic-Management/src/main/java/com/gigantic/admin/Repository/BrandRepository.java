@@ -29,4 +29,8 @@ public interface BrandRepository extends CrudRepository<Brand, Long>, JpaSpecifi
 
     @Query("SELECT b FROM Brand b WHERE b.name = :name")
     Brand findByName(String name);
+
+
+    @Query("SELECT b FROM Brand b WHERE b.id = :id")
+    Brand findCategoryIds(Long id);
 }

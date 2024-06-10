@@ -1,5 +1,6 @@
 package com.gigantic.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.gigantic.Mapper.IdBasedEntity;
 
 import javax.persistence.Column;
@@ -29,6 +30,7 @@ public class Brand extends IdBasedEntity {
             joinColumns = @JoinColumn(name = "brand_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
+    @JsonBackReference
     private Set<Category> categories = new HashSet<>();
 
     // Constructor
