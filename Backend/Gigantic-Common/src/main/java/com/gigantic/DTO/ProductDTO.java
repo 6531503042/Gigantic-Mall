@@ -1,75 +1,55 @@
-package com.gigantic.entity.Product;
+package com.gigantic.DTO;
 
-import com.gigantic.Mapper.IdBasedEntity;
-import com.gigantic.entity.Brand;
-import com.gigantic.entity.Category;
-
-import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
 
-@Entity
-@Table(name = "products")
-public class Product extends IdBasedEntity {
+public class ProductDTO {
 
-    @Column(unique = true, length = 300, nullable = false)
+    private Long id;
     private String name;
-
-    @Column(unique = true, length = 200, nullable = false)
     private String alias;
-
-    @Column(length = 512, nullable = false, name = "short_description")
     private String shortDescription;
-
-    @Column(length = 4096, nullable = false, name = "full_description")
     private String fullDescription;
-
-    @Column(name = "created_time", updatable = false)
     private Date createdTime;
-
-    @Column(name = "updated_time")
     private Date updatedTime;
-
-    @Column(name = "in_stock")
     private boolean inStock;
-
-    @Column(name = "status")
     private boolean status;
-
     private float cost;
     private float price;
-
-    @Column(name = "discount_percent")
     private float discountPercent;
-
     private float length;
     private float width;
     private float height;
     private float weight;
+    private Long categoryId;
+    private Long brandId;
 
+    // Default constructor
+    public ProductDTO() {}
 
-    @ManyToOne(targetEntity = Category.class)
-    @JoinColumn(name = "category_id")
-    private Category categories;
-
-    @ManyToOne(targetEntity = Brand.class)
-    @JoinColumn(name = "brand_id")
-    private Brand brands;
-
-    //Constructor
-
-    public Product() {
-        super();
-    }
-
-    public Product(String name) {
+    // Constructor with fields
+    public ProductDTO(Long id, String name, String alias, String shortDescription, String fullDescription, Date createdTime, Date updatedTime, boolean inStock, boolean status, float cost, float price, float discountPercent, float length, float width, float height, float weight, Long categoryId, Long brandId) {
+        this.id = id;
         this.name = name;
+        this.alias = alias;
+        this.shortDescription = shortDescription;
+        this.fullDescription = fullDescription;
+        this.createdTime = createdTime;
+        this.updatedTime = updatedTime;
+        this.inStock = inStock;
+        this.status = status;
+        this.cost = cost;
+        this.price = price;
+        this.discountPercent = discountPercent;
+        this.length = length;
+        this.width = width;
+        this.height = height;
+        this.weight = weight;
+        this.categoryId = categoryId;
+        this.brandId = brandId;
     }
 
-    //Getter & Setter
+    // Getters and setters
 
-
-    //Calling from IdBasedEntity
     public Long getId() {
         return id;
     }
@@ -77,9 +57,6 @@ public class Product extends IdBasedEntity {
     public void setId(Long id) {
         this.id = id;
     }
-
-    //etc.
-
 
     public String getName() {
         return name;
@@ -201,32 +178,19 @@ public class Product extends IdBasedEntity {
         this.weight = weight;
     }
 
-
-    public void setCategories(Category categories) {
-        this.categories = categories;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    public Brand getBrands() {
-        return brands;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public void setBrands(Brand brands) {
-        this.brands = brands;
+    public Long getBrandId() {
+        return brandId;
     }
 
-    public Set<Category> getCategories() {
-        return (Set<Category>) categories;
-    }
-
-    public void setCategories(Set<Category> categories) {
-        this.categories = (Category) categories;
-    }
-
-    public Set<Brand> getBrand() {
-        return (Set<Brand>) brands;
-    }
-
-    public void setBrand(Set<Brand> brands) {
-        this.brands = (Brand) brands;
+    public void setBrandId(Long brandId) {
+        this.brandId = brandId;
     }
 }
