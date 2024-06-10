@@ -1,7 +1,7 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
-import { FaMoneyBill, FaVectorSquare } from 'react-icons/fa';
+import { FaEllipsisH, FaMoneyBill, FaPlus, FaVectorSquare } from 'react-icons/fa';
 import '../css/Dashboard.css';
 import { FaCircleDot } from 'react-icons/fa6';
 
@@ -92,11 +92,11 @@ const Dashboard = () => {
           <div className='chart-container'>
             <Line data={data} options={options} />
           </div>
-          <div className='line-1'>
-            <a>Product</a>
-            <a></a>
-          </div>
           <div className='info-chart'>
+            <div className='line-1'>
+              <a>Product</a>
+              <a href='' style={{color:'black'}}><FaEllipsisH /></a>
+            </div>
             <div className='info-chart-block'>
               <div className='in-1-line'>
                 <a style={{ fontWeight: '500' }}>Products</a>
@@ -106,8 +106,28 @@ const Dashboard = () => {
                 <a style={{ fontWeight: '500', fontSize: '25px' }}>104</a>
               </div>
             </div>
-            
-            <div></div>
+            <div className='in-3-line'>
+              <div className='spacing1'>
+                <a><FaPlus className='' /></a>
+                <a>Add Product</a>
+              </div>
+              <div className='spacing1'>
+                <a><FaPlus />In Stock </a>
+                <a style={{ color: 'green' }}>104</a>
+              </div>
+              <div className='spacing1'>
+                <a><FaPlus />Out of Stock:</a>
+                <a style={{ color: 'red' }}>1</a>
+              </div>
+              <div className='spacing1'>
+                <a><FaPlus />Enabled:</a>
+                <a style={{ color: 'green' }}>104</a>
+              </div>
+              <div className='spacing1'>
+                <a><FaPlus />Disabled:</a>
+                <a style={{ color: 'red' }}>1</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
