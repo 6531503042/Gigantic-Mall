@@ -80,43 +80,10 @@ public class BrandServiceImpl  implements BrandService {
     }
 
 
-//    @Override
-//    public Brand save(Brand brand) throws Exception {
-//        // Check if the brand already exists
-//        Brand existingBrand = repo.findByName(brand.getName());
-//        if (existingBrand != null && !existingBrand.getId().equals(brand.getId())) {
-//            throw new DuplicateBrandException("Brand already exists");
-//        }
-//
-//        // Set categories
-//        if (brand.getCategoryIds() != null && !brand.getCategoryIds().isEmpty()) {
-//            Set<Category> categories = new HashSet<>();
-//            for (Long categoryId : brand.getCategoryIds()) {
-//                Category category = categoryRepo.findById(categoryId).orElseThrow(() -> new CategoryNotFoundException("Category not found"));
-//                categories.add(category);
-//            }
-//            brand.setCategories(categories);
-//        }
-//
-//        return repo.save(brand);
-//    }
-
     @Override
     public Brand save(Brand brand) {
         return repo.save(brand);
     }
-
-
-
-//        // Map category IDs to Category entities
-//        if (brand.getCategoryIds() != null && !brand.getCategoryIds().isEmpty()) {
-//            Set<Category> categories = new HashSet<>();
-//            for (Long categoryId : brand.getCategoryIds()) {
-//                Category category = categoryRepo.findById(categoryId).orElseThrow(() -> new CategoryNotFoundException("Category not found"));
-//                categories.add(category);
-//            }
-
-
 
 
 
@@ -198,13 +165,5 @@ public class BrandServiceImpl  implements BrandService {
                 .collect(Collectors.toSet()));
         return brand;
     }
-
-
-
-
-
-
-
-
 
 }

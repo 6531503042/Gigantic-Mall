@@ -4,10 +4,7 @@ import com.gigantic.Mapper.IdBasedEntity;
 import com.gigantic.entity.Brand;
 import com.gigantic.entity.Category;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -51,11 +48,11 @@ public class Product extends IdBasedEntity {
 
 
     @ManyToOne(targetEntity = Category.class)
-    @Column(name = "category_id")
+    @JoinColumn(name = "category_id")
     private Category categories;
 
     @ManyToOne(targetEntity = Brand.class)
-    @Column(name = "brand_id")
+    @JoinColumn(name = "brand_id")
     private Brand brands;
 
     //Constructor
