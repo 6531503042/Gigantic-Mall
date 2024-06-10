@@ -1,6 +1,5 @@
 .body-of-dashboard {
     width: 65rem;
-    background-color: aqua;
 }
 
 .first-row {
@@ -11,4 +10,36 @@
 
 .block-each-first-row {
     margin: 1rem;
+    width: 25%;
+    border: 0.5px solid rgba(185, 185, 185, 0.459);
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.in-1-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.in-2-line {
+    display: flex;
+    margin-top: 0.8rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chart-container {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.chart-container canvas {
+    width: 100% !important;
+    height: auto !important;
 }
