@@ -148,28 +148,34 @@ const Dashboard = () => {
           </div>
           <div className='product-info'>
             <div className='rowing-product'>
-              <a className='aa'>aaaaaaaaaaaaa</a>
-              <a className='aa'>aaaaaaaaaaaaa</a>
-              <a className='aa'>aaaaaaaaaaaaa</a>
-              <a className='aa'>aaaaaaaaaaaaa</a>
+              <a className='aa'>Speed force</a>
+              <a className='aa'>$120.00</a>
+              <a className='aa'>10</a>
+              <a className='aa'>$99,999</a>
             </div>
             <div className='rowing-product'>
-              <a className='aa'>aaaaaaaaaaaaa</a>
-              <a className='aa'>aaaaaaaaaaaaa</a>
-              <a className='aa'>aaaaaaaaaaaaa</a>
-              <a className='aa'>aaaaaaaaaaaaa</a>
+              <a className='aa'>Cross bag</a>
+              <a className='aa'>$110.0</a>
+              <a className='aa'>20</a>
+              <a className='aa'>$99,999</a>
             </div>
             <div className='rowing-product'>
-              <a className='aa'>aaaaaaaaaaaaa</a>
-              <a className='aa'>aaaaaaaaaaaaa</a>
-              <a className='aa'>aaaaaaaaaaaaa</a>
-              <a className='aa'>aaaaaaaaaaaaa</a>
+              <a className='aa'>Gloves</a>
+              <a className='aa'>$190.0</a>
+              <a className='aa'>30</a>
+              <a className='aa'>$99,999</a>
             </div>
             <div className='rowing-product'>
-              <a className='aa'>aaaaaaaaaaaaa</a>
-              <a className='aa'>aaaaaaaaaaaaa</a>
-              <a className='aa'>aaaaaaaaaaaaa</a>
-              <a className='aa'>aaaaaaaaaaaaa</a>
+              <a className='aa'>Wax candle</a>
+              <a className='aa'>$210.0</a>
+              <a className='aa'>40</a>
+              <a className='aa'>$99,999</a>
+            </div>
+            <div className='rowing-product'>
+              <a className='aa'>Short bodysuits</a>
+              <a className='aa'>$100.0</a>
+              <a className='aa'>50</a>
+              <a className='aa'>$99,999</a>
             </div>
           </div>
         </div>
