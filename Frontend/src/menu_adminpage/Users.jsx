@@ -1,6 +1,6 @@
 import React from 'react'
 import '../css/Users.css';
-import { FaAngleDown, FaContao, FaPlus, FaSearch } from 'react-icons/fa';
+import { FaAngleDown, FaContao, FaEllipsisH, FaPlus, FaSearch } from 'react-icons/fa';
 
 const Users = () => {
 
@@ -16,7 +16,7 @@ const Users = () => {
             <a className='add-user'>Add user <FaPlus style={{ fontSize: '12px' }}/></a>
             <a className='sort-by'>Sort by <FaAngleDown style={{ fontSize: '12px' }}/></a>
             <a className='saved-search'>Saved search <FaAngleDown style={{ fontSize: '12px' }}/></a>
-            <a><FaContao style={{ fontSize: '12px',  color:'black'}}/></a>
+            <a><FaEllipsisH style={{ fontSize: '12px',  color:'black'}}/></a>
           </a>
         </div>
         <div className='information-users'>
