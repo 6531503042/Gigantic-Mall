@@ -95,7 +95,7 @@ const Dashboard = () => {
           <div className='info-chart'>
             <div className='line-1'>
               <a>Product</a>
-              <a href='' style={{color:'black'}}><FaEllipsisH /></a>
+              <a href='' style={{ color: 'black' }}><FaEllipsisH /></a>
             </div>
             <div className='info-chart-block'>
               <div className='in-1-line'>
@@ -132,27 +132,45 @@ const Dashboard = () => {
         </div>
         <div className='third-row'>
           <div className='top-selling'>
-            <a> 
-              <a style={{marginRight:'1rem',borderRight:'0.5px solid grey',paddingRight:'1rem'}}>Top Selling Products</a>
-              <a>This week<FaAngleDown/></a>
+            <a>
+              <a style={{ marginRight: '1rem', borderRight: '0.5px solid grey', paddingRight: '1rem' }}>Top Selling Products</a>
+              <a>This week<FaAngleDown /></a>
             </a>
-            <a><FaEllipsisH/></a>
+            <a><FaEllipsisH /></a>
           </div>
           <div className='cate-name-body'>
             <div className='cate-name'>
-              <a>Product Name</a>
-              <a>Price</a>
-              <a>Sold</a>
-              <a>Sales</a>
+              <div className='rowing'>Product Name</div>
+              <div className='rowing'>Price</div>
+              <div className='rowing'>Sold</div>
+              <div className='rowing'>Sales</div>
             </div>
           </div>
           <div className='product-info'>
-            <div><a>aaaaaaaaaaaaa</a></div>
-            <div><a>aaaaaaaaaaaaa</a></div>
-            <div><a>aaaaaaaaaaaaa</a></div>
-            <div><a>aaaaaaaaaaaaa</a></div>
-            <div><a>aaaaaaaaaaaaa</a></div>
-            <div><a>aaaaaaaaaaaaa</a></div>
+            <div className='rowing-product'>
+              <a className='aa'>aaaaaaaaaaaaa</a>
+              <a className='aa'>aaaaaaaaaaaaa</a>
+              <a className='aa'>aaaaaaaaaaaaa</a>
+              <a className='aa'>aaaaaaaaaaaaa</a>
+            </div>
+            <div className='rowing-product'>
+              <a className='aa'>aaaaaaaaaaaaa</a>
+              <a className='aa'>aaaaaaaaaaaaa</a>
+              <a className='aa'>aaaaaaaaaaaaa</a>
+              <a className='aa'>aaaaaaaaaaaaa</a>
+            </div>
+            <div className='rowing-product'>
+              <a className='aa'>aaaaaaaaaaaaa</a>
+              <a className='aa'>aaaaaaaaaaaaa</a>
+              <a className='aa'>aaaaaaaaaaaaa</a>
+              <a className='aa'>aaaaaaaaaaaaa</a>
+            </div>
+            <div className='rowing-product'>
+              <a className='aa'>aaaaaaaaaaaaa</a>
+              <a className='aa'>aaaaaaaaaaaaa</a>
+              <a className='aa'>aaaaaaaaaaaaa</a>
+              <a className='aa'>aaaaaaaaaaaaa</a>
+            </div>
           </div>
         </div>
       </div>

@@ -102,12 +102,11 @@
 
 .third-row .cate-name-body {
     display: flex;
-    justify-content: center;
 }
 
 .third-row .cate-name {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
     width: 100%;
     margin-top: 1rem;
     padding-left: 0.5rem;
@@ -116,10 +115,30 @@
     border-bottom: 0.5px solid grey;
     color: grey;
     font-size: 14px;
+    background-color: aliceblue;
+    align-items: center;
+}
+
+.third-row .cate-name .rowing{
+    width: 25%;
+    color: grey;
+    text-decoration: none;
 }
 
 .third-row  .product-info {
     margin-top: 0.8rem;
     display: flex;
     flex-direction: column;
+    background-color: aqua;
+}
+
+.third-row  .product-info .rowing-product{
+    display: flex;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    width: 100%;
+}
+
+.third-row  .product-info .rowing-product .aa{
+    width: 25%;
 }
