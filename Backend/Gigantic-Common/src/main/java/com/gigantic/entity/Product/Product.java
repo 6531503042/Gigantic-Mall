@@ -1,5 +1,6 @@
 package com.gigantic.entity.Product;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.gigantic.Mapper.IdBasedEntity;
 import com.gigantic.entity.Brand;
 import com.gigantic.entity.Category;
@@ -25,9 +26,11 @@ public class Product extends IdBasedEntity {
     private String fullDescription;
 
     @Column(name = "created_time", updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createdTime;
 
     @Column(name = "updated_time")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date updatedTime;
 
     @Column(name = "in_stock")
@@ -48,11 +51,13 @@ public class Product extends IdBasedEntity {
     private float weight;
 
 
-    @ManyToOne(targetEntity = Category.class)
+    @JsonBackReference
+    @ManyToOne
     @JoinColumn(name = "category_id")
     private Category categories;
 
-    @ManyToOne(targetEntity = Brand.class)
+    @JsonBackReference
+    @ManyToOne
     @JoinColumn(name = "brand_id")
     private Brand brands;
 

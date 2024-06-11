@@ -25,18 +25,6 @@ public class ProductController {
 
     @PostMapping("/create")
     public ResponseEntity<Product> createProduct(@RequestBody Product product) throws DuplicateProductException {
-
-        //Ensure that category exists
-        Set<Product> products = (Set<Product>) product.getCategories().stream()
-                .map(category -> {
-                    try {
-                        return services.getById(category.getId());
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-                })
-                .collect(Collectors.toSet());
-
         return ResponseEntity.ok(services.save(product));
     }
 }

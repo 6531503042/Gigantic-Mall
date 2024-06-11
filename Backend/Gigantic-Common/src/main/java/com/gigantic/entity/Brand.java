@@ -30,7 +30,6 @@ public class Brand extends IdBasedEntity {
             joinColumns = @JoinColumn(name = "brand_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
-    @JsonBackReference
     private Set<Category> categories = new HashSet<>();
 
     // Constructor
