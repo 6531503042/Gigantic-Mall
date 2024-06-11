@@ -50,7 +50,7 @@ public class Product extends IdBasedEntity {
     private float height;
     private float weight;
 
-
+    
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "category_id")
