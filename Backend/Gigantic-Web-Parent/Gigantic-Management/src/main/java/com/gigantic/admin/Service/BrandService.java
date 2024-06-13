@@ -25,4 +25,6 @@ public interface BrandService {
     BrandDTO toDTO(Brand brand);
 
     Brand toEntity(BrandDTO brandDTO);
+
+    Brand deleteBrand(Brand brand);
 }

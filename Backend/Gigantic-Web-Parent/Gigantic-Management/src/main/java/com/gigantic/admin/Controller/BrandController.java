@@ -96,4 +96,10 @@ public class BrandController {
         Brand updatedBrand = services.updatedBrandStatus(id, status);
         return ResponseEntity.ok(updatedBrand);
     }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<Brand> deleteBrand(@RequestBody Brand brand) throws Exception {
+        Brand deletedBrand = services.deleteBrand(brand);
+        return ResponseEntity.ok(deletedBrand);
+    }
 }
