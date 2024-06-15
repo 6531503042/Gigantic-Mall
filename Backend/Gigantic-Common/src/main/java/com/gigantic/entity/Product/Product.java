@@ -234,4 +234,12 @@ public class Product extends IdBasedEntity {
     public void setBrand(Set<Brand> brands) {
         this.brands = (Brand) brands;
     }
+
+    public Category getCategory_id() {
+        return categories;
+    }
+
+    public Brand getBrand_id() {
+        return brands;
+    }
 }

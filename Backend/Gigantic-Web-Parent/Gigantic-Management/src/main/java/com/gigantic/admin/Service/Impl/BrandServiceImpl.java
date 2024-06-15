@@ -166,4 +166,19 @@ public class BrandServiceImpl  implements BrandService {
         return brand;
     }
 
+    @Override
+    public Brand deleteBrand(Brand brand) throws BrandNotFoundException {
+        // Find the brand by ID
+        Brand foundBrand = repo.findById(brand.getId()).orElse(null);
+
+        if (foundBrand == null) {
+            throw new BrandNotFoundException("Brand not found with ID: " + brand.getId());
+        }
+
+        // Delete the brand from the repository
+        repo.delete(foundBrand);
+
+        return foundBrand;
+    }
+
 }

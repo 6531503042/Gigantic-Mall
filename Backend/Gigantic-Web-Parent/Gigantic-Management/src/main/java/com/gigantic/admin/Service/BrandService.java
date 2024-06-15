@@ -26,5 +26,5 @@ public interface BrandService {
 
     Brand toEntity(BrandDTO brandDTO);
 
-    Brand deleteBrand(Brand brand);
+    Brand deleteBrand(Brand brand) throws BrandNotFoundException;
 }

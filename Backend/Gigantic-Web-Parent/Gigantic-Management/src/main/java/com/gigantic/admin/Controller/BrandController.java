@@ -48,7 +48,7 @@ public class BrandController {
         List<Brand> brands = services.listAll(name, sortDirection, sortField, keyword);
         if (brands.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).
-                    body("There're no brands found");
+                    body("There'll no brands found");
         }
         return ResponseEntity.ok(brands.toString());
     }
