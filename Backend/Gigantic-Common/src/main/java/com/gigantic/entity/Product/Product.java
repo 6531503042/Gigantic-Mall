@@ -7,7 +7,6 @@ import com.gigantic.entity.Category;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 @Table(name = "products")
@@ -50,18 +49,17 @@ public class Product extends IdBasedEntity {
     private float height;
     private float weight;
 
-    
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "category_id")
-    private Category categories;
+    private Category category;
 
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "brand_id")
-    private Brand brands;
+    private Brand brand;
 
-    //Constructor
+    // Constructor
 
     public Product() {
         super();
@@ -71,10 +69,9 @@ public class Product extends IdBasedEntity {
         this.name = name;
     }
 
-    //Getter & Setter
+    // Getter & Setter
 
-
-    //Calling from IdBasedEntity
+    // Calling from IdBasedEntity
     public Long getId() {
         return id;
     }
@@ -82,9 +79,6 @@ public class Product extends IdBasedEntity {
     public void setId(Long id) {
         this.id = id;
     }
-
-    //etc.
-
 
     public String getName() {
         return name;
@@ -206,40 +200,19 @@ public class Product extends IdBasedEntity {
         this.weight = weight;
     }
 
-
-    public void setCategories(Category categories) {
-        this.categories = categories;
+    public Category getCategory() {
+        return category;
     }
 
-    public Brand getBrands() {
-        return brands;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    public void setBrands(Brand brands) {
-        this.brands = brands;
+    public Brand getBrand() {
+        return brand;
     }
 
-    public Set<Category> getCategories() {
-        return (Set<Category>) categories;
-    }
-
-    public void setCategories(Set<Category> categories) {
-        this.categories = (Category) categories;
-    }
-
-    public Set<Brand> getBrand() {
-        return (Set<Brand>) brands;
-    }
-
-    public void setBrand(Set<Brand> brands) {
-        this.brands = (Brand) brands;
-    }
-
-    public Category getCategory_id() {
-        return categories;
-    }
-
-    public Brand getBrand_id() {
-        return brands;
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 }

@@ -9,12 +9,11 @@ import com.gigantic.entity.Product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/product")
@@ -31,24 +30,23 @@ public class ProductController {
         return "Product-API is Working :D";
     }
 
-    @PostMapping("/create")
+    @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Product> createProduct(@RequestBody Product product) throws DuplicateProductException {
 
         try {
-
-            //Checking if product is null
+            // Checking if product is null
             if (product == null) {
-                //throw exception if product is null
+                // Throw exception if product is null
                 throw new IllegalAccessException("Product cannot be null");
             }
 
-            //Checking if parameter category_id , brand_id is null
+            // Checking if parameter category_id, brand_id is null
             if (product.getCategory_id() == null || product.getBrand_id() == null) {
                 throw new IllegalAccessException("Category or Brand cannot be null");
             }
 
-            Product exisingProduct = repo.findByName(product.getName());
-            if (exisingProduct != null) {
+            Product existingProduct = repo.findByName(product.getName());
+            if (existingProduct != null) {
                 throw new DuplicateProductException("Product already exists");
             }
 
@@ -63,7 +61,6 @@ public class ProductController {
         Product createdProduct = services.save(product);
         return ResponseEntity.ok(createdProduct);
     }
-
 
     @PutMapping("/update/status/{productId}")
     public ResponseEntity<Product> updateProductStatus(@PathVariable Long productId, @RequestBody Boolean status) throws Exception {
