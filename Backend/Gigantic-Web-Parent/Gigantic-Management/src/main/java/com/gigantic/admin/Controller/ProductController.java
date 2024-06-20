@@ -88,7 +88,7 @@ public class ProductController {
             brand.setId(brandId);
             brands.add(brand);
         }
-        product.setBrands((Brand) brands);
+        product.setBrands(brands);
 
         Product createdProduct = services.save(product);
         return ResponseEntity.ok(createdProduct);

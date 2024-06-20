@@ -1,13 +1,12 @@
 package com.gigantic.admin.Service.Impl;
 
-import com.gigantic.DTO.ProductDTO;
 import com.gigantic.admin.Exception.DuplicateProductException;
+import com.gigantic.admin.Exception.ProductNotFoundException;
 import com.gigantic.admin.Repository.ProductRepository;
 import com.gigantic.admin.Service.ProductService;
 import com.gigantic.entity.Brand;
 import com.gigantic.entity.Category;
 import com.gigantic.entity.Product.Product;
-import com.gigantic.admin.Exception.ProductNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -25,12 +24,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getById(Long id) throws Exception {
-//        return repo.findById(id).orElseThrow(() -> new ProductNotFoundException("Couldn't find any product with ID" + id));
         Product product = repo.findById(id).orElse(null);
         if (product == null) {
-            throw new ProductNotFoundException("Couldn't find any product with ID" + id);
+            throw new ProductNotFoundException("Couldn't find any product with ID " + id);
         }
-        return repo.findById(id).get();
+        return product;
     }
 
     @Override
@@ -40,7 +38,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product save(Product product) {
-
         if (product.getId() == null) {
             product.setCreatedTime(new Date());
         }
@@ -57,7 +54,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product updateProduct(Long id, Product product, Category category, Brand brand) throws Exception {
+    public Product updateProduct(Long id, Product product, Set<Category> categories, Set<Brand> brands) throws Exception {
         Product existingProduct = getById(id);
 
         if (product.getName() != null && !product.getName().equals(existingProduct.getName())) {
@@ -88,12 +85,12 @@ public class ProductServiceImpl implements ProductService {
             existingProduct.setUpdatedTime(product.getUpdatedTime());
         }
 
-        if (product.getCategories() != null && !product.getCategories().equals(existingProduct.getCategories())) {
-            existingProduct.setCategories(category);
+        if (categories != null && !categories.equals(existingProduct.getCategories())) {
+            existingProduct.setCategories(categories);
         }
 
-        if (product.getBrand() != null && !product.getBrand().equals(existingProduct.getBrand())) {
-            existingProduct.setBrand((Set<Brand>) brand);
+        if (brands != null && !brands.equals(existingProduct.getBrands())) {
+            existingProduct.setBrands(brands);
         }
 
         return repo.save(existingProduct);
