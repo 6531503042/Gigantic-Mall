@@ -3,7 +3,9 @@ package com.gigantic.DTO;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.gigantic.Configs.FloatDeserializer;
 
+import java.util.Collections;
 import java.util.Date;
+import java.util.Set;
 
 public class ProductDTO {
 
@@ -26,14 +28,14 @@ public class ProductDTO {
     private float height;
     private float weight;
 
-    private Long categoryId;
-    private Long brandId;
+    private Set<Long> categoryId;
+    private Set<Long> brandId;
 
     // Default constructor
     public ProductDTO() {}
 
     // Constructor with fields
-    public ProductDTO(Long id, String name, String alias, String shortDescription, String fullDescription, Date createdTime, Date updatedTime, boolean inStock, boolean status, float cost, float price, float discountPercent, float length, float width, float height, float weight, Long categoryId, Long brandId) {
+    public ProductDTO(Long id, String name, String alias, String shortDescription, String fullDescription, Date createdTime, Date updatedTime, boolean inStock, boolean status, float cost, float price, float discountPercent, float length, float width, float height, float weight, Set<Long> categoryId, Set<Long> brandId) {
         this.id = id;
         this.name = name;
         this.alias = alias;
@@ -184,19 +186,19 @@ public class ProductDTO {
         this.weight = weight;
     }
 
-    public Long getCategoryId() {
+    public Set<Long> getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(Long categoryId) {
+    public void setCategoryId(Set<Long> categoryId) {
         this.categoryId = categoryId;
     }
 
-    public Long getBrandId() {
+    public Set<Long> getBrandId() {
         return brandId;
     }
 
-    public void setBrandId(Long brandId) {
+    public void setBrandId(Set<Long> brandId) {
         this.brandId = brandId;
     }
 }

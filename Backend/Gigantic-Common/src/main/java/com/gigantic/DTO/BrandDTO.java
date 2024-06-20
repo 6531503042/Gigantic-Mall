@@ -12,7 +12,7 @@ public class BrandDTO {
     private String logo;
     private boolean status;
     @JsonBackReference
-    private Set<String> categories = new HashSet<>();
+    private Set<Long> categories = new HashSet<>();
 
     // Default constructor
     public BrandDTO() {}
@@ -50,11 +50,11 @@ public class BrandDTO {
         this.status = status;
     }
 
-    public Set<String> getCategories() {
+    public Set<Long> getCategories() {
         return categories;
     }
 
-    public void setCategories(Set<String> categories) {
+    public void setCategories(Set<Long> categories) {
         this.categories = categories;
     }
 

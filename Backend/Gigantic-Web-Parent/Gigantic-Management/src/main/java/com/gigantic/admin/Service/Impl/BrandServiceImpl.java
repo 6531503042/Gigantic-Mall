@@ -148,7 +148,7 @@ public class BrandServiceImpl  implements BrandService {
         dto.setLogo(brand.getLogo());
         dto.setStatus(brand.isStatus());
         dto.setCategories(brand.getCategories().stream()
-                .map(category -> String.valueOf(category.getId()))
+                .map(Category::getId)
                 .collect(Collectors.toSet()));
         return dto;
     }
@@ -161,8 +161,9 @@ public class BrandServiceImpl  implements BrandService {
         brand.setLogo(dto.getLogo());
         brand.setStatus(dto.isStatus());
         brand.setCategories(dto.getCategories().stream()
-                .map(Long::valueOf)
-                .map(Category::new)
+                .map(categoryRepo::findById)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
                 .collect(Collectors.toSet()));
         return brand;
     }

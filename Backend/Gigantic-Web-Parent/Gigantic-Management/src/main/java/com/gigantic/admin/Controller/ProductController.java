@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @RestController
@@ -73,13 +74,21 @@ public class ProductController {
         product.setHeight(productDTO.getHeight());
         product.setWeight(productDTO.getWeight());
 
-        Category category = new Category();
-        category.setId(productDTO.getCategoryId());
-        product.setCategories(category);
+        Set<Category> categories = new HashSet<>();
+        for (Long categoryId : productDTO.getCategoryId()) {
+            Category category = new Category();
+            category.setId(categoryId);
+            categories.add(category);
+        }
+        product.setCategories(categories);
 
-        Brand brand = new Brand();
-        brand.setId(productDTO.getBrandId());
-        product.setBrand((Set<Brand>) brand);
+        Set<Brand> brands = new HashSet<>();
+        for (Long brandId : productDTO.getBrandId()) {
+            Brand brand = new Brand();
+            brand.setId(brandId);
+            brands.add(brand);
+        }
+        product.setBrands((Brand) brands);
 
         Product createdProduct = services.save(product);
         return ResponseEntity.ok(createdProduct);
