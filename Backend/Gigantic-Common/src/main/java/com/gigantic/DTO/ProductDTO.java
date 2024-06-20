@@ -1,5 +1,8 @@
 package com.gigantic.DTO;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.gigantic.Configs.FloatDeserializer;
+
 import java.util.Date;
 
 public class ProductDTO {
@@ -14,12 +17,15 @@ public class ProductDTO {
     private boolean inStock;
     private boolean status;
     private float cost;
+
+    @JsonDeserialize(using = FloatDeserializer.class)
     private float price;
     private float discountPercent;
     private float length;
     private float width;
     private float height;
     private float weight;
+
     private Long categoryId;
     private Long brandId;
 

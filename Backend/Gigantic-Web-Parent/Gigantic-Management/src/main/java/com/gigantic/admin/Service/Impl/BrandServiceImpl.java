@@ -153,6 +153,7 @@ public class BrandServiceImpl  implements BrandService {
         return dto;
     }
 
+    @Override
     public Brand toEntity(BrandDTO dto) {
         Brand brand = new Brand();
         brand.setId(dto.getId());

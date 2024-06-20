@@ -1,19 +1,20 @@
 package com.gigantic.admin.Controller;
 
-import com.gigantic.admin.Exception.CategoryNotFoundException;
+import com.gigantic.DTO.ProductDTO;
 import com.gigantic.admin.Exception.DuplicateProductException;
-import com.gigantic.admin.Exception.ProductNotFoundException;
 import com.gigantic.admin.Repository.ProductRepository;
 import com.gigantic.admin.Service.Impl.ProductServiceImpl;
+import com.gigantic.entity.Brand;
+import com.gigantic.entity.Category;
 import com.gigantic.entity.Product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/product")
@@ -30,22 +31,22 @@ public class ProductController {
         return "Product-API is Working :D";
     }
 
-    @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Product> createProduct(@RequestBody Product product) throws DuplicateProductException {
+    @PostMapping("/create")
+    public ResponseEntity<Product> createProduct(@RequestBody ProductDTO productDTO) throws DuplicateProductException {
 
         try {
-            // Checking if product is null
-            if (product == null) {
-                // Throw exception if product is null
+            // Checking if productDTO is null
+            if (productDTO == null) {
+                // throw exception if productDTO is null
                 throw new IllegalAccessException("Product cannot be null");
             }
 
-            // Checking if parameter category_id, brand_id is null
-            if (product.getCategory_id() == null || product.getBrand_id() == null) {
+            // Checking if parameter categoryId, brandId is null
+            if (productDTO.getCategoryId() == null || productDTO.getBrandId() == null) {
                 throw new IllegalAccessException("Category or Brand cannot be null");
             }
 
-            Product existingProduct = repo.findByName(product.getName());
+            Product existingProduct = repo.findByName(productDTO.getName());
             if (existingProduct != null) {
                 throw new DuplicateProductException("Product already exists");
             }
@@ -54,9 +55,31 @@ public class ProductController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
-        if (product.getId() == null) {
-            product.setCreatedTime(new Date());
-        }
+        Product product = new Product();
+        product.setId(productDTO.getId());
+        product.setName(productDTO.getName());
+        product.setAlias(productDTO.getAlias());
+        product.setShortDescription(productDTO.getShortDescription());
+        product.setFullDescription(productDTO.getFullDescription());
+        product.setCreatedTime(productDTO.getCreatedTime() != null ? productDTO.getCreatedTime() : new Date());
+        product.setUpdatedTime(productDTO.getUpdatedTime());
+        product.setInStock(productDTO.isInStock());
+        product.setStatus(productDTO.isStatus());
+        product.setCost(productDTO.getCost());
+        product.setPrice(productDTO.getPrice());
+        product.setDiscountPercent(productDTO.getDiscountPercent());
+        product.setLength(productDTO.getLength());
+        product.setWidth(productDTO.getWidth());
+        product.setHeight(productDTO.getHeight());
+        product.setWeight(productDTO.getWeight());
+
+        Category category = new Category();
+        category.setId(productDTO.getCategoryId());
+        product.setCategories(category);
+
+        Brand brand = new Brand();
+        brand.setId(productDTO.getBrandId());
+        product.setBrand((Set<Brand>) brand);
 
         Product createdProduct = services.save(product);
         return ResponseEntity.ok(createdProduct);

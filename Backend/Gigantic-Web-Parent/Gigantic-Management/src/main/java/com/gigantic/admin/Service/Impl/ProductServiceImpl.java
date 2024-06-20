@@ -1,5 +1,6 @@
 package com.gigantic.admin.Service.Impl;
 
+import com.gigantic.DTO.ProductDTO;
 import com.gigantic.admin.Exception.DuplicateProductException;
 import com.gigantic.admin.Repository.ProductRepository;
 import com.gigantic.admin.Service.ProductService;
@@ -109,7 +110,4 @@ public class ProductServiceImpl implements ProductService {
         product.setStatus(status);
         return repo.save(product);
     }
-
-
-
 }
