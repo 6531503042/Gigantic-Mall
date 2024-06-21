@@ -85,6 +85,9 @@ This project is developed by second-year Software Engineering students. We plan 
 - Node.js and npm
 - Spring Boot
 - React
+- Vite
+- Typescript
+- Tailwind
 
 ### Installation
 
