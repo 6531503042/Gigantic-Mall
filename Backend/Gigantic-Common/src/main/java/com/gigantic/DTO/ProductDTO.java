@@ -201,4 +201,9 @@ public class ProductDTO {
     public void setBrandId(Set<Long> brandId) {
         this.brandId = brandId;
     }
+
+    public boolean getInStock() {
+        return inStock;
+    }
+
 }

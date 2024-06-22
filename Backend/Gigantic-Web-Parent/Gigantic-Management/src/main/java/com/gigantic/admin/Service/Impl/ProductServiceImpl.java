@@ -1,5 +1,6 @@
 package com.gigantic.admin.Service.Impl;
 
+import com.gigantic.DTO.ProductDTO;
 import com.gigantic.admin.Exception.DuplicateProductException;
 import com.gigantic.admin.Exception.ProductNotFoundException;
 import com.gigantic.admin.Repository.ProductRepository;
@@ -10,8 +11,10 @@ import com.gigantic.entity.Product.Product;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -106,5 +109,66 @@ public class ProductServiceImpl implements ProductService {
         Product product = getById(id);
         product.setStatus(status);
         return repo.save(product);
+    }
+
+    public Product toEntity(ProductDTO dto) {
+        Product product = new Product();
+        product.setId(dto.getId());
+        product.setAlias(dto.getAlias());
+        product.setShortDescription(dto.getShortDescription());
+        product.setFullDescription(dto.getFullDescription());
+        product.setInStock(dto.getInStock());
+        product.setStatus(dto.isStatus());
+        product.setCost(dto.getCost());
+        product.setPrice(dto.getPrice());
+        product.setDiscountPercent(dto.getDiscountPercent());
+        product.setLength(dto.getLength());
+        product.setWidth(dto.getWidth());
+        product.setHeight(dto.getHeight());
+        product.setWeight(dto.getWeight());
+
+        Set<Long> brandIds = dto.getBrandId();
+        Set<Long> categoryIds = dto.getCategoryId(); //<-- dto.getCategoryId(); //<-- Set<Set>
+
+        if (brandIds != null) {
+            Set<Brand> brands = new HashSet<>();
+            for (Long brandId : brandIds) {
+                Brand brand = new Brand();
+                brand.setId(brandId);
+                brands.add(brand);
+            }
+            product.setBrands(brands);
+        }
+
+        if (categoryIds != null) {
+            Set<Category> categories = new HashSet<>();
+            for (Long categoryId : categoryIds) {
+                Category category = new Category();
+                category.setId(categoryId);
+                categories.add(category);
+            }
+            product.setCategories(categories);
+        }
+        return product;
+    }
+
+    public ProductDTO toDTO(Product product) {
+        ProductDTO dto = new ProductDTO();
+        dto.setId(product.getId());
+        dto.setAlias(product.getAlias());
+        dto.setShortDescription(product.getShortDescription());
+        dto.setFullDescription(product.getFullDescription());
+        dto.setInStock(product.isInStock());
+        dto.setStatus(product.isStatus());
+        dto.setCost(product.getCost());
+        dto.setPrice(product.getPrice());
+        dto.setDiscountPercent(product.getDiscountPercent());
+        dto.setLength(product.getLength());
+        dto.setWidth(product.getWidth());
+        dto.setHeight(product.getHeight());
+        dto.setWeight(product.getWeight());
+        dto.setBrandId(product.getBrands().stream().map(Brand::getId).collect(Collectors.toSet()));
+        dto.setCategoryId(product.getCategories().stream().map(Category::getId).collect(Collectors.toSet()));
+        return dto;
     }
 }
