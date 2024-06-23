@@ -16,5 +16,6 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     Long countById(Long id);
 
     @Query("SELECT p FROM Product p")
-    Product findAll(Specification<Product> spec, Sort sort);
+    List<Product> findAll(Specification<Product> spec, Sort sort);
+
 }

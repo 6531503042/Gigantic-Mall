@@ -1,5 +1,6 @@
 package com.gigantic.admin.Service;
 
+import com.gigantic.DTO.ProductDTO;
 import com.gigantic.entity.Brand;
 import com.gigantic.entity.Category;
 import com.gigantic.entity.Product.Product;
@@ -19,4 +20,8 @@ public interface ProductService {
     void delete(Long id);
 
     Product updatedProductStatus(Long id, Boolean status) throws Exception;
+
+    Product toEntity(ProductDTO dto);
+
+    ProductDTO toDTO(Product product);
 }

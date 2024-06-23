@@ -49,8 +49,9 @@ public class ProductServiceImpl implements ProductService {
 
         Sort sort = Sort.by(sortDirection.equalsIgnoreCase("asc") ? Sort.Direction.ASC : Sort.Direction.DESC, sortField);
 
-        return (List<Product>) repo.findAll(spec, sort);
-    }
+        return repo.findAll(spec, sort);
+}
+
 
 
     @Override
@@ -132,12 +133,16 @@ public class ProductServiceImpl implements ProductService {
         return repo.save(product);
     }
 
+    @Override
     public Product toEntity(ProductDTO dto) {
         Product product = new Product();
         product.setId(dto.getId());
+        product.setName(dto.getName());
         product.setAlias(dto.getAlias());
         product.setShortDescription(dto.getShortDescription());
         product.setFullDescription(dto.getFullDescription());
+        product.setCreatedTime(dto.getCreatedTime());
+        product.setUpdatedTime(dto.getUpdatedTime());
         product.setInStock(dto.getInStock());
         product.setStatus(dto.isStatus());
         product.setCost(dto.getCost());
@@ -149,7 +154,7 @@ public class ProductServiceImpl implements ProductService {
         product.setWeight(dto.getWeight());
 
         Set<Long> brandIds = dto.getBrandId();
-        Set<Long> categoryIds = dto.getCategoryId(); //<-- dto.getCategoryId(); //<-- Set<Set>
+        Set<Long> categoryIds = dto.getCategoryId();
 
         if (brandIds != null) {
             Set<Brand> brands = new HashSet<>();
@@ -173,12 +178,16 @@ public class ProductServiceImpl implements ProductService {
         return product;
     }
 
+    @Override
     public ProductDTO toDTO(Product product) {
         ProductDTO dto = new ProductDTO();
         dto.setId(product.getId());
+        dto.setName(product.getName());
         dto.setAlias(product.getAlias());
         dto.setShortDescription(product.getShortDescription());
         dto.setFullDescription(product.getFullDescription());
+        dto.setCreatedTime(product.getCreatedTime());
+        dto.setUpdatedTime(product.getUpdatedTime());
         dto.setInStock(product.isInStock());
         dto.setStatus(product.isStatus());
         dto.setCost(product.getCost());

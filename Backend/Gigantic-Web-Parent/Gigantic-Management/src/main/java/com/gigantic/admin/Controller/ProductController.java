@@ -40,11 +40,15 @@ public class ProductController {
                                                             @RequestParam(required = false) String sortDirection,
                                                             @RequestParam(required = false) String sortField,
                                                             @RequestParam(required = false) String keyword) {
-        List<ProductDTO> dto = services.listAll(name, sortDirection, sortField, keyword)
-                .stream()
+        List<Product> products = services.listAll(name, sortDirection, sortField, keyword);
+
+        if (products.isEmpty()) {
+            throw new RuntimeException("Products not found");
+        }
+
+        List<ProductDTO> dto = products.stream()
                 .map(services::toDTO)
                 .collect(Collectors.toList());
-
         return ResponseEntity.ok(dto);
     }
 
