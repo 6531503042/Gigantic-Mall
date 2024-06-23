@@ -2,6 +2,7 @@ package com.gigantic.admin.Controller;
 
 import com.gigantic.DTO.ProductDTO;
 import com.gigantic.admin.Exception.DuplicateProductException;
+import com.gigantic.admin.Exception.ProductNotFoundException;
 import com.gigantic.admin.Repository.ProductRepository;
 import com.gigantic.admin.Service.Impl.ProductServiceImpl;
 import com.gigantic.entity.Brand;
@@ -45,6 +46,16 @@ public class ProductController {
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(dto);
+    }
+
+
+    @GetMapping("list/{id}")
+    public ResponseEntity<ProductDTO> getById(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(services.toDTO(services.getById(id)));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @PostMapping("/create")
