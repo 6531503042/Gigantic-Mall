@@ -10,7 +10,7 @@ import java.util.Set;
 public interface ProductService {
     Product getById(Long id) throws Exception;
 
-    List<Product> listAll();
+    List<Product> listAll(String name, String sortDirection, String sortField, String keyword);
 
     Product save(Product product);
 

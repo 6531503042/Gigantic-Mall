@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/product")
@@ -30,6 +32,19 @@ public class ProductController {
     @GetMapping("/api")
     public String getProductPage() {
         return "Product-API is Working :D";
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity<List<ProductDTO>> listAllProducts(@RequestParam(required = false) String name,
+                                                            @RequestParam(required = false) String sortDirection,
+                                                            @RequestParam(required = false) String sortField,
+                                                            @RequestParam(required = false) String keyword) {
+        List<ProductDTO> dto = services.listAll(name, sortDirection, sortField, keyword)
+                .stream()
+                .map(services::toDTO)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(dto);
     }
 
     @PostMapping("/create")

@@ -1,6 +1,7 @@
 package com.gigantic.admin.Service.Impl;
 
 import com.gigantic.DTO.ProductDTO;
+import com.gigantic.admin.Config.ProductSpecificationConfig;
 import com.gigantic.admin.Exception.DuplicateProductException;
 import com.gigantic.admin.Exception.ProductNotFoundException;
 import com.gigantic.admin.Repository.ProductRepository;
@@ -8,6 +9,8 @@ import com.gigantic.admin.Service.ProductService;
 import com.gigantic.entity.Brand;
 import com.gigantic.entity.Category;
 import com.gigantic.entity.Product.Product;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -35,9 +38,20 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> listAll() {
-        return (List<Product>) repo.findAll();
+    public List<Product> listAll(String name, String sortDirection, String sortField, String keyword) {
+        name = (name != null) ? name : "";
+        sortDirection = (sortDirection != null) ? sortDirection : "asc";
+        sortField = (sortField != null) ? sortField : "id";
+        keyword = (keyword != null) ? keyword : "";
+
+        Specification<Product> spec = Specification.where(ProductSpecificationConfig.hasName(name))
+                .and(ProductSpecificationConfig.hasKeyword(keyword));
+
+        Sort sort = Sort.by(sortDirection.equalsIgnoreCase("asc") ? Sort.Direction.ASC : Sort.Direction.DESC, sortField);
+
+        return (List<Product>) repo.findAll(spec, sort);
     }
+
 
     @Override
     public Product save(Product product) {
