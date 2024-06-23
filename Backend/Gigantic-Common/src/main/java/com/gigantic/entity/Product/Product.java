@@ -46,10 +46,17 @@ public class Product extends IdBasedEntity {
     @Column(name = "discount_percent")
     private float discountPercent;
 
-    private float length;
-    private float width;
-    private float height;
-    private float weight;
+    @Column(nullable = false)
+    private Float length = 0.0f;
+
+    @Column(nullable = false)
+    private Float width = 0.0f;
+
+    @Column(nullable = false)
+    private Float height = 0.0f;
+
+    @Column(nullable = false)
+    private Float weight = 0.0f;
 
     @JsonBackReference
     @ManyToMany

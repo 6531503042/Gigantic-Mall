@@ -23,10 +23,14 @@ public class ProductDTO {
     @JsonDeserialize(using = FloatDeserializer.class)
     private float price;
     private float discountPercent;
-    private float length;
-    private float width;
-    private float height;
-    private float weight;
+
+    private Float length = 0.0f;
+
+    private Float width = 0.0f;
+
+    private Float height = 0.0f;
+
+    private Float weight = 0.0f;
 
     private Set<Long> categoryId;
     private Set<Long> brandId;

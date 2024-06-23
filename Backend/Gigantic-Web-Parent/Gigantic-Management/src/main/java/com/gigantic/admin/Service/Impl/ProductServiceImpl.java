@@ -53,6 +53,13 @@ public class ProductServiceImpl implements ProductService {
         }
 
         product.setUpdatedTime(new Date());
+
+        Float length = product.getLength();
+        Float someValue = 100.0f; // Example value, replace with actual logic
+        if (length.equals(someValue)) {
+            // Your logic here
+        }
+
         return repo.save(product);
     }
 
