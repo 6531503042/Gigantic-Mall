@@ -5,6 +5,8 @@ import com.gigantic.Mapper.IdBasedEntity;
 import javax.persistence.*;
 import java.util.Date;
 
+@Entity(name = "order_tracks")
+@Table(name = "order_tracks")
 public class OrderTrack extends IdBasedEntity {
 
     @Column(name = "notes", length = 256, nullable = false)
