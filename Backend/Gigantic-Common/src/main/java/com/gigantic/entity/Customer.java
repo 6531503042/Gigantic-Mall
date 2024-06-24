@@ -2,9 +2,7 @@ package com.gigantic.entity;
 
 import com.gigantic.entity.Adress.AbstractAdress;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity(name = "customers")
@@ -21,6 +19,9 @@ public class Customer extends AbstractAdress {
 
     @Column(name = "created_time", updatable = false)
     private Date createdTime;
+
+    @Enumerated(EnumType.STRING)
+    private AuthenticationType authenticationType;
 
     //Constructor
     public Customer() {
