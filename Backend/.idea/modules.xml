@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Gigantic-Common/Gigantic-Common.iml" filepath="$PROJECT_DIR$/Gigantic-Common/Gigantic-Common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Gigantic-Web-Parent/Gigantic-Management/Gigantic-Management.iml" filepath="$PROJECT_DIR$/Gigantic-Web-Parent/Gigantic-Management/Gigantic-Management.iml" />
     </modules>
   </component>
 </project>

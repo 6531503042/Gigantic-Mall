@@ -48,4 +48,8 @@ public class Customer extends AbstractAdress {
     public boolean isEnabled() {
         return enabled;
     }
+
+    public Long getId() {
+        return id;
+    }
 }
