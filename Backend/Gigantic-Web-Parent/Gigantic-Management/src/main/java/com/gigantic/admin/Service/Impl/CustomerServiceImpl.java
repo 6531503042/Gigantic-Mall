@@ -6,6 +6,7 @@ import com.gigantic.admin.Service.CustomerService;
 import com.gigantic.entity.Customer;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.NoSuchElementException;
 
 @Service
@@ -32,6 +33,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer save(Customer customer) {
+        if (customer.getId() == null) {
+            customer.setCreatedTime(new Date());
+        }
         return repo.save(customer);
     }
 
