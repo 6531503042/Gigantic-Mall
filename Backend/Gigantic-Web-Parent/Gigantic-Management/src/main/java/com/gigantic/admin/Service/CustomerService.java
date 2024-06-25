@@ -11,4 +11,6 @@ public interface CustomerService {
     Customer save(Customer customer);
 
     boolean isEmailUnique(String email);
+
+    void delete(Long id);
 }

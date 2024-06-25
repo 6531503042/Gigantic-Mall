@@ -45,4 +45,13 @@ public class CustomerServiceImpl implements CustomerService {
 
         return true;
     }
+
+    @Override
+    public void delete(Long id) {
+        if (repo.findById(id).isPresent()) {
+            repo.deleteById(id);
+        } else {
+            throw new NoSuchElementException("Couldn't find any customer with ID " + id);
+        }
+    }
 }
