@@ -6,6 +6,7 @@ import com.gigantic.admin.Service.CustomerService;
 import com.gigantic.entity.Customer;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.NoSuchElementException;
 
@@ -32,7 +33,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer save(Customer customer) {
+    public Customer save(@Valid Customer customer) {
         if (customer.getId() == null) {
             customer.setCreatedTime(new Date());
         } else {
@@ -43,13 +44,19 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public boolean isEmailUnique(String email) {
+    public boolean isEmailUnique(Long id,String email) {
         Customer existingCustomer = repo.findByEmail(email);
 
-        if (existingCustomer != null && existingCustomer.getId() != null) {
-            return false;
-        }
+        if (existingCustomer == null && id == null) return true;
 
+        boolean isCreatingNew = (id == null);
+        if (isCreatingNew) {
+            if (existingCustomer != null) return false;
+        } else {
+            if (existingCustomer.getId() != id) {
+                return false;
+            }
+        }
         return true;
     }
 
