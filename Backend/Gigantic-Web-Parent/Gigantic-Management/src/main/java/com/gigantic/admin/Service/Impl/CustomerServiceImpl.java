@@ -35,6 +35,9 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer save(Customer customer) {
         if (customer.getId() == null) {
             customer.setCreatedTime(new Date());
+        } else {
+            Customer existingCustomer = repo.findById(customer.getId()).get();
+            customer.setCreatedTime(existingCustomer.getCreatedTime());
         }
         return repo.save(customer);
     }
