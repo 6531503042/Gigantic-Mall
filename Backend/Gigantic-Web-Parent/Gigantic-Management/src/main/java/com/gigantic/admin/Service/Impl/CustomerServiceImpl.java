@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
 import java.util.Date;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -83,5 +84,10 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer findByEmail(String email) {
         return repo.findByEmail(email);
+    }
+
+    @Override
+    public List<Customer> getAllUsers() {
+        return (List<Customer>) repo.findAll();
     }
 }

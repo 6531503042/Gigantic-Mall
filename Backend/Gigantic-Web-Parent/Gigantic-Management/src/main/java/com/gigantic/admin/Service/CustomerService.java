@@ -4,6 +4,8 @@ import com.gigantic.admin.Exception.CustomerNotFound;
 import com.gigantic.entity.Customer;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface CustomerService {
     Customer get(Long id) throws CustomerNotFound;
@@ -17,4 +19,6 @@ public interface CustomerService {
     void delete(Long id);
 
     Customer findByEmail(String email);
+
+    List<Customer> getAllUsers();
 }

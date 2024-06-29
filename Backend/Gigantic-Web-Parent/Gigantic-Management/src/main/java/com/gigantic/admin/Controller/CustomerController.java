@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -24,6 +25,11 @@ public class CustomerController {
     }
 
     //Logical Controller
+    @GetMapping("/list")
+    public List<Customer> getAllUser() {
+        return service.getAllUsers();
+    }
+
     @GetMapping(value = "/get/{id}")
     public ResponseEntity<Customer> get(Long id) throws CustomerNotFound {
         return ResponseEntity.ok(service.get(id));
