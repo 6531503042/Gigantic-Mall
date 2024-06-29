@@ -79,4 +79,9 @@ public class CustomerServiceImpl implements CustomerService {
             throw new NoSuchElementException("Couldn't find any customer with ID " + id);
         }
     }
+
+    @Override
+    public Customer findByEmail(String email) {
+        return repo.findByEmail(email);
+    }
 }

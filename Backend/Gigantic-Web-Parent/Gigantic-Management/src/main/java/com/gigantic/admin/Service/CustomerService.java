@@ -15,4 +15,6 @@ public interface CustomerService {
     void encoderPassword(Customer customer);
 
     void delete(Long id);
+
+    Customer findByEmail(String email);
 }

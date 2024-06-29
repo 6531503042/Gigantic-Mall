@@ -1,6 +1,7 @@
 package com.gigantic.admin.Controller;
 
 import com.gigantic.admin.Exception.CustomerNotFound;
+import com.gigantic.admin.Repository.CustomerRepository;
 import com.gigantic.admin.Service.Impl.CustomerServiceImpl;
 import com.gigantic.entity.Customer;
 import org.springframework.http.HttpStatus;
@@ -8,15 +9,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/customers")
 public class CustomerController {
 
     private final CustomerServiceImpl service;
+    private final CustomerRepository repo;
 
-    public CustomerController(CustomerServiceImpl service) {
+    public CustomerController(CustomerServiceImpl service, CustomerRepository repo) {
         this.service = service;
+        this.repo = repo;
     }
 
     //Logical Controller
@@ -51,8 +55,20 @@ public class CustomerController {
         }
     }
 
-    @DeleteMapping(value = "/delete/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id) {
+    @DeleteMapping("/deleteByEmail/{email}")
+    public ResponseEntity<?> deleteByEmail(@PathVariable String email) {
+        try {
+            Optional<Customer> customerOptional = Optional.ofNullable(service.findByEmail(email));
+            customerOptional.ifPresent(repo::delete);
+            return customerOptional.map(customer -> ResponseEntity.ok().build())
+                    .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body("Couldn't find any customer with email " + email));
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Couldn't find any customer with email " + email);
+        }
+    }
+
+    @DeleteMapping(value = "/deleteById/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable Long id) {
         try {
             service.delete(id);
             return ResponseEntity.ok().build();
@@ -60,5 +76,7 @@ public class CustomerController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Couldn't find any customer with ID " + id);
         }
     }
+
+
 
 }
