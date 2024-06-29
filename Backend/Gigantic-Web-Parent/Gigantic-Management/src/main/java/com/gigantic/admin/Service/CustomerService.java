@@ -12,5 +12,7 @@ public interface CustomerService {
 
     boolean isEmailUnique(Long id, String email);
 
+    void encoderPassword(Customer customer);
+
     void delete(Long id);
 }

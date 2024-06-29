@@ -3,8 +3,11 @@ package com.gigantic.admin.Controller;
 import com.gigantic.admin.Exception.CustomerNotFound;
 import com.gigantic.admin.Service.Impl.CustomerServiceImpl;
 import com.gigantic.entity.Customer;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping(value = "/customers")
@@ -23,35 +26,39 @@ public class CustomerController {
     }
 
     @PostMapping(value = "/save")
-    public ResponseEntity<Customer> save(Customer customer) {
+    public ResponseEntity<?> save(@RequestBody Customer customer) {
         try {
-            if (service.isEmailUnique(customer.getEmail())) {
+            if (service.isEmailUnique(null,customer.getEmail())) {
                 return ResponseEntity.ok(service.save(customer));
             } else {
-                return ResponseEntity.badRequest().build();
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email already exists");
             }
         } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
 
     @PutMapping(value = "/update")
-    public ResponseEntity<Customer> update(Customer customer) {
+    public ResponseEntity<?> update(Customer customer) {
         try {
-            if (service.isEmailUnique(customer.getEmail())) {
+            if (service.isEmailUnique(customer.getId(), customer.getEmail())) {
                 return ResponseEntity.ok(service.save(customer));
             } else {
-                return ResponseEntity.badRequest().build();
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email already exists");
             }
         } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public ResponseEntity<Customer> delete(Long id) {
-        service.delete(id);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        try {
+            service.delete(id);
+            return ResponseEntity.ok().build();
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Couldn't find any customer with ID " + id);
+        }
     }
 
 }
