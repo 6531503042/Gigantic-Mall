@@ -9,7 +9,8 @@
   GET /Admin/users/list
 ```
 
-#### Get all items filters
+
+#### Get all items
 
 ```http
   GET /api/items
@@ -113,6 +114,47 @@
 | :-------- | :------- | :------------------------- |
 | `email` | `string` | **Required**. Email of user to delete |
 
+
+
+#### Exporter with CSV
+
+```http
+  GET /exporter/csv
+```
+
+Example result (CSV format)
+```bash
+id,email,firstName,lastName,enabled,roles
+1,example@domain.com,FirstName,LastName,true,Admin
+2,another@example.com,AnotherFirstName,AnotherLastName,false,Sales
+
+```
+
+#### Exporter with Excel
+
+```http
+  GET /exporter/excel
+```
+| id | email     | firstName | lastName | enabled | roles |
+| :-------- | :------- | :------- | :------- | :------- | :------- |
+| `1` | `example@domain.com` |  `FirstName` | `LastName` | `true` | `Admin` |
+| `1` | `another@example.com` |  `AnotherFirstName` | `AnotherLastName` | `false` | `Sales` |
+
+#### Exporter with PDF
+
+```http
+  GET /exporter/pdf
+```
+
+Example result (PDF format):
+```bash
+-------------------------------------------------
+| ID | Email               | First Name | Last Name | Enabled | Roles  |
+-------------------------------------------------
+| 1  | example@domain.com  | FirstName  | LastName  | true    | Admin  |
+-------------------------------------------------
+| 2  | another@example.com | AnotherFirstName | AnotherLastName | false | Sales |
+-------------------------------------------------
 
 ```
 
