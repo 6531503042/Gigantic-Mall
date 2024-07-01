@@ -1,6 +1,8 @@
 
 # Gigantic-Management API Reference
 
+![Gigantic Logo](assets/Gigantic_icon.png)
+
 ## User Endpoints
 
 ### Get All Users
