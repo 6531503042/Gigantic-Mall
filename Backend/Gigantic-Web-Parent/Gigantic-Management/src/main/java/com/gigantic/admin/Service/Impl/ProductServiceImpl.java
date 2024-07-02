@@ -126,6 +126,25 @@ public class ProductServiceImpl implements ProductService {
         repo.deleteById(id);
     }
 
+    /**
+     * Saves the product price information.
+     *
+     * @param product the product to save the price for
+     */
+    @Override
+    public void saveProductPrice(Product product) {
+        // Find the product by ID or return null if not found
+        Product existingProduct = repo.findById(product.getId()).orElse(null);
+
+        // Set the cost, price, and discount percent of the existing product
+        existingProduct.setCost(product.getCost());
+        existingProduct.setPrice(product.getPrice());
+        existingProduct.setDiscountPercent(product.getDiscountPercent());
+
+        // Save the updated product
+        repo.save(existingProduct);
+    }
+
     @Override
     public Product updatedProductStatus(Long id, Boolean status) throws Exception {
         Product product = getById(id);

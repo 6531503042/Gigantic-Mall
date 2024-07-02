@@ -8,8 +8,12 @@ import com.gigantic.admin.Service.Impl.ProductServiceImpl;
 import com.gigantic.entity.Brand;
 import com.gigantic.entity.Category;
 import com.gigantic.entity.Product.Product;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +28,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/product")
 public class ProductController {
 
+    private static final int PRODUCTS_PER_PAGE = 5;
     @Autowired
     private ProductServiceImpl services;
 
@@ -122,6 +127,30 @@ public class ProductController {
 
         Product createdProduct = services.save(product);
         return ResponseEntity.ok(createdProduct);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<Page<Product>> searchProducts(@RequestParam int pageNum, @RequestParam String keyword) {
+        Pageable pageable = PageRequest.of(pageNum, PRODUCTS_PER_PAGE);
+        Page<Product> page = repo.searchProductsByName(keyword, pageable);
+        return ResponseEntity.ok(page);
+    }
+
+    /**
+     * Saves the product price information.
+     *
+     * @param productId the ID of the product to save the price for
+     * @param cost the new cost of the product
+     * @param price the new price of the product
+     * @param discountPercent the new discount percentage of the product
+     * @return the saved product
+     * @throws NotFoundException if the product with the given ID is not found
+     */
+    @PostMapping("/products/{productId}/price")
+    public Product saveProductPrice(@PathVariable Long productId, @RequestParam double cost, @RequestParam double price, @RequestParam double discountPercent) throws NotFoundException {
+        Product product = new Product(productId, cost, price, discountPercent);
+        services.saveProductPrice(product);
+        return product;
     }
 
     @PutMapping("/update/status/{productId}")

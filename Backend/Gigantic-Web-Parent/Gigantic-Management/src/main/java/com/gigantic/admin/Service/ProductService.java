@@ -19,6 +19,8 @@ public interface ProductService {
 
     void delete(Long id);
 
+    void saveProductPrice(Product product);
+
     Product updatedProductStatus(Long id, Boolean status) throws Exception;
 
     Product toEntity(ProductDTO dto);

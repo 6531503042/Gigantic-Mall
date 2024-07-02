@@ -84,6 +84,10 @@ public class Product extends IdBasedEntity {
         this.name = name;
     }
 
+    public Product(Long productId, double cost, double price, double discountPercent) {
+        super();
+    }
+
     // Getters and Setters
 
     public Long getId() {
