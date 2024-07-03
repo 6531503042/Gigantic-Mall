@@ -12,7 +12,6 @@ class CreateUserComponent extends Component {
                 email: '',
                 password: ''
             },
-            submitted: false
         }
         this.onChangeName = this.onChangeName.bind(this);
 }
