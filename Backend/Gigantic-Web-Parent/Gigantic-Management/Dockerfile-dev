@@ -2,15 +2,27 @@
 
 # This Dockerfile will build a production image of the Gigantic Management Service
 
-# Use an official Python runtime as a parent image
+# Build the app with Maven
 FROM maven:3-jdk-11
+
 # Set the working directory to /app
-WORKDIR /app
+ADD ./Backend/Gigantic-Web-Parent/Gigantic-Management /gigantic_management_staging
 
-# Copy the current directory contents into the container
-COPY . /app
+WORKDIR /gigantic_management_staging
 
-# Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+# Used Echo, So we can see if everything it's there
+RUN ls -l
 
-# Make port 80 available to the world outside this container
+# Run Maven Build
+RUN mvn clean install
+
+# using build artifact and the removing the build-container
+FROM openjdk:11-jdk
+
+VOLUME /tmp
+
+# Copy the app artifact from the build-container to the final container
+COPY --from=maven:3-jdk-11 /gigantic_management_staging/Gigantic-Management/target/gigantic-management-0.0.1-SNAPSHOT.jar /app.jar
+
+# Start the app
+CMD ["java", "-jar", "/app.jar"]
