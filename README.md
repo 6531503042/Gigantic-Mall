@@ -136,7 +136,9 @@ This project is licensed under the MIT License. See the LICENSE file for details
 - **Student ID**: 6531503042
 - **Role**: 
   - Backend Development
+  - Frontend Development
   - Database Management System
+  - DevOps
   - Design UX/UI
 - **GitHub**: [Nimit Tanboontor][(https://github.com/6531503042)
 
