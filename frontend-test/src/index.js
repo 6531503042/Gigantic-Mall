@@ -1,18 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import App from './App';
+import * as serviceWorker from './serviceWorker'; // Import the service worker
 
-import CreateUserComponent from './components/CreateUserConponent';
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
-const App = () => {
-    return (
-        <Router>
-            <div className="container">
-                <Route path="/" exact component={CreateUserComponent} />
-                {/* Add more routes as needed */}
-            </div>
-        </Router>
-    );
-}
-
-ReactDOM.render(<App />, document.getElementById('root'));
+// Register the service worker
+serviceWorker.register();
