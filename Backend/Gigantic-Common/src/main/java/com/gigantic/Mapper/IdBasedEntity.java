@@ -10,4 +10,12 @@ import javax.persistence.MappedSuperclass;
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         protected Long id;
-}
+
+        protected void setId(Long id) {
+            this.id = id;
+        }
+
+        protected Long getId() {
+            return id;
+        }
+    }

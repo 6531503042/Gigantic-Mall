@@ -1,7 +1,6 @@
 package com.gigantic.DTO;
 
-import com.gigantic.DTO.OrderDetailDTO;
-import com.gigantic.DTO.OrderTrackDTO;
+import com.gigantic.entity.Orders.OrderDetail;
 import com.gigantic.entity.Orders.OrderStatus;
 import com.gigantic.entity.Orders.PaymentMethods;
 
@@ -97,7 +96,7 @@ public class OrderDTO {
         this.customerId = customerId;
     }
 
-    public Set<OrderDetailDTO> getOrderDetails() {
+    public Set<OrderDetail> getOrderDetails() {
         return orderDetails;
     }
 

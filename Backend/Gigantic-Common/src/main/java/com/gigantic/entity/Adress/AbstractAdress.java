@@ -90,4 +90,12 @@ public class AbstractAdress extends IdBasedEntity {
     public void setCity(String city) {
         this.city = city;
     }
+
+    public void setId(Long id) {
+        super.setId(id);
+    }
+
+    protected Long getId() {
+        return super.getId();
+    }
 }
