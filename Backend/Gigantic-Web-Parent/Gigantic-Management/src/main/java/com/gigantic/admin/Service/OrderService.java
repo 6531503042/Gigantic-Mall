@@ -8,4 +8,6 @@ import org.springframework.stereotype.Service;
 public interface OrderService {
 
     Order get(Integer id) throws OrderNotFoundException;
+
+    Order save(Order order);
 }
