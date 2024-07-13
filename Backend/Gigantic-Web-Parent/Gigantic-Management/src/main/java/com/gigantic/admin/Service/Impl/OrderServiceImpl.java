@@ -49,9 +49,6 @@ public class OrderServiceImpl implements OrderService {
         order.setStatus(dto.getStatus());
         order.setPaymentMethod(dto.getPaymentMethod());
         order.setCustomerId(dto.getCustomerId());
-        if (dto.getOrderDetails() != null) {
-            order.setOrderDetails(dto.getOrderDetails());
-        }
         return order;
     }
 
@@ -66,6 +63,7 @@ public class OrderServiceImpl implements OrderService {
         dto.setStatus(order.getStatus());
         dto.setPaymentMethod(order.getPaymentMethod());
         dto.setCustomerId(order.getCustomerId());
+
         return dto;
     }
 

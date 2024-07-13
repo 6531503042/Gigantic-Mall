@@ -1,7 +1,7 @@
 package com.gigantic.admin.Service.Impl;
 
 import com.gigantic.DTO.CategoryDTO;
-import com.gigantic.admin.Config.CategorySpecificationConfig;
+import com.gigantic.admin.Config.Specifications.CategorySpecificationConfig;
 import com.gigantic.admin.Exception.CategoryNotFoundException;
 import com.gigantic.admin.Exception.DuplicateCategoryException;
 import com.gigantic.admin.Exception.ResourceNotFoundException;

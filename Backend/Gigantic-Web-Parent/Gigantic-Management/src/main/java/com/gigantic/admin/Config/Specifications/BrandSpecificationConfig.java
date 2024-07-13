@@ -1,4 +1,4 @@
-package com.gigantic.admin.Config;
+package com.gigantic.admin.Config.Specifications;
 
 import com.gigantic.entity.Brand;
 import org.springframework.data.jpa.domain.Specification;

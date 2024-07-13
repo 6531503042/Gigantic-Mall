@@ -1,6 +1,5 @@
 package com.gigantic.entity.Orders;
 
-import com.gigantic.Mapper.IdBasedEntity;
 import com.gigantic.entity.Adress.AbstractAdress;
 import com.gigantic.entity.Customer;
 

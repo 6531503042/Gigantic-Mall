@@ -1,7 +1,7 @@
 package com.gigantic.admin.Service.Impl;
 
 import com.gigantic.DTO.ProductDTO;
-import com.gigantic.admin.Config.ProductSpecificationConfig;
+import com.gigantic.admin.Config.Specifications.ProductSpecificationConfig;
 import com.gigantic.admin.Exception.DuplicateProductException;
 import com.gigantic.admin.Exception.ProductNotFoundException;
 import com.gigantic.admin.Repository.ProductRepository;
