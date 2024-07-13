@@ -1,12 +1,18 @@
 package com.gigantic.admin.Service.Impl;
 
 import com.gigantic.DTO.OrderDTO;
+import com.gigantic.admin.Config.Specifications.OrderSpecificationsConfig;
 import com.gigantic.admin.Exception.OrderNotFoundException;
 import com.gigantic.admin.Repository.OrderRepository;
 import com.gigantic.admin.Service.OrderService;
 import com.gigantic.entity.Orders.Order;
+import com.gigantic.entity.Orders.OrderStatus;
+import com.gigantic.entity.Orders.PaymentMethods;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -20,6 +26,44 @@ public class OrderServiceImpl implements OrderService {
     }
 
     //Service Logical
+    @Override
+    public List<Order> listAll(OrderStatus status, Long customerId, PaymentMethods paymentMethod, Date orderTime, float totalPrice, float shippingPrice, float productPrice, float tax) {
+        Specification<Order> spec = Specification.where(null);
+
+        if (status != null) {
+            spec = spec.and(OrderSpecificationsConfig.hasStatus(status));
+        }
+
+        if (customerId != null && customerId != 0) {
+            spec = spec.and(OrderSpecificationsConfig.hasCustomerId(customerId));
+        }
+
+        if (paymentMethod != null) {
+            spec = spec.and(OrderSpecificationsConfig.hasPaymentMethod(paymentMethod));
+        }
+
+        if (orderTime != null) {
+            spec = spec.and(OrderSpecificationsConfig.hasOrderTime(orderTime));
+        }
+
+        if (totalPrice != 0) {
+            spec = spec.and(OrderSpecificationsConfig.sortByHighestPrice(totalPrice));
+        }
+
+        if (shippingPrice != 0) {
+            // Add specification for shipping price if required
+        }
+
+        if (productPrice != 0) {
+            // Add specification for product price if required
+        }
+
+        if (tax != 0) {
+            // Add specification for tax if required
+        }
+
+        return repo.findAll(spec);
+    }
 
 
 
