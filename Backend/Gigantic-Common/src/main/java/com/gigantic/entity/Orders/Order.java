@@ -1,6 +1,5 @@
 package com.gigantic.entity.Orders;
 
-import com.gigantic.Mapper.IdBasedEntity;
 import com.gigantic.entity.Adress.AbstractAdress;
 import com.gigantic.entity.Customer;
 
@@ -128,5 +127,21 @@ public class Order extends AbstractAdress {
 
     public void setOrderTracks(List<OrderTrack> orderTracks) {
         this.orderTracks = orderTracks;
+    }
+
+    public void setId(Long id) {
+        super.setId(id);
+    }
+
+    public void setCustomerId(Long customerId) {
+        customer.setId(customerId);
+    }
+
+    public Long getId() {
+        return super.getId();
+    }
+
+    public Long getCustomerId() {
+        return customer.getId();
     }
 }

@@ -1,6 +1,6 @@
 package com.gigantic.admin.Service.Impl;
 
-import com.gigantic.admin.Config.UserSpecificationConfig;
+import com.gigantic.admin.Config.Specifications.UserSpecificationConfig;
 import com.gigantic.admin.Exception.DuplicateUserException;
 import com.gigantic.admin.Exception.UserNotFoundException;
 import com.gigantic.admin.Repository.RoleRepository;

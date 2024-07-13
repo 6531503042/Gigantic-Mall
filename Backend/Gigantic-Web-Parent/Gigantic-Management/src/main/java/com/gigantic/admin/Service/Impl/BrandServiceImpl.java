@@ -2,7 +2,6 @@ package com.gigantic.admin.Service.Impl;
 import com.gigantic.DTO.BrandDTO;
 import com.gigantic.admin.Config.BrandSpecificationConfig;
 import com.gigantic.admin.Exception.BrandNotFoundException;
-import com.gigantic.admin.Exception.CategoryNotFoundException;
 import com.gigantic.admin.Exception.DuplicateBrandException;
 import com.gigantic.admin.Repository.BrandRepository;
 import com.gigantic.admin.Repository.CategoryRepository;

@@ -1,7 +1,7 @@
-package com.gigantic.dto;
+package com.gigantic.DTO;
 
-import com.gigantic.DTO.OrderDetailDTO;
-import com.gigantic.DTO.OrderTrackDTO;
+import com.gigantic.entity.Orders.OrderStatus;
+import com.gigantic.entity.Orders.PaymentMethods;
 
 import java.util.Date;
 import java.util.Set;
@@ -15,8 +15,8 @@ public class OrderDTO {
     private float productPrice;
     private float tax;
     private float totalPrice;
-    private String status;
-    private String paymentMethod;
+    private OrderStatus status;
+    private PaymentMethods paymentMethod;
     private Long customerId;
     private Set<OrderDetailDTO> orderDetails;
     private List<OrderTrackDTO> orderTracks;
@@ -71,19 +71,19 @@ public class OrderDTO {
         this.totalPrice = totalPrice;
     }
 
-    public String getStatus() {
+    public OrderStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(OrderStatus status) {
         this.status = status;
     }
 
-    public String getPaymentMethod() {
+    public PaymentMethods getPaymentMethod() {
         return paymentMethod;
     }
 
-    public void setPaymentMethod(String paymentMethod) {
+    public void setPaymentMethod(PaymentMethods paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
 

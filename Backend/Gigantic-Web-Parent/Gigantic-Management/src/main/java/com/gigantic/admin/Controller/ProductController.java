@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/product")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ProductController {
 
     private static final int PRODUCTS_PER_PAGE = 5;
