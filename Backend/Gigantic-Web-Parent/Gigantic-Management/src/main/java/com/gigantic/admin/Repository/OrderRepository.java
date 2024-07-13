@@ -1,5 +1,6 @@
 package com.gigantic.admin.Repository;
 
+import com.gigantic.admin.Service.OrderService;
 import com.gigantic.entity.Orders.Order;
 import com.gigantic.entity.Orders.OrderStatus;
 import com.gigantic.entity.Orders.PaymentMethods;
@@ -15,8 +16,10 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public interface OrderRepository extends JpaRepository<Order, Long>, JpaSpecificationExecutor<Order> {
+public interface OrderRepository extends CrudRepository<Order, Long>, JpaSpecificationExecutor<Order> {
 
     @Query("SELECT o FROM orders o")
     List<Order> findAll(Specification<Order> spec);
+
+    Order save(Order order);
 }

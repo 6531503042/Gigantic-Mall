@@ -3,8 +3,6 @@ package com.gigantic.admin.Config.Specifications;
 import com.gigantic.entity.Product.Product;
 import org.springframework.data.jpa.domain.Specification;
 
-import javax.persistence.criteria.Predicate;
-
 public class ProductSpecificationConfig {
 
     public static Specification<Product> hasName(String name) {
@@ -13,27 +11,31 @@ public class ProductSpecificationConfig {
     }
 
     public static Specification<Product> hasKeyword(String keyword) {
-        return (root, query, criteriaBuilder) ->
-                criteriaBuilder.or(
-                        criteriaBuilder.like(criteriaBuilder.lower(root.get("name")), "%" + keyword.toLowerCase() + "%"),
-                        criteriaBuilder.like(criteriaBuilder.lower(root.get("description")), "%" + keyword.toLowerCase() + "%")
-                );
+        return (root, query, criteriaBuilder) -> {
+            String keywordPattern = "%" + keyword.toLowerCase() + "%";
+            return criteriaBuilder.or(
+                    criteriaBuilder.like(criteriaBuilder.lower(root.get("name")), keywordPattern),
+                    criteriaBuilder.like(criteriaBuilder.lower(root.get("description")), keywordPattern)
+            );
+        };
     }
 
     public static Specification<Product> sortByLowestPrice() {
-        return (root, query, criteriaBuilder) ->
-                (Predicate) criteriaBuilder.asc(root.get("price"));
+        return (root, query, criteriaBuilder) -> {
+            query.orderBy(criteriaBuilder.asc(root.get("price")));
+            return criteriaBuilder.conjunction();
+        };
     }
 
-    public static Specification<Product> sortByHighestPrice(@SuppressWarnings("SameParameterValue") boolean desc) {
-        return (root, query, criteriaBuilder) ->
-                (Predicate) (desc ? criteriaBuilder.desc(root.get("price")) : criteriaBuilder.asc(root.get("price")));
+    public static Specification<Product> sortByHighestPrice(boolean desc) {
+        return (root, query, criteriaBuilder) -> {
+            query.orderBy(desc ? criteriaBuilder.desc(root.get("price")) : criteriaBuilder.asc(root.get("price")));
+            return criteriaBuilder.conjunction();
+        };
     }
 
     public static Specification<Product> hasDiscountPrice() {
         return (root, query, criteriaBuilder) ->
                 criteriaBuilder.isNotNull(root.get("discountPrice"));
     }
-
-
 }

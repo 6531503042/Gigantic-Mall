@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
     @Autowired
@@ -68,7 +69,7 @@ public class UserController {
     /**
      * Creates a new user and uploads the user's photo.
      *
-     * @param user         The user details.
+     * @param User         The user details.
      * @param multipartFile The user's photo.
      * @return A ResponseEntity with the created user or an error message.
      */

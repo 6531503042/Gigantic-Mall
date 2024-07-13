@@ -21,4 +21,6 @@ public interface OrderService {
     Order save(Order order);
 
     Order toEntity(OrderDTO dto);
+
+    OrderDTO toDTO(Order order);
 }
