@@ -20,6 +20,10 @@ public interface OrderService {
 
     Order save(Order order);
 
+    Order updatedOrderStatus(Long id, OrderStatus status) throws OrderNotFoundException;
+
+    void delete(Long id) throws OrderNotFoundException;
+
     Order toEntity(OrderDTO dto);
 
     OrderDTO toDTO(Order order);

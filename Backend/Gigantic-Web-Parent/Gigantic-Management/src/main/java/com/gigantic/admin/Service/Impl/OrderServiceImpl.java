@@ -82,6 +82,28 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Order updatedOrderStatus(Long id, OrderStatus status) throws OrderNotFoundException {
+        Optional<Order> result = repo.findById(Long.valueOf(id));
+        if (result.isPresent()) {
+            Order order = result.get();
+            order.setStatus(status);
+            return repo.save(order);
+        } else {
+            throw new OrderNotFoundException("Could not find any orders with ID " + id);
+        }
+    }
+
+    @Override
+    public void delete(Long id) throws OrderNotFoundException {
+        Optional<Order> result = repo.findById(Long.valueOf(id));
+        if (result.isPresent()) {
+            repo.deleteById(Long.valueOf(id));
+        } else {
+            throw new OrderNotFoundException("Could not find any orders with ID " + id);
+        }
+    }
+
+    @Override
     public Order toEntity(OrderDTO dto) {
         if (dto == null) {
             throw new IllegalArgumentException("OrderDTO cannot be null");
