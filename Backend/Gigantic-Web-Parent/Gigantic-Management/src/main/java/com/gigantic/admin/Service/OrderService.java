@@ -27,4 +27,6 @@ public interface OrderService {
     Order toEntity(OrderDTO dto);
 
     OrderDTO toDTO(Order order);
+
+    void deleteUnpaidOrdersTask();
 }

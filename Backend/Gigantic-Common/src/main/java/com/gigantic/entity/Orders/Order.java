@@ -10,6 +10,7 @@ import java.util.*;
 @Table(name = "orders")
 public class Order extends AbstractAdress {
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "order_time", nullable = false)
     private Date orderTime;
 
@@ -40,6 +41,12 @@ public class Order extends AbstractAdress {
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderTrack> orderTracks = new ArrayList<>();
+
+    //Functions
+    @PrePersist
+    protected void onCreate() {
+        orderTime = new Date();
+    }
 
     //Constructor
     public Order() {

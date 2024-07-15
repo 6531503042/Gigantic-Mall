@@ -75,9 +75,29 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order save(Order order) {
-        if (order == null) {
-            throw new IllegalArgumentException("Order cannot be null");
+        if (order.getId() == null) {
+            order.setOrderTime(new Date());
         }
+
+        if (order.getCustomerId() == null) {
+            throw new IllegalArgumentException("Customer ID cannot be null");
+        }
+
+        if (order.getPaymentMethod() == null) {
+            throw new IllegalArgumentException("Payment method cannot be null");
+        }
+
+        if (order.getStatus() == null) {
+            order.setStatus(OrderStatus.PENDING);
+        }
+
+        Order existingOrder = repo.findById(order.getId()).orElse(null);
+
+        if (existingOrder != null) {
+            order.setId(existingOrder.getId());
+        }
+
+        order.setTotalPrice(order.getShippingPrice() + order.getProductPrice() + order.getTax());
         return repo.save(order);
     }
 
@@ -139,5 +159,14 @@ public class OrderServiceImpl implements OrderService {
         dto.setPaymentMethod(order.getPaymentMethod());
         dto.setCustomerId(order.getCustomerId());
         return dto;
+    }
+
+    @Override
+    public void deleteUnpaidOrdersTask() {
+        Date cutOffDate = new Date(System.currentTimeMillis() - 72 * 60 * 60 * 1000); // 72 Hours
+        List<Order> orders = repo.findByPaymentStatus(cutOffDate, OrderStatus.UNPAID);
+        for (Order order : orders) {
+            repo.deleteById(order.getId());
+        }
     }
 }

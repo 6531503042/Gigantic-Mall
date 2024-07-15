@@ -1,5 +1,6 @@
 package com.gigantic.entity.Orders;
 
+
 public enum OrderStatus {
 
     NEW {
@@ -63,9 +64,21 @@ public enum OrderStatus {
         }
     },
 
+    UNPAID {
+        public String defaultDescription() {
+            return "Order was unpaid";
+        }
+    },
+
     CANCELLED {
         public String defaultDescription() {
             return "Order was cancelled";
+        }
+    },
+
+    PENDING {
+        public String defaultDescription() {
+            return "Order is pending";
         }
     };
 
