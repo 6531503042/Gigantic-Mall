@@ -52,8 +52,6 @@ public class ProductServiceImpl implements ProductService {
         return repo.findAll(spec, sort);
 }
 
-
-
     @Override
     public Product save(Product product) {
         if (product.getId() == null) {

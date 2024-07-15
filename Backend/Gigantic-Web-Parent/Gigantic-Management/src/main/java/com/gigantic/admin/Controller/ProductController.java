@@ -72,24 +72,39 @@ public class ProductController {
     public ResponseEntity<Product> createProduct(@RequestBody ProductDTO productDTO) throws DuplicateProductException {
 
         try {
-            // Checking if productDTO is null
+            //Checking if productDTO is null ?
             if (productDTO == null) {
-                // throw exception if productDTO is null
-                throw new IllegalAccessException("Product cannot be null");
+                throw new Exception("Product cannot be null");
             }
 
-            // Checking if parameter categoryId, brandId is null
+            //Checking if productDTO name is null or empty ?
+            if (productDTO.getName() == null || productDTO.getName().isEmpty()) {
+                throw new Exception("Product name cannot be null or empty");
+            }
+
+            //Checking if productDTO category or brand is null
             if (productDTO.getCategoryId() == null || productDTO.getBrandId() == null) {
                 throw new IllegalAccessException("Category or Brand cannot be null");
             }
 
+            //Checking if productDTO alias is null
+            if (productDTO.getAlias() == null || productDTO.getAlias().isEmpty()) {
+                String defaultAlias = productDTO.getName().replaceAll(" ", "-").toLowerCase();
+                productDTO.setAlias(defaultAlias);
+            } else {
+                productDTO.setAlias(productDTO.getAlias().replaceAll(" ", "-").toLowerCase());
+            }
+
+
             Product existingProduct = repo.findByName(productDTO.getName());
             if (existingProduct != null) {
-                throw new DuplicateProductException("Product already exists");
+                throw new DuplicateProductException("Product with name " + productDTO.getName() + " already exists");
             }
 
         } catch (EmptyResultDataAccessException | IllegalAccessException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
 
         Product product = new Product();
