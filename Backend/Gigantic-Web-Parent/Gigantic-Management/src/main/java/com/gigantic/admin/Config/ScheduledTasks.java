@@ -14,7 +14,7 @@ public class ScheduledTasks {
         this.services = services;
     }
 
-    @Scheduled(fixedRate = 360000) // Run every hour
+    @Scheduled(fixedRate = 24 * 60 * 60 * 1000) // Run every 24 hours
     public void deleteUnpaidOrdersTask() {
         services.deleteUnpaidOrdersTask();
     }
