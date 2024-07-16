@@ -1,6 +1,6 @@
 package com.gigantic.entity.Orders;
 
-import com.gigantic.entity.Adress.AbstractAdress;
+import com.gigantic.entity.Adress.AbstractAddress;
 import com.gigantic.entity.Customer;
 
 import javax.persistence.*;
@@ -8,7 +8,7 @@ import java.util.*;
 
 @Entity(name = "orders")
 @Table(name = "orders")
-public class Order extends AbstractAdress {
+public class Order extends AbstractAddress {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "order_time", nullable = false)

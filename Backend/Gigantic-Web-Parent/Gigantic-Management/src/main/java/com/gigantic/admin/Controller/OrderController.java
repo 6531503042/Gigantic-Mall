@@ -1,5 +1,6 @@
 package com.gigantic.admin.Controller;
 
+import com.gigantic.DTO.OrderDTO;
 import com.gigantic.admin.Exception.DuplicateOrderException;
 import com.gigantic.admin.Repository.OrderRepository;
 import com.gigantic.admin.Service.Impl.OrderServiceImpl;
@@ -20,18 +21,44 @@ public class OrderController {
     @Autowired
     private OrderRepository repo;
 
+    @Autowired
+    private OrderServiceImpl services;
+
     /**
      * Creates an order and handles duplicate entry scenarios.
      *
-     * @param order The order to be created
+     * @param orderDTO The order to be created
      * @return ResponseEntity containing the created order
      * @throws Exception if an error occurs during order creation
      */
     @PostMapping("/create")
-    public ResponseEntity<Order> createOrders(@RequestBody Order order) throws Exception {
+    public ResponseEntity<Order> createOrders(@RequestBody OrderDTO orderDTO) throws Exception {
         try {
-            Order createdOrder = repo.save(order);
-            return ResponseEntity.ok(createdOrder);
+
+            //Checking if orderDTO is null ?
+            if (orderDTO == null) {
+                throw new Exception("Order can't be null");
+            }
+
+            //Checking if customerId is null or 0 ?
+            if (orderDTO.getCustomerId() == null || orderDTO.getCustomerId() == 0) {
+                throw new Exception("Customer id can't be null or 0");
+            }
+
+            //Checking if payment method is null ?
+            if (orderDTO.getPaymentMethod() == null) {
+                throw new Exception("Payment method can't be null");
+            }
+
+            //Checking if order status is null ?
+            if (orderDTO.getStatus() == null) {
+                throw new Exception("Order status can't be null");
+            }
+
+            //Checking if order tracks is null ?
+            if (orderDTO.getOrderTracks() == null) {
+                throw new Exception("Order tracks can't be null");
+            }
         } catch (DataIntegrityViolationException ex) {
             // If a duplicate entry is found in the database
             // Log the error or perform any necessary actions
@@ -42,6 +69,13 @@ public class OrderController {
             logError(e);
             throw e; // Re-throw the exception for higher-level handling if needed
         }
+
+
+        // Mapping DTO to Entity using service method
+        Order order = services.toEntity(orderDTO);
+
+        Order createOrder = services.save(order);
+        return ResponseEntity.ok(createOrder);
     }
 
     /**

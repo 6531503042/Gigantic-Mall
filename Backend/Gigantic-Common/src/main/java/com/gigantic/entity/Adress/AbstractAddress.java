@@ -4,7 +4,7 @@ import com.gigantic.Mapper.IdBasedEntity;
 
 import javax.persistence.Column;
 
-public class AbstractAdress extends IdBasedEntity {
+public class AbstractAddress extends IdBasedEntity {
 
     @Column(name = "name", length = 300, nullable = false)
     private String firstName;
@@ -29,7 +29,7 @@ public class AbstractAdress extends IdBasedEntity {
 
 
     //Constructor
-    public AbstractAdress() {
+    public AbstractAddress() {
         //Default Constructor
     }
 

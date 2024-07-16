@@ -135,6 +135,7 @@ public class ProductServiceImpl implements ProductService {
         Product existingProduct = repo.findById(product.getId()).orElse(null);
 
         // Set the cost, price, and discount percent of the existing product
+        assert existingProduct != null;
         existingProduct.setCost(product.getCost());
         existingProduct.setPrice(product.getPrice());
         existingProduct.setDiscountPercent(product.getDiscountPercent());

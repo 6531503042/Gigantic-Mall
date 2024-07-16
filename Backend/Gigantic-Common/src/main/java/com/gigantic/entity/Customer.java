@@ -1,13 +1,13 @@
 package com.gigantic.entity;
 
-import com.gigantic.entity.Adress.AbstractAdress;
+import com.gigantic.entity.Adress.AbstractAddress;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity(name = "customers")
 @Table(name = "customers")
-public class Customer extends AbstractAdress {
+public class Customer extends AbstractAddress {
 
     @Column(name = "email", nullable = false, unique = true)
     private String email;

@@ -91,11 +91,7 @@ public class OrderServiceImpl implements OrderService {
             order.setStatus(OrderStatus.PENDING);
         }
 
-        Order existingOrder = repo.findById(order.getId()).orElse(null);
-
-        if (existingOrder != null) {
-            order.setId(existingOrder.getId());
-        }
+        repo.findById(order.getId()).ifPresent(existingOrder -> order.setId(existingOrder.getId()));
 
         order.setTotalPrice(order.getShippingPrice() + order.getProductPrice() + order.getTax());
         return repo.save(order);
