@@ -8,6 +8,8 @@ import java.util.List;
 
 @Service
 public interface CustomerService {
+    List<Customer> listAll(String keyword, String hasEmail);
+
     Customer get(Long id) throws CustomerNotFound;
 
     Customer save(Customer customer);

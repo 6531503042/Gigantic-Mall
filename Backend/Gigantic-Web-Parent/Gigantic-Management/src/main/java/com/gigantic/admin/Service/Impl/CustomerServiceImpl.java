@@ -4,8 +4,10 @@ import com.gigantic.admin.Exception.CustomerNotFound;
 import com.gigantic.admin.Repository.CustomerRepository;
 import com.gigantic.admin.Service.CustomerService;
 import com.gigantic.entity.Customer;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import com.gigantic.admin.Config.Specifications.CustomerSpecificationConfig;
 
 import javax.validation.Valid;
 import java.util.Date;
@@ -26,6 +28,17 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     //Service Logical Code.
+
+    @Override
+    public List<Customer> listAll(String keyword, String hasEmail) {
+
+        keyword = (keyword != null) ? keyword : "";
+        hasEmail = (hasEmail != null) ? hasEmail : "";
+
+        Specification<Customer> spec = Specification.where(CustomerSpecificationConfig.hasKeyword(keyword))
+                .and(CustomerSpecificationConfig.hasEmail(hasEmail));
+        return (List<Customer>) repo.findAll(spec);
+    }
 
     @Override
     public Customer get(Long id) throws CustomerNotFound {
