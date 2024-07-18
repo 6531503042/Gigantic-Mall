@@ -4,6 +4,7 @@ import '../css/registration.css';
 import Logo from '../assets/logo-mammoth.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faKey, faCheckSquare, faUnlockKeyhole, faSquare, faUser } from '@fortawesome/free-solid-svg-icons';
+import { FaDiscord, FaEnvelope, FaGithub, FaMailchimp } from 'react-icons/fa';
 
 const Registration = () => {
   const [activeTab, setActiveTab] = useState('login');
@@ -52,9 +53,9 @@ const Registration = () => {
             </a>
           </div>
           <div className="form-style">
-            <h2>
-              {activeTab === 'login' ? 'Log in to your account.' : 'Create account for your own'}
-            </h2>
+            <h3 style={{fontWeight:'bolder'}}>
+              {activeTab === 'login' ? 'Log in to your account.' : 'Create account for your own.'}
+            </h3>
             <div style={{ color: 'grey', marginTop: '0.5rem', fontSize:'14px' }}>
               {activeTab === 'login' ? 'Welcome back! Please enter your details.' : 'Welcome for new user! Please enter your details.'}
             </div>
@@ -86,12 +87,12 @@ const Registration = () => {
                     </a>
                   </div>
                   <div className='make-layor-line'>
-                    or
+                    <a>or</a>
                   </div>
-                  <div className='authenticate-icon'>
-                    <a href='#'>a</a>
-                    <a href='#'>b</a>
-                    <a href='#'>c</a>
+                  <div className='authenticate-icon-layor'>
+                    <a className='authenticate-icon' href='#' style={{color:'white'}}><FaEnvelope/></a>
+                    <a className='authenticate-icon' href='#' style={{color:'white'}}><FaGithub/></a>
+                    <a className='authenticate-icon' href='#' style={{color:'white'}}><FaDiscord/></a>
                   </div>
                 </div>
                 :
@@ -127,7 +128,12 @@ const Registration = () => {
                     </a>
                   </div>
                   <div className='make-layor-line'>
-                    or
+                    <a>or</a>
+                  </div>
+                  <div className='authenticate-icon-layor'>
+                    <a className='authenticate-icon' href='#' style={{color:'white'}}><FaEnvelope/></a>
+                    <a className='authenticate-icon' href='#' style={{color:'white'}}><FaGithub/></a>
+                    <a className='authenticate-icon' href='#' style={{color:'white'}}><FaDiscord/></a>
                   </div>
                 </div>}
             </div>
