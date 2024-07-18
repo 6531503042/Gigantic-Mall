@@ -226,13 +226,13 @@
 
 .authenticate-icon-google {
     display: flex;
-    background: linear-gradient(270deg, #ffd900, #0077ff, #06be00);
+    background: linear-gradient(500deg, #ffd900, #0077ff, #06be00);
     width: 33%;
     justify-content: center;
     height: 2.5rem;
     align-items: center;
     border-radius: 10px;
-    animation: slide 10s ease infinite;
+    animation: slide 1s forwards infinite;
     background-size: 600% 600%;
 }
 .authenticate-icon-git {
@@ -247,7 +247,7 @@
 }
 .authenticate-icon-discord {
     display: flex;
-    background: linear-gradient(10deg, #4d4d4d, #00a2ff, #3f0000);
+    background: linear-gradient(#4d4d4d, #00a2ff, #3f0000);
     width: 33%;
     justify-content: center;
     height: 2.5rem;
