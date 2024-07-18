@@ -90,9 +90,9 @@ const Registration = () => {
                     <a>or</a>
                   </div>
                   <div className='authenticate-icon-layor'>
-                    <a className='authenticate-icon-google' href='#' style={{color:'white'}}><FaGoogle/></a>
-                    <a className='authenticate-icon-git' href='#' style={{color:'white'}}><FaGithub/></a>
-                    <a className='authenticate-icon-discord' href='#' style={{color:'white'}}><FaDiscord/></a>
+                    <a className='authenticate-icon-google' href='#'><FaGoogle/></a>
+                    <a className='authenticate-icon-git' href='#'><FaGithub/></a>
+                    <a className='authenticate-icon-discord' href='#'><FaDiscord/></a>
                   </div>
                 </div>
                 :
@@ -131,9 +131,9 @@ const Registration = () => {
                     <a>or</a>
                   </div>
                   <div className='authenticate-icon-layor'>
-                    <a className='authenticate-icon-google' href='#' style={{color:'white'}}><FaGoogle/></a>
-                    <a className='authenticate-icon-git' href='#' style={{color:'white'}}><FaGithub/></a>
-                    <a className='authenticate-icon-discord' href='#' style={{color:'white'}}><FaDiscord/></a>
+                    <a className='authenticate-icon-google' href='#'><FaGoogle/></a>
+                    <a className='authenticate-icon-git' href='#'><FaGithub/></a>
+                    <a className='authenticate-icon-discord' href='#'><FaDiscord/></a>
                   </div>
                 </div>}
             </div>

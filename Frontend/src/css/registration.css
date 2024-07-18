@@ -234,6 +234,7 @@
     border-radius: 10px;
     animation: slide 1s forwards infinite;
     background-size: 600% 600%;
+    color: white;
 }
 .authenticate-icon-git {
     display: flex;
@@ -243,7 +244,7 @@
     height: 2.5rem;
     align-items: center;
     border-radius: 10px;
-
+    color: white;
 }
 .authenticate-icon-discord {
     display: flex;
@@ -253,5 +254,6 @@
     height: 2.5rem;
     align-items: center;
     border-radius: 10px;
+    color: white;
 }
 
