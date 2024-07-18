@@ -22,12 +22,12 @@ const Registration = () => {
         <div className="logo-side">
           <div className='fix-line-logo'>
             <div className="logo-detail">
-              <a style={{ fontSize: '3rem', marginBottom: '1.5rem', fontWeight: 'bold', color: 'white' }}>Gigantic</a>
+              <a style={{ fontSize: '2rem', marginBottom: '1.5rem', fontWeight: 'bold', color: 'white' }}>Gigantic</a>
               <a><img src={Logo} alt="Gigantic Mall Logo" /></a>
-              <a style={{ fontSize: '3rem', marginBottom: '1.5rem', fontWeight: 'bold', color: 'white' }}>Mall</a>
+              <a style={{ fontSize: '2rem', marginBottom: '1.5rem', fontWeight: 'bold', color: 'white' }}>Mall</a>
             </div>
             <div className='logounder1'>
-              The most popular mall for buying items online
+              The most popular mall for buying items online.
             </div>
             <div className='readmore'>
               <a href="/" style={{color:'white', textDecoration:'none'}}>Read More</a>
@@ -52,10 +52,10 @@ const Registration = () => {
             </a>
           </div>
           <div className="form-style">
-            <h2>
-              {activeTab === 'login' ? 'Log in to your account' : 'Create account for your own'}
-            </h2>
-            <div style={{ color: 'grey', marginTop: '0.5rem' }}>
+            <h3>
+              {activeTab === 'login' ? 'Log in to your account.' : 'Create account for your own'}
+            </h3>
+            <div style={{ color: 'grey', marginTop: '0.5rem', fontSize:'14px' }}>
               {activeTab === 'login' ? 'Welcome back! Please enter your details.' : 'Welcome for new user! Please enter your details.'}
             </div>
             <div className='body-field-box' style={{ marginTop: '1rem' }}>
@@ -72,11 +72,11 @@ const Registration = () => {
                     <label>Password</label>
                   </div>
                   <div className='remember-me'>
-                    <div onClick={toggleRemember} style={{ cursor: 'pointer' }}>
+                    <div onClick={toggleRemember} style={{ cursor: 'pointer' , fontSize:'14px'}}>
                       <FontAwesomeIcon icon={remember ? faCheckSquare : faSquare} style={{ marginRight: '0.5rem', marginLeft: '0.5rem' }} />
                       <a>Remember for 30 Days</a>
                     </div>
-                    <div style={{ marginRight: '0.5rem' }}>
+                    <div style={{ marginRight: '0.5rem', fontSize:'14px', cursor: 'pointer' }}>
                       <a href="/">Forget Password</a>
                     </div>
                   </div>

@@ -16,7 +16,7 @@ function NavBar() {
                     <a href="/AdminPage"><FontAwesomeIcon icon={faCartShopping} className='shopping-cart-style me-4 ' style={{ fontSize: '15px' }} /></a>
                     <a className='user-account-name ms-3' href="#">
                         <a href="/AdminPage"><FontAwesomeIcon className='user-profile-style' icon={faUser} style={{ fontSize: '15px' }} /></a>
-                        <a href="#">
+                        <a href="/Registration">
                             <a className='account-name-show me-2 '>Account</a>
                             <FontAwesomeIcon icon={faAngleDown} className='me-4' style={{ fontSize: '15px' }} />
                         </a>

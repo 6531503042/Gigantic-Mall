@@ -160,7 +160,7 @@
 }
 
 .field-box input:not(:focus):placeholder-shown + label {
-    top: 45%;
+    top: 50%;
     left: 2rem;
     font-size: 14px;
     color: #999;
