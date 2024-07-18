@@ -247,7 +247,7 @@
 }
 .authenticate-icon-discord {
     display: flex;
-    background: linear-gradient(270deg, #4d4d4d, #00a2ff, #3f0000);
+    background: linear-gradient(10deg, #4d4d4d, #00a2ff, #3f0000);
     width: 33%;
     justify-content: center;
     height: 2.5rem;
