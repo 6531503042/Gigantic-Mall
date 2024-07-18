@@ -4,7 +4,7 @@ import '../css/registration.css';
 import Logo from '../assets/logo-mammoth.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faKey, faCheckSquare, faUnlockKeyhole, faSquare, faUser } from '@fortawesome/free-solid-svg-icons';
-import { FaDiscord, FaEnvelope, FaGithub, FaMailchimp } from 'react-icons/fa';
+import { FaDiscord, FaGithub, FaGoogle} from 'react-icons/fa';
 
 const Registration = () => {
   const [activeTab, setActiveTab] = useState('login');
@@ -90,9 +90,9 @@ const Registration = () => {
                     <a>or</a>
                   </div>
                   <div className='authenticate-icon-layor'>
-                    <a className='authenticate-icon' href='#' style={{color:'white'}}><FaEnvelope/></a>
-                    <a className='authenticate-icon' href='#' style={{color:'white'}}><FaGithub/></a>
-                    <a className='authenticate-icon' href='#' style={{color:'white'}}><FaDiscord/></a>
+                    <a className='authenticate-icon-google' href='#' style={{color:'white'}}><FaGoogle/></a>
+                    <a className='authenticate-icon-git' href='#' style={{color:'white'}}><FaGithub/></a>
+                    <a className='authenticate-icon-discord' href='#' style={{color:'white'}}><FaDiscord/></a>
                   </div>
                 </div>
                 :
@@ -131,9 +131,9 @@ const Registration = () => {
                     <a>or</a>
                   </div>
                   <div className='authenticate-icon-layor'>
-                    <a className='authenticate-icon' href='#' style={{color:'white'}}><FaEnvelope/></a>
-                    <a className='authenticate-icon' href='#' style={{color:'white'}}><FaGithub/></a>
-                    <a className='authenticate-icon' href='#' style={{color:'white'}}><FaDiscord/></a>
+                    <a className='authenticate-icon-google' href='#' style={{color:'white'}}><FaGoogle/></a>
+                    <a className='authenticate-icon-git' href='#' style={{color:'white'}}><FaGithub/></a>
+                    <a className='authenticate-icon-discord' href='#' style={{color:'white'}}><FaDiscord/></a>
                   </div>
                 </div>}
             </div>

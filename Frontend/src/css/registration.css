@@ -191,7 +191,7 @@
     width: 100%;
     justify-content: center;
     margin-top: 1.5rem;
-    border-bottom: 2px solid rgb(0, 0, 0);
+    border-bottom: 1.5px solid rgb(0, 0, 0);
     position: relative;
 }
 
@@ -224,12 +224,34 @@
     justify-content: center;
 }
 
-.authenticate-icon {
+.authenticate-icon-google {
     display: flex;
-    background: #000000;
+    background: linear-gradient(270deg, #ffd900, #0077ff, #06be00);
+    width: 33%;
+    justify-content: center;
+    height: 2.5rem;
+    align-items: center;
+    border-radius: 10px;
+    animation: slide 10s ease infinite;
+    background-size: 600% 600%;
+}
+.authenticate-icon-git {
+    display: flex;
+    background: black;
+    width: 33%;
+    justify-content: center;
+    height: 2.5rem;
+    align-items: center;
+    border-radius: 10px;
+
+}
+.authenticate-icon-discord {
+    display: flex;
+    background: linear-gradient(270deg, #4d4d4d, #00a2ff, #3f0000);
     width: 33%;
     justify-content: center;
     height: 2.5rem;
     align-items: center;
     border-radius: 10px;
 }
+
