@@ -1,6 +1,6 @@
 //package com.gigantic.entity.category;
 //
-//import com.gigantic.admin.Repository.CategoryRepository;
+//import com.gigantic.category.repository.CategoryRepository;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 //import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;

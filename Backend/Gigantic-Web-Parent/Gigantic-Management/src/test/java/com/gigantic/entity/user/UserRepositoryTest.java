@@ -1,6 +1,6 @@
 //package com.gigantic.entity.user;
 //
-//import com.gigantic.admin.Repository.UserRepository;
+//import com.gigantic.user.repository.UserRepository;
 //import com.gigantic.entity.Role;
 //import com.gigantic.entity.User;
 //import org.junit.jupiter.api.BeforeEach;
