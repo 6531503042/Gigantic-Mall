@@ -96,7 +96,7 @@
     align-items: start;
     flex-direction: column;
     height: 90vh;
-    width: 70%;
+    width: 60%;
 }
 
 .switch-login-regis a {
@@ -204,4 +204,13 @@
     font-weight: bolder;
     text-decoration: none;
     cursor: pointer;
+}
+
+.authenticate-icon {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 2rem;
 }
