@@ -1,6 +1,6 @@
 //package com.gigantic.entity.user;
 //
-//import com.gigantic.admin.Repository.RoleRepository;
+//import com.gigantic.user.repository.RoleRepository;
 //import com.gigantic.entity.Role;
 //import org.junit.jupiter.api.Test;
 //import org.springframework.beans.factory.annotation.Autowired;

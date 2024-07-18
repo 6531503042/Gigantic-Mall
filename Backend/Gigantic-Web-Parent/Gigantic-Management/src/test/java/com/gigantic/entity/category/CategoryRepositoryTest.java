@@ -1,6 +1,6 @@
 //package com.gigantic.entity.category;
 //
-//import com.gigantic.admin.Repository.CategoryRepository;
+//import com.gigantic.category.repository.CategoryRepository;
 //import com.gigantic.entity.Category;
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
