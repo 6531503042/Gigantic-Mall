@@ -74,7 +74,7 @@ const Registration = () => {
                   </div>
                   <div className='remember-me'>
                     <div onClick={toggleRemember} style={{ cursor: 'pointer' , fontSize:'14px'}}>
-                      <FontAwesomeIcon icon={remember ? faCheckSquare : faSquare} style={{ marginRight: '0.5rem', marginLeft: '0.5rem' }} />
+                      <FontAwesomeIcon icon={remember ? faCheckSquare : faSquare} style={{ marginRight: '0.5rem', marginLeft: '0.5rem'}} />
                       <a>Remember for 30 Days</a>
                     </div>
                     <div style={{ marginRight: '0.5rem', fontSize:'14px', cursor: 'pointer' }}>
