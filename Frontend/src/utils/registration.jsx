@@ -52,9 +52,9 @@ const Registration = () => {
             </a>
           </div>
           <div className="form-style">
-            <h3>
+            <h2>
               {activeTab === 'login' ? 'Log in to your account.' : 'Create account for your own'}
-            </h3>
+            </h2>
             <div style={{ color: 'grey', marginTop: '0.5rem', fontSize:'14px' }}>
               {activeTab === 'login' ? 'Welcome back! Please enter your details.' : 'Welcome for new user! Please enter your details.'}
             </div>
@@ -84,6 +84,9 @@ const Registration = () => {
                     <a href='/' className='login-but'>
                       Login
                     </a>
+                  </div>
+                  <div className='make-layor-line'>
+                    or
                   </div>
                 </div>
                 :
@@ -117,6 +120,9 @@ const Registration = () => {
                     <a href='/' className='login-but'>
                       Register
                     </a>
+                  </div>
+                  <div className='make-layor-line'>
+                    or
                   </div>
                 </div>}
             </div>

@@ -83,22 +83,24 @@
 }
 
 .switch-login-regis {
+    margin-top: 1rem;
     margin-right: 2rem;
     align-self: end;
 }
 
 .form-style {
-    margin-top: 2.5rem;
+    margin-top: 1.3rem;
     margin-left: 3.5rem;
     display: flex;
     justify-content: none;
     align-items: start;
     flex-direction: column;
-    height: 85vh;
-    width: 60%;
+    height: 90vh;
+    width: 70%;
 }
 
 .switch-login-regis a {
+    
     margin-left: 1rem;
     color: black;
     text-decoration: none;
@@ -108,7 +110,7 @@
 }
 
 .switch-login-regis a:hover {
-    background: #AD00FF;
+    background: #ff4141;
     color: white;
     border-radius: 10px;
 }
@@ -128,7 +130,7 @@
     margin-bottom: 1rem;
     border-radius: 30px;
     border: 1px solid rgb(223, 223, 223);
-    padding: 0.3rem;
+    padding: 0.15rem;
     color: rgb(196, 196, 196);
     font-size: 14px;
 }
@@ -161,14 +163,14 @@
 
 .field-box input:not(:focus):placeholder-shown + label {
     top: 50%;
-    left: 2rem;
-    font-size: 14px;
+    left: 3rem;
+    font-size: 13px;
     color: #999;
 }
 
 .field-box a {
     margin-right: 0.5rem;
-    margin-left: 0.3rem;
+    margin-left: 1rem;
 }
 
 .remember-me {
@@ -184,12 +186,19 @@
     margin-top: 1.5rem;
 }
 
+.make-layor-line {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
 .login-but {
     display: flex;
     width: 80%;
     justify-content: center;
     background: #AD00FF;
-    padding: 1rem;
+    padding: 0.7rem;
     color: aliceblue;
     border-radius: 20px;
     font-weight: bolder;
