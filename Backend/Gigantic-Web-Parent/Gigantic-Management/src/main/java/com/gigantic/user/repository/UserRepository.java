@@ -1,5 +1,8 @@
 package  com.gigantic.user.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.gigantic.user.model.User;
@@ -8,6 +11,8 @@ import org.springframework.data.repository.CrudRepository;
 @Repository
 public interface UserRepository extends CrudRepository<User,Integer> {
 
+    @Query("SELECT u FROM User u WHERE u.firstName = ?1")
+    Page<User> findByFirstName(String firstName, Pageable pageable);
 }
 
 //package com.gigantic.user.repository;

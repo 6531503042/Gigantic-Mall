@@ -15,6 +15,6 @@ public interface UserRoleRepository extends CrudRepository<UserRole, Integer> {
     @Query("SELECT u FROM UserRole u WHERE u.userId = 1?")
     Optional<UserRole> findOneByUserId(AggregateReference<User, Integer> userId);
 
-    ;
-    Optional<UserRole> findAllByUserId(AggregateReference<Object, Integer> objectIntegerAggregateReference);
+    @Query("SELECT u FROM UserRole u WHERE u.userId = ?1")
+    Optional<UserRole> findAllByUserId(AggregateReference<User, Integer> objectIntegerAggregateReference);
 }

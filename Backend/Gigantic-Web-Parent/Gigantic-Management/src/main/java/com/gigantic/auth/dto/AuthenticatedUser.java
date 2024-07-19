@@ -1,6 +1,6 @@
 package com.gigantic.auth.dto;
 
-import com.gigantic.entity.Role;
+import com.gigantic.user.model.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
