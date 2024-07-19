@@ -7,5 +7,6 @@ import javax.persistence.Table;
 public record Role(
         @Id
         Integer id,
+        Integer level,
         String name) {
 }
