@@ -1,9 +1,9 @@
 
-package com.gigantic.brand.controller;
+package com.gigantic.shop.controller;
 
 import com.gigantic.admin.Exception.CategoryNotFoundException;
-import com.gigantic.brand.repository.BrandRepository;
-import com.gigantic.brand.services.BrandService;
+import com.gigantic.shop.repository.BrandRepository;
+import com.gigantic.shop.services.BrandService;
 import com.gigantic.category.repository.CategoryRepository;
 import com.gigantic.entity.Brand;
 import com.gigantic.entity.Category;

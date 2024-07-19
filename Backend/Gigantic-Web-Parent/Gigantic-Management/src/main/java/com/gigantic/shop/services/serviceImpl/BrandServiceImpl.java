@@ -1,11 +1,11 @@
-package com.gigantic.brand.services.serviceImpl;
+package com.gigantic.shop.services.serviceImpl;
 
 import com.gigantic.DTO.BrandDTO;
-import com.gigantic.brand.config.BrandSpecificationConfig;
+import com.gigantic.shop.config.BrandSpecificationConfig;
 import com.gigantic.admin.Exception.BrandNotFoundException;
 import com.gigantic.admin.Exception.DuplicateBrandException;
-import com.gigantic.brand.repository.BrandRepository;
-import com.gigantic.brand.services.BrandService;
+import com.gigantic.shop.repository.BrandRepository;
+import com.gigantic.shop.services.BrandService;
 import com.gigantic.category.repository.CategoryRepository;
 import com.gigantic.entity.Brand;
 import com.gigantic.entity.Category;

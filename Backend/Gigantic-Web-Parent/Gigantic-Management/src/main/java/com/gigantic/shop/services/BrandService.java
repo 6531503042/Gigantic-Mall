@@ -1,4 +1,4 @@
-package com.gigantic.brand.services;
+package com.gigantic.shop.services;
 
 import com.gigantic.DTO.BrandDTO;
 import com.gigantic.admin.Exception.BrandNotFoundException;
