@@ -1,6 +1,6 @@
 package com.gigantic.auth.model;
 
-import com.gigantic.entity.User;
+import com.gigantic.user.model.User;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
 
 import javax.persistence.Id;
