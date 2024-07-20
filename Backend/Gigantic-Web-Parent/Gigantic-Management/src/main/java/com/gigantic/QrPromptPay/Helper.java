@@ -1,4 +1,4 @@
-package com.gigantic.promptpay.helper;
+package com.gigantic.QrPromptPay;
 
 import java.math.BigDecimal;
 
