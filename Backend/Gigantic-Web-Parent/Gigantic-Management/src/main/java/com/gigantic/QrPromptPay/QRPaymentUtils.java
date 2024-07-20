@@ -18,6 +18,7 @@ import java.text.DecimalFormat;
 
 import static com.gigantic.QrPromptPay.Constants.*;
 
+
 public class QRPaymentUtils {
 
     private static final DecimalFormat MONEY_FORMAT = new DecimalFormat("0.00");
