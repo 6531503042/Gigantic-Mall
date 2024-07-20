@@ -39,8 +39,10 @@ const Sidebar = ({ children }) => {
                 {menuItem.map((item, index) => (
                     <NavLink to={item.path} key={index} className={`link ${item.className || ''}`} activeClassName="active">
                         <a className='link-line'>
-                            <div className='icon'>{item.icon}</div>
-                            <div className='link_text' style={{ display: isOpen ? "block" : "none" }}>{item.name}</div>
+                            <span className='link-icon'>
+                                <i>{item.icon}</i>
+                                </span>
+                            <span className='link_text' style={{ display: isOpen ? "block" : "none" }}>{item.name}</span>
                         </a>
                     </NavLink>
                 ))}
