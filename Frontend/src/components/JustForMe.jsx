@@ -1,5 +1,9 @@
 import React from "react";
 import phone from "../assets/phone.png";
+import SeeProduct from "../assets/SeeProduct.png";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleDown, faCartShopping, faUser } from '@fortawesome/free-solid-svg-icons'
+import cart1 from '../assets/Cart1.png'
 
 function Justforme() {
   const inputData = [
@@ -85,12 +89,16 @@ function Justforme() {
       <div className="cards">
         {inputData.map((item, index) => (
           <div key={index} className="card">
+            <p style={{ marginLeft: "auto" }}>
+              <img src={SeeProduct} alt="SeeProduct" />
+            </p>
             <div className="card-header">
               <img src={item.img} alt="Product img" className="card-image" />
             </div>
+            
             <div className="cart-buy">
-              <input type="submit" name="add-to-cart" value="Add to cart" />
-              <input type="submit" name="buy-now" value="Buy Now" />
+            <div className="cart"><img src={cart1} alt="cart1" style={{marginRight:"3px"}}/><input  type="submit" name="add-to-cart" value="Add to cart" /></div>
+              <div className="buy"><input type="submit" name="buy-now" value="Buy Now" /></div>
             </div>
 
             <div className="card-body">

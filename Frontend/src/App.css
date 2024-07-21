@@ -210,7 +210,8 @@
 .main-content {
   flex-grow: 1;
   padding: 20px;
-  background-color: #f4f4f4; /* Or any other background color */
+  background-color: #f4f4f4;
+  /* Or any other background color */
 }
 
 /* ====================================== */
@@ -235,25 +236,29 @@
 /* Responsive adjustments */
 @media (max-width: 1200px) {
   .container-cate {
-    grid-template-columns: repeat(4, 1fr); /* Adjust the number of columns for medium screens */
+    grid-template-columns: repeat(4, 1fr);
+    /* Adjust the number of columns for medium screens */
   }
 }
 
 @media (max-width: 900px) {
   .container-cate {
-    grid-template-columns: repeat(3, 1fr); /* Adjust the number of columns for small screens */
+    grid-template-columns: repeat(3, 1fr);
+    /* Adjust the number of columns for small screens */
   }
 }
 
 @media (max-width: 600px) {
   .container-cate {
-    grid-template-columns: repeat(2, 1fr); /* Adjust the number of columns for very small screens */
+    grid-template-columns: repeat(2, 1fr);
+    /* Adjust the number of columns for very small screens */
   }
 }
 
 @media (max-width: 400px) {
   .container-cate {
-    grid-template-columns: repeat(1, 1fr); /* Adjust the number of columns for mobile screens */
+    grid-template-columns: repeat(1, 1fr);
+    /* Adjust the number of columns for mobile screens */
   }
 }
 
@@ -262,7 +267,7 @@
   border-radius: 50%;
   padding: 20px;
   background-color: #F5F5F5;
-  height: 250px;
+  height: 225px;
   cursor: pointer;
   transition: box-shadow 0.3s ease;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -294,25 +299,28 @@
 /* Adjustments for smaller screens */
 @media (max-width: 900px) {
   .cate-body {
-    font-size: 2.5vw; /* Adjust font size for small screens */
+    font-size: 2.5vw;
+    /* Adjust font size for small screens */
   }
 }
 
 @media (max-width: 600px) {
   .cate-body {
-    font-size: 3.5vw; /* Adjust font size for very small screens */
+    font-size: 3.5vw;
+    /* Adjust font size for very small screens */
   }
 }
 
 @media (max-width: 400px) {
   .cate-body {
-    font-size: 4.5vw; /* Adjust font size for mobile screens */
+    font-size: 4.5vw;
+    /* Adjust font size for mobile screens */
   }
 }
 
 /*---------------------------------------------------------Homepage---------------------------------------------------------*/
 
-.homepage{
+.homepage {
   margin-left: 4%;
   margin-right: 4%;
 }
@@ -327,24 +335,27 @@
 /* Responsive adjustments */
 @media (max-width: 1200px) {
   .cards {
-    grid-template-columns: repeat(3, 1fr); /* Adjust the number of columns for medium screens */
+    grid-template-columns: repeat(3, 1fr);
+    /* Adjust the number of columns for medium screens */
   }
 }
 
 @media (max-width: 900px) {
   .cards {
-    grid-template-columns: repeat(2, 1fr); /* Adjust the number of columns for small screens */
+    grid-template-columns: repeat(2, 1fr);
+    /* Adjust the number of columns for small screens */
   }
 }
 
 @media (max-width: 600px) {
   .cards {
-    grid-template-columns: repeat(1, 1fr); /* Adjust the number of columns for very small screens */
+    grid-template-columns: repeat(1, 1fr);
+    /* Adjust the number of columns for very small screens */
   }
 }
 
 .card {
-  border: 1px solid #F5F5F5;
+  border:none;
   border-radius: 8px;
   padding: 20px;
   max-width: 90%;
@@ -381,7 +392,58 @@
   color: #555;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
 }
+
+.cart-buy input {
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+}
+
+.cart-buy input[name="add-to-cart"] {
+  background-color: #F8A401;
+}
+
+.cart-buy input[name="buy-now"] {
+  background-color: #FF0000;
+}
+
+.cart {
+  background-color: #F8A401;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.cart:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.buy {
+  background-color: #FF0000;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding-left: 35px;
+  padding-right: 35px;
+  transition: box-shadow 0.3s ease;
+}
+
+.buy:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
 
 /* Font size adjustments for smaller screens */
 @media (max-width: 900px) {
@@ -406,7 +468,7 @@
 
 
 /* ----------------------------------------------------Footer-------------------------------------------------------- */
-footer{
+footer {
   background: linear-gradient(to right, #860101, #AD00FF);
   width: 100vw;
   height: 50vh;
