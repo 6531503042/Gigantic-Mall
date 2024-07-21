@@ -9,7 +9,7 @@ import java.util.Date;
 public record User(
         @Id
         Integer id,
-        String first,
+        String firstName,
         String lastName,
         String email,
         String password,
