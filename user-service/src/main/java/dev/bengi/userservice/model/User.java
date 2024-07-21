@@ -1,17 +1,19 @@
 package dev.bengi.userservice.model;
 
-import java.util.Date;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
-@Table(name = "users")
-public record user (
+import java.util.Date;
+
+@Table("users")
+public record User(
         @Id
         Integer id,
-        String firstName,
+        String first,
         String lastName,
         String email,
         String password,
         Date createdAt,
+        String phoneNumber,
         boolean status) {
 }
