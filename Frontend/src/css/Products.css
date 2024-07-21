@@ -1,15 +1,15 @@
-/* products.css */
+/* Products.css */
 
 .container-information {
   display: flex;
   flex-direction: column;
-  height: 100vh;
   padding: 20px;
   box-sizing: border-box;
 }
 
 .table-controls {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
@@ -19,7 +19,9 @@
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  width: 200px;
+  width: 100%;
+  max-width: 200px;
+  margin-bottom: 10px;
 }
 
 .add-product-btn {
@@ -29,12 +31,14 @@
   padding: 8px 16px;
   border-radius: 4px;
   cursor: pointer;
+  margin-bottom: 10px;
 }
 
 .sort-by {
   display: flex;
   align-items: center;
   cursor: pointer;
+  margin-bottom: 10px;
 }
 
 .sort-by span {
@@ -42,8 +46,8 @@
 }
 
 .table-container {
-  flex: 1;
-  overflow: auto;
+  width: 100%;
+  overflow-x: auto;
 }
 
 .product-table {
@@ -88,4 +92,44 @@
   border: none;
   cursor: pointer;
   margin-right: 4px;
+}
+
+@media (max-width: 768px) {
+  .product-table th, .product-table td {
+    padding: 4px;
+  }
+
+  .table-controls {
+    flex-direction: column;
+  }
+
+  .search-input, .add-product-btn, .sort-by {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .sort-by {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-table th, .product-table td {
+    padding: 2px;
+    font-size: 12px;
+  }
+
+  .table-controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-input, .add-product-btn, .sort-by {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  .sort-by {
+    justify-content: flex-start;
+  }
 }

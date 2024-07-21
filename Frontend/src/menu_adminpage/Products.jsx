@@ -3,14 +3,12 @@ import { useTable, useSortBy, useGlobalFilter } from 'react-table';
 import { FaSort, FaSortUp, FaSortDown, FaEdit, FaTrashAlt } from 'react-icons/fa';
 import '../css/Products.css'; 
 
-
 const Products = () => {
   const [filterInput, setFilterInput] = useState('');
 
   const data = useMemo(() => [
     { id: 1, name: 'Handmade Pouch', proId: '302012', category: 'Bag & Pouch', stock: 10, price: 121, status: 'Low Stock', added: '29 Dec 2022' },
     { id: 2, name: 'Smartwatch E2', proId: '302011', category: 'Watch', stock: 204, price: 590, status: 'Published', added: '24 Dec 2022' },
-    // Add more product data here...
   ], []);
 
   const columns = useMemo(() => [
@@ -46,12 +44,10 @@ const Products = () => {
 
   const handleEdit = (product) => {
     alert(`Editing product: ${product.name}`);
-    // Implement the edit functionality here
   };
 
   const handleDelete = (product) => {
     alert(`Deleting product: ${product.name}`);
-    // Implement the delete functionality here
   };
 
   return (
