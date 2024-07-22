@@ -1,6 +1,6 @@
 * {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -27,21 +27,25 @@
 .searching-row {
   display: flex;
   align-items: center;
+  flex-grow: 1;
 }
 
 .all-cate-dropdown {
   background: rgb(238, 238, 238);
   padding: 10px;
   border-radius: 30px;
+  cursor: pointer;
+  margin-right: 10px;
 }
 
-.search-input {
+.searching-row input[name="search-input"] {
   outline: none;
   border: none;
-  background: transparent;
   font-size: smaller;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  flex-grow: 1;
+  padding:15px;
+  margin-top: 0;
+  margin-bottom: 0;
 
 }
 
@@ -329,7 +333,7 @@
 .cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  gap: 2rem;
 }
 
 /* Responsive adjustments */
@@ -357,8 +361,7 @@
 .card {
   border:none;
   border-radius: 8px;
-  padding: 20px;
-  max-width: 90%;
+  max-width: 100%;
   background-color: #F5F5F5;
   height: 25rem;
   cursor: pointer;
@@ -372,14 +375,17 @@
 .card-header {
   text-align: center;
   margin-bottom: 20px;
+  width: auto;
+  height: 200px;
 }
 
 .card-header img {
-  width: 5rem;
-  height: auto;
+width: auto;
+height: auto;
   border-radius: 8px;
   margin-top: 40px;
   margin-bottom: 40px;
+
 }
 
 .card-body {
@@ -388,12 +394,10 @@
 
 .cart-buy {
   text-align: center;
-  font-size: 20px;
+  font-size: 16px;
   color: #555;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
   display: flex;
-  justify-content: space-between;
+  justify-content:space-between;
 }
 
 .cart-buy input {
@@ -404,14 +408,20 @@
   padding-top: 5px;
   padding-bottom: 5px;
   text-align: center;
+  width: auto;
+  padding: 8px;
 }
 
 .cart-buy input[name="add-to-cart"] {
   background-color: #F8A401;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .cart-buy input[name="buy-now"] {
   background-color: #FF0000;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .cart {

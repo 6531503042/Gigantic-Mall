@@ -1,14 +1,20 @@
 import React from "react";
 import phone from "../assets/phone.png";
 import SeeProduct from "../assets/SeeProduct.png";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleDown, faCartShopping, faUser } from '@fortawesome/free-solid-svg-icons'
-import cart1 from '../assets/Cart1.png'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faAngleDown,
+  faCartShopping,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
+import cart1 from "../assets/Cart1.png";
+import '../App.css'
+import com from '../assets/com.png'
 
 function Justforme() {
   const inputData = [
     {
-      img: phone,
+      img: com,
       NameProduct: "Justforme 1",
       Price: "9,999 $",
       message:
@@ -95,10 +101,15 @@ function Justforme() {
             <div className="card-header">
               <img src={item.img} alt="Product img" className="card-image" />
             </div>
-            
+
             <div className="cart-buy">
-            <div className="cart"><img src={cart1} alt="cart1" style={{marginRight:"3px"}}/><input  type="submit" name="add-to-cart" value="Add to cart" /></div>
-              <div className="buy"><input type="submit" name="buy-now" value="Buy Now" /></div>
+              <div className="cart">
+                <img src={cart1} alt="cart1" style={{ marginRight: "3px" }} />
+                <input type="submit" name="add-to-cart" value="Add to cart" />
+              </div>
+              <div className="buy">
+                <input type="submit" name="buy-now" value="Buy Now" />
+              </div>
             </div>
 
             <div className="card-body">

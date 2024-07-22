@@ -38,8 +38,12 @@ function TopCategories() {
           >
             Top Categories
           </a>
+
+          <div style={{width:"17vw",height:"4px", backgroundColor:"#AD00FF"}}></div>
+
           <div className="top-cate-line"></div>
         </a>
+        
         <a href="#" style={{ marginRight: "30px", textDecoration: "none" }}>
           <a style={{ fontSize: "1vw", fontWeight: "bold", color: "black" }}>
             View All

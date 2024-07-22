@@ -1,5 +1,5 @@
 import React from 'react';
-import Sidebar from '../components/Sidebar.jsx';
+import Sidebar from '../components/SideBar.jsx'
 import { Route, Routes } from 'react-router-dom';
 import Dashboard from '../menu_adminpage/Dashboard.jsx';
 import Orders from '../menu_adminpage/Orders.jsx';

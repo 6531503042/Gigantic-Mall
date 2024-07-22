@@ -4,15 +4,15 @@ import '../App.css'
 
 function SearchingBar() {
     return (
-        <div className="searching-bar pt-1 pb-1 mt-4 w-50 me-3">
+        <div className="searching-bar mt-4 w-50 me-3">
             <div className='searching-row'>
                 <div className="all-cate-dropdown me-3 ms-2">
-                    <a href='#' style={{ color: 'black', textDecoration: 'none', fontSize:'15px' }} className="me-2 ms-1" >All categories</a>
+                    <a href='#' style={{ color: 'black', textDecoration: 'none', fontSize:'15px'}} className="me-2 ms-1" >All categories</a>
                     <a href="#"><FontAwesomeIcon icon={faAngleDown} style={{color:'black', fontSize:'14px'}}/></a>
                 </div>
-                <input className="search-input" type="text" placeholder="Search anything" />
+                <input className="search-input" type="search" placeholder="Search anything" name='search-input'/>
             </div>
-            <a className='search-icon me-4' ><FontAwesomeIcon style={{ color: 'black'}} icon={faSearch} /></a>
+            <a className='search-icon me-4' ><FontAwesomeIcon style={{ color: 'black', cursor:'pointer'}} icon={faSearch} /></a>
         </div>
     );
 }
