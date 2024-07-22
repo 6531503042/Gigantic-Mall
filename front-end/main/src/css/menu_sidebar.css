@@ -1,0 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container-information {
+    display: flex;
+    justify-content: center;
+    margin-top: 4rem;
+    margin-left: 6rem;
+    margin-right: 6rem;
+}
+

@@ -1,0 +1,478 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.nav-bar-con {
+  background: linear-gradient(to right, #860101, #AD00FF);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.wrapper1 {
+  display: flex;
+  justify-content: center;
+}
+
+.searching-bar {
+  display: flex;
+  background: white;
+  border-radius: 30px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.searching-row {
+  display: flex;
+  align-items: center;
+}
+
+.all-cate-dropdown {
+  background: rgb(238, 238, 238);
+  padding: 10px;
+  border-radius: 30px;
+}
+
+.search-input {
+  outline: none;
+  border: none;
+  background: transparent;
+  font-size: smaller;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+}
+
+.nav-bar-user {
+  display: flex;
+  align-items: center;
+}
+
+.nav-bar-user a {
+  color: white;
+  text-decoration: none;
+}
+
+.shopping-cart-style {
+  background: white;
+  color: rgb(59, 59, 59);
+  padding: 1vw;
+  border-radius: 10px;
+}
+
+.account-name-show {
+  color: white;
+}
+
+.user-account-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-profile-style {
+  color: black;
+  padding: 1vw;
+  background: white;
+  border-radius: 10px;
+}
+
+@media (max-width:991.20px) {
+  .searching-bar {
+    display: none;
+  }
+
+}
+
+@media (max-width:1518px) {
+  .account-name-show {
+    display: none;
+  }
+
+  .nav-bar-con {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+/* -----------Body Whole Web------------------ */
+@media (max-width: 512px) {
+  body {
+    min-width: 512px;
+    overflow-x: scroll;
+  }
+}
+
+/* ----------------------------------------------------NavBar-------------------------------------------------------- */
+
+.wrapper-con {
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+}
+
+.wrapper-home-page {
+  background-image: url('src/assets/wrapper-1.png');
+  background-size: 100% 100%;
+  height: 30vw;
+  width: 70vw;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 845px) {
+  .wrapper-home-page {
+    width: 80vw;
+    height: auto;
+    background-size: 100% 100%;
+  }
+
+  .wrapper-width-control {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+}
+
+.wrapper-home-page .Row-1 a {
+  color: white;
+  text-decoration: none;
+}
+
+/* >>>>>>>>>>>>>>>>>>>>>> Stop here*/
+.next-prev-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  width: 73vw;
+  left: 13.5%;
+
+}
+
+.next-prev-wrapper a {
+  background: white;
+  padding: 0.5vw;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 845px) {
+  .next-prev-wrapper {
+    left: 8.5%;
+    width: 83vw;
+  }
+}
+
+@media (max-width: 512px) {
+  .next-prev-wrapper {
+    left: 9.5%;
+    width: 83.5vw;
+  }
+}
+
+.Dotter-ads {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+
+/* ----------------------------------------------------Wrapper.jsx-------------------------------------------------------------------- */
+
+.shop-top-cate {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cate-row-block {
+  display: inline-block;
+  margin-left: 30px;
+  margin-right: 30px;
+  font-size: 1.5vw;
+}
+
+
+
+.management-page {
+  display: flex;
+  height: 100vh;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #f4f4f4;
+  /* Or any other background color */
+}
+
+/* ====================================== */
+
+.AdminPageTest {
+  display: flex;
+}
+
+.content {
+  margin-left: 250px;
+  padding: 20px;
+}
+
+/*---------------------------------------------------------Top Categories---------------------------------------------------------*/
+.container-cate {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1.5rem;
+  padding: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .container-cate {
+    grid-template-columns: repeat(4, 1fr);
+    /* Adjust the number of columns for medium screens */
+  }
+}
+
+@media (max-width: 900px) {
+  .container-cate {
+    grid-template-columns: repeat(3, 1fr);
+    /* Adjust the number of columns for small screens */
+  }
+}
+
+@media (max-width: 600px) {
+  .container-cate {
+    grid-template-columns: repeat(2, 1fr);
+    /* Adjust the number of columns for very small screens */
+  }
+}
+
+@media (max-width: 400px) {
+  .container-cate {
+    grid-template-columns: repeat(1, 1fr);
+    /* Adjust the number of columns for mobile screens */
+  }
+}
+
+.cate {
+  border: 1px solid #F5F5F5;
+  border-radius: 50%;
+  padding: 20px;
+  background-color: #F5F5F5;
+  height: 225px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cate-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: auto;
+}
+
+.card-image {
+  max-height: auto;
+}
+
+.cate-body {
+  text-align: center;
+  font-size: 1.3vw;
+  font-weight: 500;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 900px) {
+  .cate-body {
+    font-size: 2.5vw;
+    /* Adjust font size for small screens */
+  }
+}
+
+@media (max-width: 600px) {
+  .cate-body {
+    font-size: 3.5vw;
+    /* Adjust font size for very small screens */
+  }
+}
+
+@media (max-width: 400px) {
+  .cate-body {
+    font-size: 4.5vw;
+    /* Adjust font size for mobile screens */
+  }
+}
+
+/*---------------------------------------------------------Homepage---------------------------------------------------------*/
+
+.homepage {
+  margin-left: 4%;
+  margin-right: 4%;
+}
+
+/*---------------------------------------------------------Just For Me---------------------------------------------------------*/
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+    /* Adjust the number of columns for medium screens */
+  }
+}
+
+@media (max-width: 900px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+    /* Adjust the number of columns for small screens */
+  }
+}
+
+@media (max-width: 600px) {
+  .cards {
+    grid-template-columns: repeat(1, 1fr);
+    /* Adjust the number of columns for very small screens */
+  }
+}
+
+.card {
+  border:none;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 90%;
+  background-color: #F5F5F5;
+  height: 25rem;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.card-header img {
+  width: 5rem;
+  height: auto;
+  border-radius: 8px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.card-body {
+  font-size: 16px;
+}
+
+.cart-buy {
+  text-align: center;
+  font-size: 20px;
+  color: #555;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart-buy input {
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+}
+
+.cart-buy input[name="add-to-cart"] {
+  background-color: #F8A401;
+}
+
+.cart-buy input[name="buy-now"] {
+  background-color: #FF0000;
+}
+
+.cart {
+  background-color: #F8A401;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.cart:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.buy {
+  background-color: #FF0000;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding-left: 35px;
+  padding-right: 35px;
+  transition: box-shadow 0.3s ease;
+}
+
+.buy:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Font size adjustments for smaller screens */
+@media (max-width: 900px) {
+  .card-body {
+    font-size: 14px;
+  }
+
+  .cart-buy {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .card-body {
+    font-size: 12px;
+  }
+
+  .cart-buy {
+    font-size: 16px;
+  }
+}
+
+
+/* ----------------------------------------------------Footer-------------------------------------------------------- */
+footer {
+  background: linear-gradient(to right, #860101, #AD00FF);
+  width: 100vw;
+  height: 50vh;
+  margin-left: -5%;
+  margin-right: 5%;
+  margin-top: 10vh;
+}

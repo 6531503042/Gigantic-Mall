@@ -1,0 +1,116 @@
+.body-of-users {
+    width: 65rem;
+}
+
+.row-1-space {
+    padding: 10px;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.body-con-row-1 {
+    background-color: rgb(255, 255, 255);
+    
+}
+
+.Search-but {
+    color: rgb(54, 54, 54);
+    text-decoration: none;
+    background-color: rgb(231, 231, 231);  
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+    width: 38rem;
+    border-radius: 10px;
+}
+
+.Search-but a{
+    margin-left: 0.7rem;
+    margin-right: 1rem;
+}
+
+.add-user{
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: aliceblue;
+    background-color: rgb(0, 110, 255);
+    padding: 0.5rem;
+    border-radius: 10px;
+    gap: 10px;
+}
+
+.sort-by {
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    color: rgb(46, 46, 46);
+}
+
+.saved-search {
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    color: rgb(46, 46, 46);
+}
+
+.search-hint {
+    background-color: transparent;
+    width: 32rem;
+    border: none;
+    outline: none;
+    color: #000000;
+}
+
+
+.search-hint::placeholder {
+    color: #646464; 
+}
+
+.information-users {
+    margin-top: 2rem;
+    border-radius: 10px;
+    background-color: white;
+    border: 1px solid #C9C9C9;
+}
+
+.information-users-1 {
+    margin-top: 2rem;
+    border-radius: 10px;
+    background-color: #F9F9F9;
+    
+}
+
+.list-style {
+    padding: 1%;
+}
+
+.list-style a{
+    margin-left: 5%;
+    font-weight: 500;
+}
+
+.Topics-style {
+    background-color: #EFF4FA;
+    padding: 1%;
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid #C9C9C9;
+    border-bottom: 1px solid #C9C9C9;
+    color:#999999;
+}
+
+.Topics-style a{
+    font-size: smaller;
+    font-weight: 500;
+}
+
+.data-style {
+    padding: 1%;
+}
