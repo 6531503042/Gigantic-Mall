@@ -1,9 +1,9 @@
 package com.example.shopservice.model;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Table("products")
+@Document(collection = "products")
 public record Product(
     @Id
     String id,
