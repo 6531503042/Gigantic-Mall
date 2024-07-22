@@ -10,9 +10,13 @@ import dev.bengi.userservice.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
+import dev.bengi.userservice.enumeration.RoleEnum;
+
+import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Slf4j
@@ -48,10 +52,47 @@ public class UserServiceImpl implements UserService {
         );
     }
 
-//    public UserRetrieveDTO createUser (UserCreatedDTO dto) {
-//        var preparedUser = new User(
-//
-//        )
-//    }
+    //Created user + login credential + wallet + roleMaximumAuthorization
+    @Transactional
+    @Override
+    public UserRetrieveDTO createUser(UserCreatedDTO dto, int currentUserId, RoleEnum newUserRole) {
+
+        var currentUserMaximumRoleAuthorization = roleService.getMaxRoleForAutorizationUser(currentUserId);
+
+        if (newUserRole.getLevel() > currentUserMaximumRoleAuthorization.get().getLevel()) {
+            throw new IllegalArgumentException("User is not authorized to create new user");
+        }
+
+
+        var preparedUser = new User(
+                null,
+                dto.firstName(),
+                dto.lastName(),
+                dto.email(),
+                dto.password(),
+                dto.createdAt() != null ? dto.createdAt() : new Date(),
+                dto.phoneNumber(),
+                true
+        );
+        var newUser = userRepository.save(preparedUser);
+
+        //Bind Role
+        var userRole = roleService.bindingNewUser(
+                newUser.id(),
+                newUserRole
+        );
+
+        //logging
+        logger.info("Created new user: {}", newUser);
+        logger.info("Created new user role: {}", userRole);
+
+        return new UserRetrieveDTO(
+                newUser.id(),
+                newUser.firstName(),
+                newUser.lastName(),
+                newUser.email(),
+                newUser.phoneNumber()
+        );
+    }
 
 }
