@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService {
             throw new IllegalArgumentException("User is not authorized to create new user");
         }
 
-
+        //Create User
         var preparedUser = new User(
                 null,
                 dto.firstName(),
@@ -94,5 +94,7 @@ public class UserServiceImpl implements UserService {
                 newUser.phoneNumber()
         );
     }
+
+
 
 }
