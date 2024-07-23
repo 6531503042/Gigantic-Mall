@@ -28,6 +28,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
 
+    @Override
     public Optional<UserLogin> findCredentialByEmail(String email) {
         var user = userLoginRepository.findOneByEmail(email);
 
