@@ -1,6 +1,7 @@
 import React from 'react'
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import PosterIphone from '../assets/poster-iphone.png'
 
 function TopElectronicsBrands() {
   return (
@@ -36,6 +37,20 @@ function TopElectronicsBrands() {
             style={{ marginLeft: "5px", fontSize: "1vw" }}
           />
         </a>
+      </div>
+
+      <div className='top-electronicsBrands'>
+        <div className='poster-brands'>
+          <a href="#"><img src={PosterIphone} alt="posterIphone" style={{width:"27vw",height:"32vh",borderRadius:"16px"}}/></a>
+          <a href="#"><img src={PosterIphone} alt="posterIphone" style={{width:"27vw",height:"32vh",borderRadius:"16px"}}/></a>
+          <a href="#"><img src={PosterIphone} alt="posterIphone" style={{width:"27vw",height:"32vh",borderRadius:"16px"}}/></a>
+        </div>
+      </div>
+      <div className='layout'>
+        <div className='playstation'></div>
+        <div className='womanCollection'></div>
+        <div className='speakers'></div>
+        <div className='Gucci'></div>
       </div>
     </div>
   )

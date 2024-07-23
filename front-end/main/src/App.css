@@ -476,13 +476,23 @@ height: auto;
   }
 }
 
+/* ----------------------------------------------------Top ElectronicsBrands-------------------------------------------------------- */
+.top-electronicsBrands{
+  padding-top: 3vh;
+}
+.poster-brands{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+
+.layout{
+  display: grid;
+}
 
 /* ----------------------------------------------------Footer-------------------------------------------------------- */
-footer {
-  background: linear-gradient(to right, #860101, #AD00FF);
-  width: 100vw;
-  height: 50vh;
-  margin-left: -5%;
-  margin-right: 5%;
-  margin-top: 10vh;
+
+footer{
+  margin: 20px;
 }
