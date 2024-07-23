@@ -25,12 +25,10 @@ public class UserServiceImpl implements UserService {
     private final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
     private final RoleService roleService;
 
     public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, RoleService roleService) {
         this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
         this.roleService = roleService;
     }
 
