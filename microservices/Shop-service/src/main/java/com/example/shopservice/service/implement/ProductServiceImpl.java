@@ -1,6 +1,6 @@
 package com.example.shopservice.service.impl;
 
-import com.example.shopservice.dto.ProductDto;
+import com.example.shopservice.dto.CreateProductDto;
 import com.example.shopservice.dto.ProductUpdateDto;
 import com.example.shopservice.model.Product;
 import com.example.shopservice.repository.ProductRepository;
@@ -17,7 +17,7 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
     @Override
-    public Product createProduct(ProductDto productDto) {
+    public Product createProduct(CreateProductDto productDto) {
         Product product = new Product(null, productDto.name(), productDto.image(), productDto.detail());
         return productRepository.save(product);
     }
