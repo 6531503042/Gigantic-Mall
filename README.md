@@ -227,11 +227,11 @@ Each service has a .env file where you can set up environment variables. Refer t
 
 ### License
 
-# This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-# ## Authors
+### Authors
 
-# ### Nimit Tanboontor
+#### Nimit Tanboontor
 # - **Student ID**: 6531503042
 # - **Role**: 
 #   - Backend Development
@@ -243,7 +243,7 @@ Each service has a .env file where you can set up environment variables. Refer t
 #   - Deployment Design
 # - **GitHub**: [Nimit Tanboontor][(https://github.com/6531503042)
 
-# ### Kongphop
+#### Kongphop
 # - **Student ID**: 6531503008
 # - **Role**:
 #   - Frontend Development
