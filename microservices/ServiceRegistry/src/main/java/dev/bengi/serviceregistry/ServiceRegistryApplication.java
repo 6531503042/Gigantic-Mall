@@ -1,15 +1,14 @@
-package dev.bengi.userservice;
+package dev.bengi.serviceregistry;
 
-import jdk.jfr.Enabled;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-//@EnableEurekaClient
+@EurekaClient
 @SpringBootApplication
-public class UserServiceApplication {
+public class ServiceRegistryApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UserServiceApplication.class, args);
+		SpringApplication.run(ServiceRegistryApplication.class, args);
 	}
 
 }
