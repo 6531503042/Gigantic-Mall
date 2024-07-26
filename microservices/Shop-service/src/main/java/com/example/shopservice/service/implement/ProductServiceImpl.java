@@ -1,4 +1,4 @@
-package com.example.shopservice.service.impl;
+package com.example.shopservice.service.implement;
 
 import com.example.shopservice.dto.CreateProductDto;
 import com.example.shopservice.dto.ProductUpdateDto;
