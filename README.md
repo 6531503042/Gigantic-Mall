@@ -2,154 +2,276 @@
 
 ![Deap Logo](assets/Gigantic_icon.png)
 
-Gigantic-Mall-App is a comprehensive e-commerce application developed using Spring Boot for the backend and React for the frontend. This project employs a Spring multi-module architecture, consisting of various modules for different functionalities.
+Gigantic-Mall-App is a comprehensive e-commerce application developed using Spring Boot for the backend and React for the frontend. This project employs a built using microservices architecture, deployed on Kubernetes. It includes various services, a gateway, load balancing, caching, messaging, logging, monitoring, and persistent data storage.
 
-## Project Structure
+# E-commerce Microservices Architecture
 
-The project is divided into multiple modules:
+This project demonstrates a comprehensive e-commerce system built using microservices architecture, deployed on Kubernetes. It includes various services, a gateway, load balancing, caching, messaging, logging, monitoring, and persistent data storage.
 
-![alt text](assets/outline.png)
+## Table of Contents
 
-- **Gigantic Common**: Contains common entities using `IdBasedEntity`.
-- **Gigantic Parent**: Parent module that includes:
-  - **Management System**: Handles management functions for a bookstore.
-  - **Client System**: Manages client-side functionalities like buying items.
+- [Architecture Overview](#architecture-overview)
+- [Technologies Used](#technologies-used)
+- [Services](#services)
+- [Setup and Deployment](#setup-and-deployment)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Features
+## Architecture Overview
 
-### Common
+![Architecture Diagram](path_to_your_architecture_diagram.png)
 
-- Utilizes `IdBasedEntity` for common entities.
+### Components:
 
-### Management System
+1. **Client Apps**:
+   - React Web Application
+   - React Native Mobile Application
 
-Focused on various roles and their respective functions:
+2. **Load Balancer**:
+   - Nginx
 
-![alt text](assets/management_actor.png)
+3. **API Gateway**:
+   - Spring Cloud Gateway
+   - Netflix Zuul
 
-- **Admin**: Manages everything.
-- **Seller**: Manages product prices, customers, shipping, orders, and sales reports.
-- **Editor**: Manages categories, brands, products, articles, and items.
-- **Shipper**: Views products, views orders, and updates order statuses.
-- **Assistant**: Manages questions and reviews.
+4. **Kubernetes Cluster**:
+   - Control Plane
+     - etcd
+     - Kube-API Server
+     - Controller Manager
+     - Scheduler
+   - Worker Nodes
+     - Pods for each microservice
 
-- admin
-![alt text](assets/admin.png)
+5. **Microservices**:
+   - User Service
+   - Customer Service
+   - Order Service
+   - Product Service
+   - Store Service
+   - Setting Service
+   - Dashboard Service
+   - Review Service
+   - Brand Service
+   - Cart Service
+   - Shipping Service
+   - MBG Service
 
-- seller
-![alt text](assets/seller.png)
+6. **Caching Layer**:
+   - Redis
 
--editor
-![alt text](assets/editor.png)
+7. **Message Broker Layer**:
+   - Apache Kafka
 
--shipper
-![alt text](assets/shipper.png)
+8. **Logging and Monitoring**:
+   - ELK Stack (Elasticsearch, Logstash, Kibana)
+   - Prometheus
+   - Grafana
+   - Zipkin
 
--assistant
-![alt text](assets/assistant.png)
+9. **Data Layer**:
+   - MongoDB
+   - PostgreSQL
+   - AWS S3
+   - Elasticsearch
 
+## Technologies Used
 
-### Client System
+- **Frontend**: React, React Native
+- **Backend**: Spring Boot, Spring Cloud Gateway, Netflix Zuul
+- **Containerization**: Docker
+- **Orchestration**: Kubernetes
+- **Load Balancing**: Nginx
+- **Caching**: Redis
+- **Messaging**: Apache Kafka
+- **Logging**: ELK Stack (Elasticsearch, Logstash, Kibana)
+- **Monitoring**: Prometheus, Grafana, Zipkin
+- **Databases**: MongoDB, PostgreSQL, AWS S3, Elasticsearch
 
+## Services
 
-Provides various services to the clients:
+### User Service
 
-![alt text](assets/client_actor.png)
+Manages user information and authentication.
 
-- **User Service**: Manages user-related functionalities.
-- **Authentication Service**: Handles user authentication.
-- **Category Service**: Manages product categories.
-- **Product Service**: Manages products.
-- **Brand Service**: Manages brands.
-- **Shipping Service**: Handles shipping processes.
-- **Shipping Rates Service**: Manages shipping rates.
-- **Payment Service**: Manages payment processes.
-- **Review Service**: Manages product reviews.
+### Customer Service
 
-- visitor
-![alt text](assets/visitor.png)
+Handles customer-related operations.
 
+### Order Service
 
-- customer
-![alt text](assets/customer.png)
+Processes and manages orders.
 
-## Implementation Details
+### Product Service
 
-This project is developed by second-year Software Engineering students. We plan to host the application on Heroku, and profile and product images will be uploaded to AWS free tier.
+Manages product information.
 
-## Getting Started
+### Store Service
+
+Handles store-related operations.
+
+### Setting Service
+
+Manages application settings.
+
+### Dashboard Service
+
+Provides dashboard functionalities.
+
+### Review Service
+
+Manages product reviews.
+
+### Brand Service
+
+Handles brand-related operations.
+
+### Cart Service
+
+Manages shopping cart functionalities.
+
+### Shipping Service
+
+Handles shipping operations.
+
+### MBG Service
+
+Miscellaneous background services.
+
+## Setup and Deployment
 
 ### Prerequisites
 
-- Java 11 or higher
-- Node.js and npm
-- Spring Boot
-- React
-- Vite
-- Typescript
-- Tailwind
+- Docker
+- Kubernetes
+- Helm
+- Kafka
+- Redis
+- PostgreSQL
+- MongoDB
+- AWS S3
+- ELK Stack
+- Prometheus & Grafana
 
-### Installation
+### Clone the Repository
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/6531503042/Gigantic-Mall-App.git
+````bash
+git clone https://github.com/6531503042/Gigantic-Mall.git
+cd gigantic-mall
+````
 
-2. Navigate to the project directory:
-   ```bash
-   cd Gigantic-Mall-App
+### Build and Deploy
 
-3. Build the backend:
-   ```bash
-    cd backend
-    ./mvnw clean install
+````bash
+docker-compose build
+docker-compose push
+````
 
-4. Start the backend server:
-    ```bash
-    ./mvnw spring-boot:run
+### Deploy on K8s
+````bash
+kubectl apply -f k8s/
+````
 
-5. Navigate to the frontend directory and install dependencies:
-    ```bash
-    cd ../frontend
-    npm install
+### Deploy Kafka
+````bash
+helm repo add confluentinc https://packages.confluent.io/helm
+helm install kafka confluentinc/cp-helm-charts
+````
 
-6. Start the frontend server:
-    ```bash
-    npm start
+### Deploy Redis
+````bash
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm install redis bitnami/redis
+````
+
+### Deploy PostgreSQL
+````bash
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm install postgresql bitnami/postgresql
+````
+
+### Deploy MongoDB
+````bash
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm install mongodb bitnami/mongodb
+````
+
+## Confighuration
+
+### Environtment Variables
+Each service has a .env file where you can set up environment variables. Refer to the example .env.example files in each service directory.
+- `KAFKA_BROKER_URL`: Kafka broker URL
+- `REDIS_HOST`: Redis host
+- `POSTGRES_HOST`: PostgreSQL host
+- `MONGODB_HOST`: MongoDB host
+- `AWS_S3_BUCKET`: AWS S3 bucket name
+- `ELK_HOST`: ELK host
+- `PROMETHEUS_HOST`: Prometheus host
+- `GRAFANA_HOST`: Grafana host
 
 ## Usage
 
-Access the management system via http://localhost:8080/gigantic.
-Access the client system via http://localhost:3000.
+### Access the Appliaction
 
-## Contributing
+- Web Application: http://your-nginx-load-balancer-ip
+- Mobile Application: Use the mobile app with the backend services.
 
-Contributions are welcome! Please create a pull request or open an issue to discuss any changes.
+### Monitorting and Logs
 
-## License
+- Kibana: `http://your-kibana-ip`
+- Grafana: `http://your-grafana-ip`
+- Prometheus: `http://your-prometheus-ip`
+- Zipkin: `http://your-zipkin-ip`
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+# ## License
 
-## Authors
+# This project is licensed under the MIT License. See the LICENSE file for details.
 
-### Nimit Tanboontor
-- **Student ID**: 6531503042
-- **Role**: 
-  - Backend Development
-  - Frontend Development
-  - Database Management System
-  - DevOps
-  - Design UX/UI
-- **GitHub**: [Nimit Tanboontor][(https://github.com/6531503042)
+# ## Authors
 
-### Kongphop
-- **Student ID**: 6531503008
-- **Role**:
-  - Frontend Development
-  - Design UX/UI
-- **GitHub**: [Kongphop Saenphai ][(https://github.com/kongphop1209)
+# ### Nimit Tanboontor
+# - **Student ID**: 6531503042
+# - **Role**: 
+#   - Backend Development
+#   - Frontend Development
+#   - Database Management System
+#   - DevOps
+#   - Design UX/UI
+#   - Architecture Design
+#   - Deployment Design
+# - **GitHub**: [Nimit Tanboontor][(https://github.com/6531503042)
 
-### Contributors
-- [Contributors' Names] (replace with actual names and GitHub profiles)
+# ### Kongphop
+# - **Student ID**: 6531503008
+# - **Role**:
+#   - Frontend Development
+#   - Design UX/UI
+# - **GitHub**: [Kongphop Saenphai ][(https://github.com/kongphop1209)
+
+<!-- # - **Admin**: Manages everything.
+# - **Seller**: Manages product prices, customers, shipping, orders, and sales reports.
+# - **Editor**: Manages categories, brands, products, articles, and items.
+# - **Shipper**: Views products, views orders, and updates order statuses.
+# - **Assistant**: Manages questions and reviews.
+
+# - admin
+# ![alt text](assets/admin.png)
+
+# - seller
+# ![alt text](assets/seller.png)
+
+# -editor
+# ![alt text](assets/editor.png)
+
+# -shipper
+# ![alt text](assets/shipper.png)
+
+# -assistant
+# ![alt text](assets/assistant.png)
 
 
+# ### Client System
+
+ -->
