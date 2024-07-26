@@ -229,26 +229,41 @@ Each service has a .env file where you can set up environment variables. Refer t
 
 This project is licensed under the MIT License. See the LICENSE file for details.
 
-### Authors
+## Authors
 
-#### Nimit Tanboontor
-# - **Student ID**: 6531503042
-# - **Role**: 
-#   - Backend Development
-#   - Frontend Development
-#   - Database Management System
-#   - DevOps
-#   - Design UX/UI
-#   - Architecture Design
-#   - Deployment Design
-# - **GitHub**: [Nimit Tanboontor][(https://github.com/6531503042)
+### Nimit Tanboontor
+- **Student ID**: 6531503042
+- **Role**:
+  - Backend Development
+  - Frontend Development
+  - Database Management System
+  - DevOps
+  - Design UX/UI
+  - Architecture Design
+  - Deployment Design
+- **GitHub**: [Nimit Tanboontor](https://github.com/6531503042)
 
-#### Kongphop
-# - **Student ID**: 6531503008
-# - **Role**:
-#   - Frontend Development
-#   - Design UX/UI
-# - **GitHub**: [Kongphop Saenphai ][(https://github.com/kongphop1209)
+### Kongphop Saenphai
+- **Student ID**: 6531503008
+- **Role**:
+  - Frontend Development
+  - Design UX/UI
+- **GitHub**: [Kongphop Saenphai](https://github.com/kongphop1209)
+
+### Kritsakorn Sukkasem
+- **Student ID**: 6531503005
+- **Role**:
+  - Frontend Development
+  - Backend Development
+  - Design UX/UI
+- **GitHub**: [Kritsakorn Sukkasem](https://github.com/Kritsasoft)
+
+### Phumiphat Wongsathit
+- **Student ID**: 6531503117
+- **Role**:
+  - Frontend Development
+  - Design UX/UI
+- **GitHub**: [Phumiphat Wongsathit](https://github.com/franz1us)
 
 <!-- # - **Admin**: Manages everything.
 # - **Seller**: Manages product prices, customers, shipping, orders, and sales reports.
