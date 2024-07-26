@@ -5,6 +5,10 @@ import org.springframework.data.jdbc.core.mapping.AggregateReference;
 import org.springframework.data.relational.core.mapping.Table;
 import dev.bengi.userservice.model.User;
 
+/**
+ * Record for user login in database
+ * @author bengi
+ */
 @Table("user_login")
 public record UserLogin(
         @Id
