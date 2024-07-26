@@ -19,7 +19,7 @@
     <modules>
         <module>user-service</module>
         <module>auth-service</module>
-        <module>ServiceRegistry</module>
+        <module>service-registry</module>
     </modules>
 
     <properties>
