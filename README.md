@@ -21,7 +21,7 @@ This project demonstrates a comprehensive e-commerce system built using microser
 
 ## Architecture Overview
 
-![Architecture Diagram](path_to_your_architecture_diagram.png)
+![Architecture Diagram](assets/architecture_diagram.png)
 
 ### Components:
 
