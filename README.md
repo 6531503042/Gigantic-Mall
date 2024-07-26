@@ -225,7 +225,7 @@ Each service has a .env file where you can set up environment variables. Refer t
 - Prometheus: `http://your-prometheus-ip`
 - Zipkin: `http://your-zipkin-ip`
 
-# ## License
+### License
 
 # This project is licensed under the MIT License. See the LICENSE file for details.
 
