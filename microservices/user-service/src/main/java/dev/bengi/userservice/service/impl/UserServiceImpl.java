@@ -7,7 +7,8 @@ import dev.bengi.userservice.repository.RoleRepository;
 import dev.bengi.userservice.repository.UserRepository;
 import dev.bengi.userservice.service.RoleService;
 import dev.bengi.userservice.service.UserService;
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import dev.bengi.userservice.enumeration.RoleEnum;
@@ -19,7 +20,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Slf4j
 public class UserServiceImpl implements UserService {
 
     private final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
@@ -91,6 +91,19 @@ public class UserServiceImpl implements UserService {
                 newUser.email(),
                 newUser.phoneNumber()
         );
+    }
+
+    @Override
+    public Page<User> getUsersByFirstName(String keyword, Pageable pageable) {
+        return userRepository.findByFirstNameContaining(keyword, pageable);
+    }
+
+    @Transactional
+    @Override
+    public boolean deleteUserById(int id) {
+        var user = getUserById(id);
+        userRepository.delete(user);
+        return true;
     }
 
 
