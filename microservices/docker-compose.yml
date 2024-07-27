@@ -1,0 +1,79 @@
+version : '3.7'
+
+
+services:
+
+    # Auth - Service - Postgres
+    auth:
+        image: microservices/auth-service
+        container_name: auth-service
+        build:
+            context: ./auth-service
+        environment:
+            POSTGRES_DB: auth-service
+            POSTGRES_USER: admin
+            POSTGRES_PASSWORD: password
+            PGDATA: /data/postgres
+        volumes:
+            - ./postgres-auth:/data/postgres
+        expose:
+            - "5431"
+        ports:
+                - "5431:5431"
+        command: -p 5431
+        restart: always
+
+    # User - Service - Postgres
+    user:
+        image: microservices/user-service
+        container_name: user-service
+        build:
+            context: ./user-service
+        environment:
+            POSTGRES_DB: user-service
+            POSTGRES_USER: admin
+            POSTGRES_PASSWORD: password
+            PGDATA: /data/postgres
+        volumes:
+            - ./postgres-user:/data/postgres
+        expose:
+            - "5432"
+        ports:
+                - "5432:5432"
+        command: -p 5432
+        restart: always
+
+    # Service - Registry
+    registry:
+        image: microservices/registry-service
+        container_name: registry-server
+        build:
+            context: ./registry-service
+        ports:
+            - "8181:8080"
+        expose:
+                - "8181"
+        environment:
+            - SPRING_PROFILES_ACTIVE=docker
+            - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY= TRACE
+        command: -p 5000
+        restart: always
+
+    # Service - Store
+    store:
+        image: microservices/store-service
+        container_name: store-service
+        build:
+            context: ./store-service
+        ports:
+            - "8182:8080"
+        expose:
+                - "8182"
+        environment:
+            - SPRING_PROFILES_ACTIVE=docker
+            - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY= TRACE
+        command: -p 5000
+        restart: always
+
+
+
