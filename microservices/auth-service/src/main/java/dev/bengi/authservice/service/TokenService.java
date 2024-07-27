@@ -16,7 +16,7 @@ public class TokenService {
 
     // TODO: Move to config
     private final JwtEncoder jwtEncoder;
-    private long accessTokenExpiredInSeconds = 3600L;
+    private long accessTokenExpiredInSeconds = 36;
     private long refreshTokenExpiredInSeconds = 86400L;
 
     public TokenService(JwtEncoder jwtEncoder, long accessTokenExpiredInSeconds, long refreshTokenExpiredInSeconds) {
