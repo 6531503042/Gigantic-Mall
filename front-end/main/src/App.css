@@ -195,6 +195,7 @@
   width: 100%;
   align-items: center;
   justify-content: space-between;
+  margin-bottom:20px;
 }
 
 .cate-row-block {
@@ -230,55 +231,21 @@
 }
 
 /*---------------------------------------------------------Top Categories---------------------------------------------------------*/
-.container-cate {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 1.5rem;
-  padding: 20px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 1200px) {
-  .container-cate {
-    grid-template-columns: repeat(4, 1fr);
-    /* Adjust the number of columns for medium screens */
-  }
-}
-
-@media (max-width: 900px) {
-  .container-cate {
-    grid-template-columns: repeat(3, 1fr);
-    /* Adjust the number of columns for small screens */
-  }
-}
-
-@media (max-width: 600px) {
-  .container-cate {
-    grid-template-columns: repeat(2, 1fr);
-    /* Adjust the number of columns for very small screens */
-  }
-}
-
-@media (max-width: 400px) {
-  .container-cate {
-    grid-template-columns: repeat(1, 1fr);
-    /* Adjust the number of columns for mobile screens */
-  }
-}
-
 .cate {
-  border: 1px solid #F5F5F5;
   border-radius: 50%;
-  padding: 20px;
   background-color: #F5F5F5;
-  height: 225px;
+  height: 200px;
+  width: 200px;
   cursor: pointer;
-  transition: box-shadow 0.3s ease;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-left: 10%;
+}
+
+.cate:hover{
+  transition: box-shadow 0.3s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 .cate-header {
@@ -286,17 +253,16 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 100%;
   height: auto;
 }
 
 .card-image {
-  max-height: auto;
+  max-height: 100%;
 }
 
 .cate-body {
-  text-align: center;
-  font-size: 1.3vw;
+text-align: center;
+  font-size: 1.2vw;
   font-weight: 500;
 }
 
@@ -477,20 +443,15 @@ height: auto;
 }
 
 /* ----------------------------------------------------Top ElectronicsBrands-------------------------------------------------------- */
-.top-electronicsBrands{
-  padding-top: 3vh;
-}
-.poster-brands{
+.card-electronics{
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  gap: 20px;
+  justify-content: space-around;
+  padding-top: 20px;
 }
-
-.layout{
-  display: grid;
+.card-electronics img{
+  border-radius: 20px;
+  width: 25vw;
 }
-
 /* ----------------------------------------------------Footer-------------------------------------------------------- */
 
 footer{

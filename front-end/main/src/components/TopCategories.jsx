@@ -9,6 +9,8 @@ import watches from "../assets/watches.png";
 import decor from "../assets/decor.png";
 import accessories from "../assets/accessories.png";
 import { text } from "@fortawesome/fontawesome-svg-core";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 function TopCategories() {
   const cate = [
@@ -19,7 +21,38 @@ function TopCategories() {
     { image: watches, nameCate: "watches" },
     { image: decor, nameCate: "decor" },
     { image: accessories, nameCate: "accessories" },
+    { image: phone, nameCate: "Mobile" },
+    { image: cosmetics, nameCate: "Cosmetics" },
+    { image: electronics, nameCate: "electronics" },
+    { image: furniture, nameCate: "furniture" },
+    { image: watches, nameCate: "watches" },
+    { image: decor, nameCate: "decor" },
+    { image: accessories, nameCate: "accessories" },
   ];
+
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 3000, min: 1200 },
+      items: 7
+    },
+    Largedesktop: {
+      breakpoint: { max: 1800, min: 1024 },
+      items: 5
+    },
+    desktop: {
+      breakpoint: { max: 1200, min: 800 },
+      items: 4
+    },
+    tablet: {
+      breakpoint: { max: 800, min: 464 },
+      items: 2
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 2
+    }
+  };
   return (
     <div>
       <div className="shop-top-cate">
@@ -39,11 +72,13 @@ function TopCategories() {
             Top Categories
           </a>
 
-          <div style={{width:"17vw",height:"4px", backgroundColor:"#AD00FF"}}></div>
+          <div
+            style={{ width: "17vw", height: "4px", backgroundColor: "#AD00FF" }}
+          ></div>
 
           <div className="top-cate-line"></div>
         </a>
-        
+
         <a href="#" style={{ marginRight: "30px", textDecoration: "none" }}>
           <a style={{ fontSize: "1vw", fontWeight: "bold", color: "black" }}>
             View All
@@ -54,9 +89,11 @@ function TopCategories() {
           />
         </a>
       </div>
-      <div className="container-cate">
+      
+      <Carousel responsive={responsive}>
+     
         {cate.map((cate, cate2) => (
-          <div>
+          <div className="container-cate">
             <div key={cate2} className="cate">
               <div className="cate-header">
                 <img src={cate.image} alt="img cate" className="card-image" />
@@ -68,7 +105,8 @@ function TopCategories() {
             </div>
           </div>
         ))}
-      </div>
+      </Carousel>
+      ;
     </div>
   );
 }
