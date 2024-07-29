@@ -5,9 +5,8 @@ import { faEnvelope, faKey, faCheckSquare, faSquare } from '@fortawesome/free-so
 import { FaDiscord, FaGithub, FaGoogle } from 'react-icons/fa';
 
 const login = () => {
-    const [activeTab, setActiveTab] = useState('login');
     const [remember, setRemember] = useState(false);
-
+    
     const toggleRemember = () => {
         setRemember(!remember);
     };
