@@ -9,9 +9,6 @@ import TopElectronicsBrands from '../components/TopElectronicsBrands';
 function HomePage() {
     return (
         <div>
-            <Helmet>
-                <title>Giantic-Mall</title>
-            </Helmet>
             <Header/>
             <NavBar/>
             <div className='homepage'>
