@@ -71,10 +71,10 @@ function TopElectronicsBrands() {
       </Carousel>
 
       <div className="layout">
-        <div className="playstation"></div>
-        <div className="womanCollection"></div>
-        <div className="speakers"></div>
-        <div className="Gucci"></div>
+        <div className="brands1">1</div>
+        <div className="brands2">2</div>
+        <div className="brands3">3</div>
+        <div className="brands4">4</div>
       </div>
     </div>
   );
