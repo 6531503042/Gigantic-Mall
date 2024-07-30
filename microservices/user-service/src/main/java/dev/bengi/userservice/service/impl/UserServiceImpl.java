@@ -10,7 +10,9 @@ import dev.bengi.userservice.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 import javax.persistence.EntityNotFoundException;
+
 import dev.bengi.userservice.enumeration.RoleEnum;
 
 import java.util.Date;
@@ -27,15 +29,16 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RoleService roleService;
 
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, RoleService roleService) {
+    public UserServiceImpl(UserRepository userRepository, RoleService roleService) {
         this.userRepository = userRepository;
         this.roleService = roleService;
     }
 
     @Override
     public User getUserById(int id) {
+        logger.info("Fetching user with id: {}", id);
         return userRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(String.format("User with id " + id + " not found")));
+                .orElseThrow(() -> new EntityNotFoundException(String.format("User with id %d not found", id)));
     }
 
     @Override
@@ -50,18 +53,18 @@ public class UserServiceImpl implements UserService {
         );
     }
 
-    //Created user + login credential + wallet + roleMaximumAuthorization
     @Transactional
     @Override
     public UserRetrieveDTO createUser(UserCreatedDTO dto, int currentUserId, RoleEnum newUserRole) {
+        logger.info("Creating user with email: {}", dto.email());
 
         var currentUserMaximumRoleAuthorization = roleService.getMaxRoleForAutorizationUser(currentUserId);
 
         if (newUserRole.getLevel() > currentUserMaximumRoleAuthorization.get().getLevel()) {
+            logger.error("User is not authorized to create new user with role: {}", newUserRole);
             throw new IllegalArgumentException("User is not authorized to create new user");
         }
 
-        //Create User
         var preparedUser = new User(
                 null,
                 dto.firstName(),
@@ -74,13 +77,8 @@ public class UserServiceImpl implements UserService {
         );
         var newUser = userRepository.save(preparedUser);
 
-        //Bind Role
-        var userRole = roleService.bindingNewUser(
-                newUser.id(),
-                newUserRole
-        );
+        var userRole = roleService.bindingNewUser(newUser.id(), newUserRole);
 
-        //logging
         logger.info("Created new user: {}", newUser);
         logger.info("Created new user role: {}", userRole);
 
@@ -95,17 +93,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Page<User> getUsersByFirstName(String keyword, Pageable pageable) {
+        logger.info("Searching users with first name containing: {}", keyword);
         return userRepository.findByFirstNameContaining(keyword, pageable);
     }
 
     @Transactional
     @Override
     public boolean deleteUserById(int id) {
+        logger.info("Deleting user with id: {}", id);
         var user = getUserById(id);
         userRepository.delete(user);
+        logger.info("User with id: {} deleted successfully", id);
         return true;
     }
-
-
-
 }

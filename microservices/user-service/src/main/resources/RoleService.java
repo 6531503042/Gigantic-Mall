@@ -37,6 +37,7 @@ public class RoleService {
     }
 
     // TODO: Implement role management
+    @Transactional
     public UserRole bindingNewUser(int userId, RoleEnum roleEnum) {
         AggregateReference<User, Integer> userRef = AggregateReference.to(userId);
         AggregateReference<Role, Integer> roleRef = AggregateReference.to(roleEnum.getId());
@@ -46,10 +47,12 @@ public class RoleService {
     }
 
     // TODO: Implement role management
+    @Transactional
     public void deleteUserRole(int userId, RoleEnum roleEnum) {
         AggregateReference<User, Integer> userRef = AggregateReference.to(userId);
         AggregateReference<Role, Integer> roleRef = AggregateReference.to(roleEnum.getId());
-        UserRole userRole = new UserRole(null, userRef, roleRef);
+        var userRole = userRoleRepository.findByUserIdAndRoleId(userRef, roleRef)
+                .orElseThrow(() -> new EntityNotFoundException("UserRole not found"));
         logger.info("Deleting user role: {}", userRole);
         userRoleRepository.delete(userRole);
     }
