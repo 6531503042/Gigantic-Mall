@@ -1,5 +1,6 @@
 package dev.bengi.userservice.repository;
 
+import dev.bengi.userservice.model.Role;
 import dev.bengi.userservice.model.UserRole;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
 import org.springframework.data.jdbc.repository.query.Query;
@@ -16,4 +17,6 @@ public interface UserRoleRepository extends CrudRepository<UserRole, Integer> {
     Optional<UserRole> findAllByUserId(AggregateReference<Object, Integer> objectIntegerAggregateReference);
 
     Optional<UserRole> findOneByUserId(AggregateReference<User, Integer> userId);
+
+    Optional<UserRole> findByUserIdAndRoleId(AggregateReference<User, Integer> userRef, AggregateReference<Role, Integer> roleRef);
 }
