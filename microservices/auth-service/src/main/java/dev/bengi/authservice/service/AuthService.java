@@ -1,5 +1,6 @@
 package dev.bengi.authservice.service;
 
+import dev.bengi.authservice.dto.LoginRequestDTO;
 import dev.bengi.authservice.dto.LoginResponseDTO;
 import dev.bengi.authservice.dto.LogoutDTO;
 import dev.bengi.authservice.dto.RefreshTokenDTO;
@@ -19,7 +20,7 @@ public interface AuthService {
     void deleteCredentialByUserId(int userId);
 
     @Transactional
-    LoginResponseDTO login(LoginResponseDTO body);
+    LoginResponseDTO login(LoginRequestDTO body);
 
     @Transactional
     LoginResponseDTO issueNewAccessToken(RefreshTokenDTO body);

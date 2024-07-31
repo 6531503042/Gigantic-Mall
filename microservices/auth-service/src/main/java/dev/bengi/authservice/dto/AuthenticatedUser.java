@@ -31,6 +31,8 @@ public record AuthenticatedUser(
             case EDITOR -> List.of(new SimpleGrantedAuthority(RoleEnum.EDITOR.name()));
             case SHIPPER -> List.of(new SimpleGrantedAuthority(RoleEnum.SHIPPER.name()));
             case ASSIST -> List.of(new SimpleGrantedAuthority(RoleEnum.ASSIST.name()));
+            case STORE -> List.of(new SimpleGrantedAuthority(RoleEnum.STORE.name()));
+            case CUSTOMER -> List.of(new SimpleGrantedAuthority(RoleEnum.CUSTOMER.name()));
         };
     }
 

@@ -1,5 +1,6 @@
 package dev.bengi.authservice.controller;
 
+import dev.bengi.authservice.dto.LoginRequestDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,7 +40,7 @@ public class AuthController {
      * @return The response containing the login response DTO.
      */
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseDTO> login(@RequestBody @Validated LoginResponseDTO body) {
+    public ResponseEntity<LoginResponseDTO> login(@RequestBody @Validated LoginRequestDTO body) {
         return ResponseEntity.ok(authService.login(body));
     }
 

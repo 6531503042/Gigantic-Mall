@@ -1,15 +1,12 @@
 package dev.bengi.authservice.service.Impl;
 
-import dev.bengi.authservice.dto.AuthenticatedUser;
-import dev.bengi.authservice.dto.LoginResponseDTO;
+import dev.bengi.authservice.dto.*;
 import dev.bengi.authservice.exception.RefreshTokenExpiredException;
 import dev.bengi.authservice.model.RefreshToken;
 import dev.bengi.authservice.model.UserLogin;
-import dev.bengi.authservice.dto.LogoutDTO;
 import dev.bengi.authservice.repository.RefreshTokenRepository;
 import dev.bengi.authservice.repository.UserLoginRepository;
 import dev.bengi.authservice.service.AuthService;
-import dev.bengi.authservice.dto.RefreshTokenDTO;
 import dev.bengi.userservice.repository.UserRepository;
 import dev.bengi.userservice.enumeration.RoleEnum;
 import lombok.extern.slf4j.Slf4j;
@@ -136,19 +133,14 @@ public class AuthServiceImpl implements AuthService {
      */
     @Override
     @Transactional
-    public LoginResponseDTO login(LoginResponseDTO body) {
+    public LoginResponseDTO login(LoginRequestDTO body) {
+
         // Create authentication token with email and password
         var authInfo = new UsernamePasswordAuthenticationToken(body.email(), body.password());
-        // Authenticate the user
         var authentication = authenticationManager.authenticate(authInfo);
-        // Get the authenticated user
         var authenticatedUser = (AuthenticatedUser) authentication.getPrincipal();
-
-        // Get the current time
         var now = Instant.now();
-        // Issue an access token
         var accessToken = tokenService.issueAccessToken(authentication, now);
-        // Issue a refresh token
         var refreshToken = tokenService.issueRefreshToken();
 
         // Log out the user if they are already logged in
