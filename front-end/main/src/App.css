@@ -456,37 +456,186 @@
 
 .layout {
   display: grid;
-  grid-template-columns: auto auto auto auto auto auto;
-  padding-top: 5vh;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(24, 1vh);
+  padding-top: 10vh;
+  padding-bottom: 7vh;
   gap: 20px;
   justify-content: center;
 }
 
-.layout>div {
+.layout > div {
   text-align: start;
-  padding: 20px 0;
   font-size: 30px;
-  background-color: #FF0000;
+}
+
+.brands1, .brands2, .brands3, .brands4 {
+  position: relative;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 .brands1 {
-  grid-area: 1 / 1 / 30 / 20;
+  grid-area: 1 / 2 / 25 / 10; /* Spans 19 rows */
 }
 
 .brands2 {
-  grid-area: 1 / 20 / 15 / 40;
+  grid-area: 1 / 10 / 12 / 20; /* Spans 9 rows, half of .brands1 */
 }
 
 .brands3 {
-  grid-area: 15 / 20 / 30 / 30;
+  grid-area: 12 / 10 / 25 / 15; /* Spans 10 rows */
 }
 
 .brands4 {
-  grid-area: 15 / 30 / 30 / 40;
+  grid-area: 12 / 15 / 25 / 20; /* Spans 10 rows */
 }
+
+
+
+.text-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: start;
+  color: #fff;
+  padding: 20px;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.name1, .name2, .name3 {
+  font-size: 24px;
+  font-weight: bold;
+  transition: all 0.5s ease-in-out;
+}
+
+.detail1, .detail2, .detail3 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 18px;
+  margin-bottom: 10px;
+  transition: all 0.5s ease-in-out;
+}
+
+.shop1, .shop2, .shop3 {
+  font-size: 16px;
+  text-decoration: underline;
+  transition: all 0.5s ease-in-out;
+}
+
+.text-overlay:hover .name1, .text-overlay:hover .name2, .text-overlay:hover .name3 {
+  font-size: 35px;
+}
+
+.text-overlay:hover .detail1, .text-overlay:hover .detail2, .text-overlay:hover .detail3 {
+  font-size: 22px;
+}
+
+.text-overlay:hover .shop1, .text-overlay:hover .shop2, .text-overlay:hover .shop3 {
+  font-size: 20px;
+}
+
+.text-overlay:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* 
+.brands1 {
+  grid-area: 1 / 1 / 40 / 40;
+}
+
+.brands2 {
+  grid-area: 1 / 40 / 20 / 80;
+}
+
+.brands3 {
+  grid-area: 20 / 40 / 40 / 60;
+}
+
+.brands4 {
+  grid-area: 20 / 60 / 40 / 80;
+} */
 
 /* ----------------------------------------------------Footer-------------------------------------------------------- */
 
-footer {
-  margin: 20px;
+.footer-container {
+  background: linear-gradient(to right, #860101, #AD00FF);
+  color: #fff;
+  padding: 40px 0;
+  width: 100vw;
+  height: 50vh;
+  position: relative;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+ 
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.footer-content {
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 20px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-list li {
+  margin: 10px 0;
+}
+
+.footer-list p {
+  margin: 0;
+}
+
+.footer-list a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-list a:hover {
+  color: #ddd;
+}
+
+.divider {
+  border-top: 1px solid #555;
+  margin: 20px 0;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-list {
+    margin: 20px 0;
+    text-align: center;
+  }
 }

@@ -4,6 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PosterIphone from "../assets/poster-iphone.png";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import PlaystationBrands from "../assets/playstationBrands.jpg";
+import WomenInthedark from "../assets/womenDark.png";
+import Speaker from "../assets/speaker.jpg";
+import Perfume from "../assets/gucci.png";
 
 function TopElectronicsBrands() {
   const responsive = {
@@ -63,18 +67,69 @@ function TopElectronicsBrands() {
       </div>
 
       <Carousel responsive={responsive}>
-        <div className="card-electronics"><img src={PosterIphone} alt="poster" /></div>
-        <div className="card-electronics"><img src={PosterIphone} alt="poster" /></div>
-        <div className="card-electronics"><img src={PosterIphone} alt="poster" /></div>
-        <div className="card-electronics"><img src={PosterIphone} alt="poster" /></div>
-        <div className="card-electronics"><img src={PosterIphone} alt="poster" /></div>
+        <div className="card-electronics">
+          <img src={PosterIphone} alt="poster" />
+        </div>
+        <div className="card-electronics">
+          <img src={PosterIphone} alt="poster" />
+        </div>
+        <div className="card-electronics">
+          <img src={PosterIphone} alt="poster" />
+        </div>
+        <div className="card-electronics">
+          <img src={PosterIphone} alt="poster" />
+        </div>
+        <div className="card-electronics">
+          <img src={PosterIphone} alt="poster" />
+        </div>
       </Carousel>
 
       <div className="layout">
-        <div className="brands1">1</div>
-        <div className="brands2">2</div>
-        <div className="brands3">3</div>
-        <div className="brands4">4</div>
+        <div className="brands1">
+          <a href="#">
+            <img src={PlaystationBrands} alt="playstationBrands" />
+            <div className="text-overlay">
+              <h2 className="name1">PlayStation 5</h2>
+              <p className="detail1">
+                Experience the next generation of gaming
+              </p>
+              <p className="shop1">Shop Now</p>
+            </div>
+          </a>
+        </div>
+
+        <div className="brands2">
+          <a href="#">
+            <img src={WomenInthedark} alt="WomanDark" />
+            <div className="text-overlay">
+              <h2 className="name2">Women’s Collections</h2>
+              <p className="detail2">
+              Featured woman collections that <br /> give you another vibe.
+              </p>
+              <p className="shop2">Shop Now</p>
+            </div>
+          </a>
+        </div>
+
+        <div className="brands3">
+          <a href="#">
+            <img src={Speaker} alt="Speaker" />
+            <div className="text-overlay">
+              <h2 className="name3">Speakers</h2>
+              <p className="detail3">
+              Amazon wireless speakers
+              </p>
+              <p className="shop3">Shop Now</p>
+            </div>
+          </a>
+        </div>
+
+        <div className="brands4">
+          <a href="#">
+            <img src={Perfume} alt="Perfume" />
+            <div className="text-overlay"></div>
+          </a>
+        </div>
       </div>
     </div>
   );

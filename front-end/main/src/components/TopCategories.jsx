@@ -16,18 +16,13 @@ function TopCategories() {
   const cate = [
     { image: phone, nameCate: "Mobile" },
     { image: cosmetics, nameCate: "Cosmetics" },
-    { image: electronics, nameCate: "electronics" },
-    { image: furniture, nameCate: "furniture" },
-    { image: watches, nameCate: "watches" },
-    { image: decor, nameCate: "decor" },
-    { image: accessories, nameCate: "accessories" },
-    { image: phone, nameCate: "Mobile" },
+    { image: electronics, nameCate: "Electronics" },
+    { image: furniture, nameCate: "Furniture" },
+    { image: watches, nameCate: "Watches" },
+    { image: decor, nameCate: "Decor" },
+    { image: accessories, nameCate: "Accessories" },
     { image: cosmetics, nameCate: "Cosmetics" },
-    { image: electronics, nameCate: "electronics" },
-    { image: furniture, nameCate: "furniture" },
-    { image: watches, nameCate: "watches" },
-    { image: decor, nameCate: "decor" },
-    { image: accessories, nameCate: "accessories" },
+    { image: watches, nameCate: "Watches" },
   ];
 
   const responsive = {
