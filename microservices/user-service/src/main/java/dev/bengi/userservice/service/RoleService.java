@@ -9,6 +9,7 @@ import dev.bengi.userservice.repository.UserRoleRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,10 +23,11 @@ public class RoleService {
 
     private final Logger logger = LoggerFactory.getLogger(RoleService.class);
 
+
     private final RoleRepository roleRepository;
     private final UserRoleRepository userRoleRepository;
 
-
+    @Autowired
     public RoleService(RoleRepository roleRepository, UserRoleRepository userRoleRepository) {
         this.roleRepository = roleRepository;
         this.userRoleRepository = userRoleRepository;
@@ -86,4 +88,16 @@ public class RoleService {
         var maxRole = getMaxRoleForAutorizationUser(userId);
         return maxRole.map(roleEnum -> roleEnum.getLevel() < newRole.getLevel()).orElse(true);
     }
+
+    @Transactional
+    public UserRole assignRoleToUser(int userId, RoleEnum newRole) {
+        if (!canAssign(userId, newRole)) {
+            throw new IllegalArgumentException("Cannot assign role: " + newRole);
+        }
+        AggregateReference<User, Integer> userRef = AggregateReference.to(userId);
+        AggregateReference<Role, Integer> roleRef = AggregateReference.to(newRole.getId());
+        UserRole userRole = new UserRole(null, userRef, roleRef);
+        return userRoleRepository.save(userRole);
+    }
+
 }

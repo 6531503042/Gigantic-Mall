@@ -7,6 +7,7 @@ import dev.bengi.userservice.repository.RoleRepository;
 import dev.bengi.userservice.repository.UserRepository;
 import dev.bengi.userservice.service.RoleService;
 import dev.bengi.userservice.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RoleService roleService;
 
+    @Autowired
     public UserServiceImpl(UserRepository userRepository, RoleService roleService) {
         this.userRepository = userRepository;
         this.roleService = roleService;

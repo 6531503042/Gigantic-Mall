@@ -13,8 +13,7 @@ import java.util.Optional;
 @Repository
 public interface UserRoleRepository extends CrudRepository<UserRole, Integer> {
 
-    @Query("SELECT * FROM user_roles WHERE user_id = ?1")
-    Optional<UserRole> findAllByUserId(AggregateReference<Object, Integer> objectIntegerAggregateReference);
+    Optional<UserRole> findAllByUserId(AggregateReference<User, Integer> userId);
 
     Optional<UserRole> findOneByUserId(AggregateReference<User, Integer> userId);
 

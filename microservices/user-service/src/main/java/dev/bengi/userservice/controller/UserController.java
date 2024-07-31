@@ -4,8 +4,9 @@ import dev.bengi.userservice.dto.UserCreatedDTO;
 import dev.bengi.userservice.dto.UserRetrieveDTO;
 import dev.bengi.userservice.model.User;
 import dev.bengi.userservice.service.UserService;
-import org.junit.platform.commons.logging.Logger;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -24,10 +25,10 @@ import java.net.URI;
 @RequestMapping("/api/users")
 public class UserController {
 
-    private final Logger logger = (Logger) LoggerFactory.getLogger(UserController.class);
-
+    private final Logger logger = LoggerFactory.getLogger(UserController.class);
     private final UserService userService;
 
+    @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
