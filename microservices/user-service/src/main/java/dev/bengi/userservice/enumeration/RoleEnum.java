@@ -6,7 +6,8 @@ public enum RoleEnum {
     EDITOR(3, 3),
     SHIPPER(4, 4),
     ASSIST(5, 5),
-    CUSTOMER(6, 6);
+    STORE(6, 6),
+    CUSTOMER(7, 7);
 
     private final int id;
     private final int level;

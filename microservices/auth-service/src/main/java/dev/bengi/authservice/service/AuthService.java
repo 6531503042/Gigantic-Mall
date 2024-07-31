@@ -3,6 +3,7 @@ package dev.bengi.authservice.service;
 import dev.bengi.authservice.dto.LoginRequestDTO;
 import dev.bengi.authservice.dto.LoginResponseDTO;
 import dev.bengi.authservice.dto.LogoutDTO;
+import dev.bengi.authservice.dto.RefreshTokenDTO;
 import dev.bengi.authservice.model.UserLogin;
 import org.springframework.security.core.Authentication;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +21,9 @@ public interface AuthService {
 
     @Transactional
     LoginResponseDTO login(LoginRequestDTO body);
+
+    @Transactional
+    LoginResponseDTO issueNewAccessToken(RefreshTokenDTO body);
 
     void logout(Authentication authentication);
 

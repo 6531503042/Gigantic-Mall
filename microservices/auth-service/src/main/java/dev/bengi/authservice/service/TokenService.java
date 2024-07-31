@@ -174,6 +174,27 @@ public class TokenService {
         return refreshTokenEntity.token();
     }
 
+
+    /**
+     * Checks if a given refresh token is expired.
+     *
+     * @param refreshToken The refresh token to check.
+     * @return True if the token is expired, false otherwise.
+     */
+    public boolean isRefreshTokenExpired(RefreshToken refreshToken) {
+        // Get the issued date of the refresh token
+        var issuedDate = refreshToken.issuedAt();
+
+        // Calculate the expiration date of the refresh token
+        var expireDate = issuedDate.plusSeconds(refreshTokenExpiredInSeconds);
+
+        // Get the current date and time
+        var now = Instant.now();
+
+        // Check if the current date and time is after the expiration date
+        return now.isAfter(expireDate);
+    }
+
     /**
      * This method is used to clean up refresh tokens that have not yet expired.
      * It assumes the refresh token's lifetime is 1 day.
