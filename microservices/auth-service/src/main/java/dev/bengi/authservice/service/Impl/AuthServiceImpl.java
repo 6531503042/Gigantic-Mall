@@ -1,7 +1,6 @@
 package dev.bengi.authservice.service.Impl;
 
 import dev.bengi.authservice.dto.AuthenticatedUser;
-import dev.bengi.authservice.dto.LoginRequestDTO;
 import dev.bengi.authservice.dto.LoginResponseDTO;
 import dev.bengi.authservice.exception.RefreshTokenExpiredException;
 import dev.bengi.authservice.model.RefreshToken;
@@ -137,7 +136,7 @@ public class AuthServiceImpl implements AuthService {
      */
     @Override
     @Transactional
-    public LoginResponseDTO login(LoginRequestDTO body) {
+    public LoginResponseDTO login(LoginResponseDTO body) {
         // Create authentication token with email and password
         var authInfo = new UsernamePasswordAuthenticationToken(body.email(), body.password());
         // Authenticate the user
@@ -173,6 +172,17 @@ public class AuthServiceImpl implements AuthService {
                 refreshToken);
     }
 
+    /**
+     * This method issues a new access token using a refresh token.
+     * It first checks if the refresh token exists and is not expired.
+     * If the refresh token is expired, it logs out the user and throws a RefreshTokenExpiredException.
+     * If the refresh token is not expired, it generates a new access token and rotates the refresh token if necessary.
+     *
+     * @param body The refresh token DTO containing the refresh token
+     * @return The login response DTO containing the new access token, refresh token, and user ID
+     * @throws EntityNotFoundException If the refresh token is not found
+     * @throws RefreshTokenExpiredException If the refresh token is expired
+     */
     @Override
     @Transactional
     public LoginResponseDTO issueNewAccessToken(RefreshTokenDTO body) {
