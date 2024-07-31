@@ -14,20 +14,29 @@ import dev.bengi.authservice.dto.LoginResponseDTO;
 import dev.bengi.authservice.dto.LogoutDTO;
 import dev.bengi.authservice.dto.RefreshTokenDTO;
 
+/**
+ * Controller for handling authentication related endpoints.
+ */
 @RestController
 @RequestMapping("/api/v1/auth")
 public class AuthController {
 
     private final AuthService authService;
 
+    /**
+     * Constructs a new AuthController.
+     *
+     * @param authService The AuthService to use for authentication.
+     */
     public AuthController(AuthService authService) {
         this.authService = authService;
     }
 
     /**
+     * Handles a login request.
      *
-     * @param body
-     * @return
+     * @param body The login request body.
+     * @return The response containing the login response DTO.
      */
     @PostMapping("/login")
     public ResponseEntity<LoginResponseDTO> login(@RequestBody @Validated LoginResponseDTO body) {
@@ -35,9 +44,10 @@ public class AuthController {
     }
 
     /**
+     * Handles a refresh token request.
      *
-     * @param body
-     * @return
+     * @param body The refresh token request body.
+     * @return The response containing the new login response DTO.
      */
     @PostMapping("/refresh")
     public ResponseEntity<LoginResponseDTO> refreshToken(@RequestBody @Validated RefreshTokenDTO body) {
@@ -45,9 +55,10 @@ public class AuthController {
     }
 
     /**
+     * Handles a logout request.
      *
-     * @param authentication
-     * @return
+     * @param authentication The authentication object containing the JWT.
+     * @return A response with no content.
      */
     @PostMapping("/logout")
     public ResponseEntity<?> logout(Authentication authentication) {
@@ -56,6 +67,5 @@ public class AuthController {
         authService.logout(logoutDTO);
         return ResponseEntity.noContent().build();
     }
-
 
 }
