@@ -235,7 +235,3 @@ This project is licensed under the MIT License. See the LICENSE file for details
 # -assistant
 # ![alt text](assets/assistant.png)
 
-
-# ### Client System
-
- -->
