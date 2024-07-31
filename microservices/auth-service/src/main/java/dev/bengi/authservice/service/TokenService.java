@@ -82,11 +82,12 @@ public class TokenService {
 
     /**
      *
+     * @Author: bengi, softgi
      * wait for store - service ready
      */
-//    public String issueAccessToken(Store tourCompanyLogin, Instant issueDate) {
+//    public String issueAccessToken(Store storeLogin, Instant issueDate) {
 //        AuthenticatedUser userDetails = (AuthenticatedUser) customUserDetailsService
-//                .loadUserByUsername(tourCompanyLogin.username());
+//                .loadUserByUsername(storeLogin.username());
 //        return generateToken(userDetails, issueDate, accessTokenExpiredInSeconds);
 //    }
 

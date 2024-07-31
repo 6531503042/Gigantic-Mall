@@ -16,6 +16,6 @@ public record RefreshToken(
         String token,
         Instant issuedAt,
         String usage,
-        Long resourceId,
+        Integer resourceId,
         boolean isExpired) {
 }

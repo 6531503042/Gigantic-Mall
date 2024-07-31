@@ -9,7 +9,7 @@ package dev.bengi.authservice.dto;
  * @author bengi
  *
  */
-public record LoginResponse(
+public record LoginResponseDTO(
         Integer id,
         String tokenType,
         String accessToken,

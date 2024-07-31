@@ -5,11 +5,11 @@ import jakarta.validation.constraints.NotBlank;
 /**
  *
  * @param email
- * @param passwords
+ * @param password
  * @author bengi
  */
 public record LoginRequestDTO(
         @NotBlank String email,
-        @NotBlank String passwords
+        @NotBlank String password
 ) {
 }
