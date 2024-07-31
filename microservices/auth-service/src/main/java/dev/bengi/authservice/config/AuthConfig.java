@@ -6,13 +6,17 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import dev.bengi.authservice.model.RSAKeyProperties;
+import dev.bengi.userservice.enumeration.RoleEnum;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,7 +27,8 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import com.nimbusds.jose.proc.SecurityContext;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
-import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.web.SecurityFilterChain;
 
 import java.io.IOException;
 import java.security.KeyFactory;
@@ -58,6 +63,46 @@ public class AuthConfig {
         jwtConverter.setJwtGrantedAuthoritiesConverter(jwtGrantedAuthoritiesConverter);
         return jwtConverter;
     }
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        // Alternative solution, you can set via @PreAuthorize("hasRole('?')")
+        // or @PreAuthorize("hasRole('?') and hasRole('?')") if many roles need to
+        // handle
+        http
+                .authorizeHttpRequests(authorize -> authorize
+                        // Auth
+                        .requestMatchers("/api/v1/auth/login").permitAll()
+                        .requestMatchers("/api/v1/auth/refresh").permitAll()
+
+                        /**
+                         *  Waiting for Store - Service
+                         */
+//                        // STORE
+//                        .requestMatchers(HttpMethod.GET, "/api/v1/tours").permitAll()
+//                        .requestMatchers(HttpMethod.GET, "/api/v1/tours/{id:\\d+}").permitAll()
+//                        .requestMatchers("/api/v1/tours").hasRole(RoleEnum.STORE.name())
+
+                        // User
+                        .requestMatchers(HttpMethod.POST, "/api/v1/users").permitAll()
+                        .requestMatchers("/api/v1/users/**").hasRole(RoleEnum.ADMIN.name())
+
+                        // User self-managed
+                        .requestMatchers("/api/v1/me").hasRole(RoleEnum.CUSTOMER.name())
+
+                        // Administrator purpose
+                        .requestMatchers("/api/v1/admin/**").hasRole(RoleEnum.ADMIN.name())
+
+                        .anyRequest().authenticated())
+                .csrf(AbstractHttpConfigurer::disable)
+                .cors(AbstractHttpConfigurer::disable)
+                .httpBasic(AbstractHttpConfigurer::disable)
+                .formLogin(AbstractHttpConfigurer::disable)
+                .oauth2ResourceServer(rs -> rs.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter())))
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        return http.build();
+    }
+
 
     @Bean
     public AuthenticationManager authenticationManager(PasswordEncoder passwordEncoder,

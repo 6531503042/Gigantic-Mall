@@ -22,7 +22,7 @@ import java.net.URI;
  */
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/v1/users")
 public class UserController {
 
     private final Logger logger = LoggerFactory.getLogger(UserController.class);
