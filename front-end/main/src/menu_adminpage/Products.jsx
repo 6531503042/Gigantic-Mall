@@ -9,18 +9,18 @@ const Products = () => {
   const data = [
     { id: 1, name: 'Handmade Pouch', proId: '302012', category: 'Bag & Pouch', stock: 10, price: 121, status: 'Low Stock', added: '29 Dec 2022' },
     { id: 2, name: 'Smartwatch E2', proId: '302011', category: 'Watch', stock: 204, price: 590, status: 'Published', added: '24 Dec 2022' },
-    { id: 3, name: 'Ipad Air 5', proId: '302013', category: 'Ipad', stock: 100, price: 1590, status: 'Published', added: '20 Sep 2022' },
+    { id: 3, name: 'Ipad Air 5', proId: '302013', category: 'Ipad', stock: 100, price: 1590, status: 'Draft', added: '20 Sep 2022' },
   ];
 
   const columns = [
-    { field: 'name', headerName: 'Product', width: 130 },
-    { field: 'proId', headerName: 'Product ID', width: 130 },
-    { field: 'category', headerName: 'Category', width: 130 },
-    { field: 'stock', headerName: 'Stock', width: 90 },
-    { field: 'price', headerName: 'Price', width: 90, renderCell: (params) => `$${params.value.toFixed(2)}` },
-    { field: 'status', headerName: 'Status', width: 130, renderCell: (params) => <span className={`status ${params.value.toLowerCase().replace(' ', '-')}`}>{params.value}</span> },
-    { field: 'added', headerName: 'Added', width: 130 },
-    { field: 'actions', headerName: 'Actions', width: 130, renderCell: (params) => (
+    { field: 'name', headerName: 'Product', width: 150 },
+    { field: 'proId', headerName: 'Product ID', width: 140 },
+    { field: 'category', headerName: 'Category', width: 140 },
+    { field: 'stock', headerName: 'Stock', width: 100 },
+    { field: 'price', headerName: 'Price', width: 110, renderCell: (params) => `$${params.value.toFixed(2)}` },
+    { field: 'status', headerName: 'Status', width: 150, renderCell: (params) => <span className={`status ${params.value.toLowerCase().replace(' ', '-')}`}>{params.value}</span> },
+    { field: 'added', headerName: 'Added', width: 140 },
+    { field: 'actions', headerName: 'Actions', renderCell: (params) => (
         <>
           <button className="edit-btn" onClick={() => handleEdit(params.row)}><FaEdit /></button>
           <button className="delete-btn" onClick={() => handleDelete(params.row)}><FaTrashAlt /></button>
