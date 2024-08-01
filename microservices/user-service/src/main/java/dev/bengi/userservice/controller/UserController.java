@@ -88,12 +88,6 @@ public class UserController {
         return ResponseEntity.created(URI.create(location)).body(newUser);
     }
 
-//    /**
-//     *
-//     * @param id
-//     * @param dto
-//     * @return
-//     */
 //    @PutMapping("/{id}")
 //    public ResponseEntity<UserRetrieveDTO> updateUser(@PathVariable Integer id, @RequestBody @Validated UserCreatedDTO dto) {
 //        var result = userService.updateUser(id, dto);

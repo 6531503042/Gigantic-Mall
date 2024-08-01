@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package auth;
+
+service AuthService {
+  //UserLogin
+  rpc CreateUserLogin (CreateUserLoginRequest) returns (CreateUserLoginResponse);
+  rpc CreateRefreshToken(CreateRefreshTokenRequest) returns (CreateRefreshTokenResponse);
+  rpc GetUserLoginByEmail(GetUserLoginByEmailRequest) returns (UserLoginResponse);
+  rpc ValidateRefreshToken(ValidateRefreshTokenRequest) returns (ValidateRefreshTokenResponse);
+}
+
+message CreateUserLoginRequest {
+  string email = 1;
+  string password = 2;
+
+  //Use user_id instead of AggregateReference
+  int32 user_id = 3;
+}
+
+message CreateUserLoginResponse {
+  // For success or error messages
+ string message = 1; 
+}
+
+message CreateRefreshTokenRequest {
+  string token = 1;
+  google.protobuf.Timestamp issued_at = 2;
+  string usage = 3;
+  int32 resource_id = 4;
+  bool is_expired = 5;
+}
+
+message CreateRefreshTokenResponse {
+  // For success or error messages
+  string message = 1;
+}
+
+message GetUserLoginByEmailRequest {
+  string email = 1;
+}
+
+message UserLoginResponse {
+  string email = 1;
+  string password = 2;
+
+  // Reference to User ID
+  int32 user_id = 3;
+}
+
+message ValidateRefreshTokenRequest {
+  string token = 1;
+}
+
+message ValidateRefreshTokenResponse {
+  bool is_valid = 1;
+}
+
+
