@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package grpc;
+
+service UserRoleService {
+  rpc GetUserRole (UserRoleRequest) returns (UserRoleResponse);
+}
+
+message UserRoleRequest {
+  int32 userId = 1;
+}
+
+message UserRoleResponse {
+  int32 roleId = 1;
+  string roleName = 2;
+}

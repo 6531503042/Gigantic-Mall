@@ -34,12 +34,10 @@ public class CustomerUserDetailsService implements UserDetailsService {
      * @param userLoginRepository Repository for UserLogin
      * @param userRoleRepository Repository for UserRole
      */
-    @Autowired
     public CustomerUserDetailsService(UserLoginRepository userLoginRepository, UserRoleRepository userRoleRepository) {
         this.userLoginRepository = userLoginRepository;
         this.userRoleRepository = userRoleRepository;
     }
-
     /**
      * This method loads user details by username.
      *
