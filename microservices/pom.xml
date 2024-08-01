@@ -21,6 +21,7 @@
         <module>auth-service</module>
         <module>service-registry</module>
         <module>api-gateway</module>
+        <module>interface-service</module>
     </modules>
 
     <properties>
@@ -29,36 +30,4 @@
     </properties>
 
 
-    <dependencyManagement>
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-dependencies</artifactId>
-            <version>${spring-cloud.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
-    </dependencies>
-    </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-<!--            <plugin>-->
-<!--                <groupId>com.google.cloud</groupId>-->
-<!--                <artifactId>jib-maven-plugin</artifactId>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <phase>package</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>dockerBuild</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
-        </plugins>
-    </build>
 </project>
