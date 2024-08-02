@@ -1,0 +1,128 @@
+syntax = "proto3";
+
+package proto;
+
+import "google/protobuf/timestamp.proto";
+
+option java_package = "dev.bengi.userservice.src.main.proto";
+option java_outer_classname = "UserServiceProto";
+
+/**
+ * @author bengi
+ * @CreateUserRequest
+ * Request message for creating a user
+ */
+message CreateUserRequest {
+    //User name
+    string first_name = 1;
+    //User last name
+    string last_name = 2;
+    //User email
+    string email = 3;
+    //User password
+    string password = 4;
+    //User creation date
+    google.protobuf.Timestamp createdAt = 5;
+    //User phone number
+    string phoneNumber = 6;
+    //User status
+    bool status = 7;
+}
+
+/**
+ * @author bengi
+ * @CreateUserResponse
+ * Response message for creating a user
+ */
+message CreateUserResponse {
+  //Required user id for response
+  int32 user_id = 1;
+  //Required message for response error
+  string message = 2;
+}
+
+/**
+* @author bengi
+* @UserResponse
+* Response message for getting a user
+ */
+message UserResponse {
+  int32 user_id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string email = 4;
+  string password = 5;
+  google.protobuf.Timestamp created_at = 6;
+  string phone_number = 7;
+  bool status = 8;
+}
+
+/**
+ * @author bengi
+ * @UpdatedUserRequest
+ * Request message for updating a user
+ */
+message UpdatedUserRequest {
+  string user_id = 1;
+  string email = 2;
+  string first_name = 3;
+  string last_name = 4;
+  string password = 5;
+  google.protobuf.Timestamp createdAt = 6;
+  string phoneNumber = 7;
+  bool status = 8;
+}
+
+/**
+ * @author bengi
+ * @UpdatedUserResponse
+ * Response message for updating a user
+ */
+message UpdatedUserResponse {
+  string user_id = 1;
+  string message = 2;
+}
+
+/**
+ * @author bengi
+ * @DeleteUserByIdRequests
+ * Request message for deleting a user
+ */
+message DeleteUserByIdRequest {
+  //Required user_id for delete user request
+  string user_id = 1;
+}
+
+/**
+ * @author bengi
+ * @DeleteUserByIdResponse
+ * Response message for deleting a user
+ */
+message DeleteUserByIdResponse {
+  string message = 1;
+}
+
+/**
+ * @author bengi
+ * @ListUsersRequest
+ * Request message for listing users
+ */
+message ListUsersRequest {
+  string keyword = 1;
+  int32 page = 2;
+  int32 size = 3;
+  string sort_field = 4;
+  string sort_direction = 5;
+}
+
+/**
+ * @author bengi
+ * @ListUsersResponse
+ * Response message for listing users
+ */
+message ListUsersResponse {
+  repeated UserResponse users = 1; // List of users
+}
+
+
+

@@ -8,7 +8,6 @@ package user;
 service UserService {
   //User
   rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
-  //
   rpc GetUserById (GetUserByIdRequest) returns (GetUserByIdResponse);
   rpc UpdatedUser (UpdatedUserRequest) returns (UpdatedUserResponse);
 }
