@@ -1,5 +1,10 @@
+.container-information {
+    padding: 1rem;
+}
+
 .body-of-users {
     width: 65rem;
+    margin: 0 auto;
 }
 
 .row-1-space {
@@ -12,7 +17,6 @@
 
 .body-con-row-1 {
     background-color: rgb(255, 255, 255);
-    
 }
 
 .Search-but {
@@ -21,16 +25,26 @@
     background-color: rgb(231, 231, 231);  
     padding-top: 0.4rem;
     padding-bottom: 0.4rem;
+    padding-left: 0.5rem;
     width: 38rem;
     border-radius: 10px;
+    display: flex;
+    align-items: center;
 }
 
-.Search-but a{
-    margin-left: 0.7rem;
-    margin-right: 1rem;
+.Search-but input {
+    background-color: transparent;
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #000000;
 }
 
-.add-user{
+.Search-but input::placeholder {
+    color: #646464; 
+}
+
+.add-user {
     text-decoration: none;
     display: flex;
     flex-direction: row;
@@ -42,35 +56,13 @@
     gap: 10px;
 }
 
-.sort-by {
+.sort-by, .saved-search {
     text-decoration: none;
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 10px;
     color: rgb(46, 46, 46);
-}
-
-.saved-search {
-    text-decoration: none;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    color: rgb(46, 46, 46);
-}
-
-.search-hint {
-    background-color: transparent;
-    width: 32rem;
-    border: none;
-    outline: none;
-    color: #000000;
-}
-
-
-.search-hint::placeholder {
-    color: #646464; 
 }
 
 .information-users {
@@ -78,20 +70,14 @@
     border-radius: 10px;
     background-color: white;
     border: 1px solid #C9C9C9;
-}
-
-.information-users-1 {
-    margin-top: 2rem;
-    border-radius: 10px;
-    background-color: #F9F9F9;
-    
+    padding: 1rem;
 }
 
 .list-style {
     padding: 1%;
 }
 
-.list-style a{
+.list-style a {
     margin-left: 5%;
     font-weight: 500;
 }
@@ -103,14 +89,40 @@
     justify-content: space-around;
     border-top: 1px solid #C9C9C9;
     border-bottom: 1px solid #C9C9C9;
-    color:#999999;
-}
-
-.Topics-style a{
+    color: #999999;
     font-size: smaller;
     font-weight: 500;
 }
 
-.data-style {
-    padding: 1%;
+.data-grid-container {
+    margin-top: 1rem;
+    height: 400px;
+    width: '100%';
+}
+
+.MuiDataGrid-root {
+    background-color: #F9F9F9;
+    border: none;
+}
+
+.MuiDataGrid-columnHeaders {
+    background-color: #EFF4FA;
+    color: #999999;
+    display: none; /* Hide the default column headers */
+}
+
+.MuiDataGrid-cell {
+    border-bottom: 1px solid #C9C9C9;
+}
+
+.edit-btn, .delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 0.5rem;
+}
+
+/* Add custom header style to match Topics-style */
+.custom-header .MuiDataGrid-columnHeader {
+    display: none; /* Hide the default header to show the custom one */
 }
