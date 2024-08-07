@@ -21,6 +21,7 @@
         <module>auth-service</module>
         <module>service-registry</module>
         <module>api-gateway</module>
+        <module>wallet-service</module>
     </modules>
 
     <properties>
