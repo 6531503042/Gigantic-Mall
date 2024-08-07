@@ -21,7 +21,6 @@
         <module>auth-service</module>
         <module>service-registry</module>
         <module>api-gateway</module>
-        <module>interface-service</module>
     </modules>
 
     <properties>

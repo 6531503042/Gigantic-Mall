@@ -100,13 +100,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>dev.bengi</groupId>
-			<artifactId>interface-service</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>compile</scope>
-		</dependency>
-
-		<dependency>
 			<groupId>net.devh</groupId>
 			<artifactId>grpc-server-spring-boot-autoconfigure</artifactId>
 			<version>2.15.0.RELEASE</version>
