@@ -101,7 +101,6 @@ function TopCategories() {
           </div>
         ))}
       </Carousel>
-      ;
     </div>
   );
 }

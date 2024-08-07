@@ -90,7 +90,7 @@ function Justforme() {
 
   return (
     <div>
-      <h1>Just For Me</h1>
+      <h1 style={{paddingTop:"3vh"}}>Just For Me</h1>
       <br />
       <div className="cards">
         {inputData.map((item, index) => (

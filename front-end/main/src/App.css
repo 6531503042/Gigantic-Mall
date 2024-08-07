@@ -18,35 +18,47 @@
 
 .searching-bar {
   display: flex;
-  background: white;
+  background: #fff;
   border-radius: 30px;
   justify-content: space-between;
   align-items: center;
+  padding: 5px;
 }
 
 .searching-row {
   display: flex;
   align-items: center;
   flex-grow: 1;
+  width: 100%;
 }
 
 .all-cate-dropdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: rgb(238, 238, 238);
   padding: 10px;
   border-radius: 30px;
   cursor: pointer;
   margin-right: 10px;
+  width: 20vh;
+}
+
+.search-input-fill {
+  width: 100%;
 }
 
 .searching-row input[name="search-input"] {
-  outline: none;
+  display: flex;
+  width: 98%;
+  align-items: center;
+  padding: 12px;
   border: none;
+  border-radius: 4px;
   font-size: smaller;
-  flex-grow: 1;
-  padding: 15px;
-  margin-top: 0;
-  margin-bottom: 0;
-
+  margin-left: 10px;
+  outline: none;
+  box-sizing: border-box;
 }
 
 .nav-bar-user {
@@ -196,6 +208,7 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
+  padding-top: 3vh;
 }
 
 .cate-row-block {
@@ -464,13 +477,17 @@
   justify-content: center;
 }
 
-.layout > div {
+.layout>div {
   text-align: start;
   font-size: 30px;
 }
 
-.brands1, .brands2, .brands3, .brands4 {
+.brands1,
+.brands2,
+.brands3,
+.brands4 {
   position: relative;
+
   img {
     width: 100%;
     height: 100%;
@@ -479,19 +496,23 @@
 }
 
 .brands1 {
-  grid-area: 1 / 2 / 25 / 10; /* Spans 19 rows */
+  grid-area: 1 / 2 / 25 / 10;
+  /* Spans 19 rows */
 }
 
 .brands2 {
-  grid-area: 1 / 10 / 12 / 20; /* Spans 9 rows, half of .brands1 */
+  grid-area: 1 / 10 / 12 / 20;
+  /* Spans 9 rows, half of .brands1 */
 }
 
 .brands3 {
-  grid-area: 12 / 10 / 25 / 15; /* Spans 10 rows */
+  grid-area: 12 / 10 / 25 / 15;
+  /* Spans 10 rows */
 }
 
 .brands4 {
-  grid-area: 12 / 15 / 25 / 20; /* Spans 10 rows */
+  grid-area: 12 / 15 / 25 / 20;
+  /* Spans 10 rows */
 }
 
 
@@ -512,13 +533,17 @@
   cursor: pointer;
 }
 
-.name1, .name2, .name3 {
+.name1,
+.name2,
+.name3 {
   font-size: 24px;
   font-weight: bold;
   transition: all 0.5s ease-in-out;
 }
 
-.detail1, .detail2, .detail3 {
+.detail1,
+.detail2,
+.detail3 {
   padding-top: 10px;
   padding-bottom: 10px;
   font-size: 18px;
@@ -526,21 +551,29 @@
   transition: all 0.5s ease-in-out;
 }
 
-.shop1, .shop2, .shop3 {
+.shop1,
+.shop2,
+.shop3 {
   font-size: 16px;
   text-decoration: underline;
   transition: all 0.5s ease-in-out;
 }
 
-.text-overlay:hover .name1, .text-overlay:hover .name2, .text-overlay:hover .name3 {
+.text-overlay:hover .name1,
+.text-overlay:hover .name2,
+.text-overlay:hover .name3 {
   font-size: 35px;
 }
 
-.text-overlay:hover .detail1, .text-overlay:hover .detail2, .text-overlay:hover .detail3 {
+.text-overlay:hover .detail1,
+.text-overlay:hover .detail2,
+.text-overlay:hover .detail3 {
   font-size: 22px;
 }
 
-.text-overlay:hover .shop1, .text-overlay:hover .shop2, .text-overlay:hover .shop3 {
+.text-overlay:hover .shop1,
+.text-overlay:hover .shop2,
+.text-overlay:hover .shop3 {
   font-size: 20px;
 }
 
@@ -576,7 +609,7 @@
   position: relative;
   margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
- 
+
 }
 
 .footer {

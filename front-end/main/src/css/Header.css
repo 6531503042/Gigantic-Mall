@@ -6,8 +6,22 @@
     align-items: center; 
     font-weight: 600;
     color: white;
-}
-
-.header p {
+  }
+  
+  .header p {
     margin: 0; 
-}
+    display: flex;
+    align-items: center;
+  }
+  
+  .header a {
+    margin-left: 8px; 
+    text-decoration: none; 
+    display: flex;
+    align-items: center;
+  }
+  
+  .header a:hover {
+    text-decoration: underline;
+  }
+  
