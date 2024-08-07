@@ -75,5 +75,21 @@ services:
         command: -p 5000
         restart: always
 
+    # Service - Wallet
+    wallet:
+        image: microservices/wallet-service
+        container_name: wallet-service
+        build:
+            context: ./wallet-service
+        ports:
+            - "8183:8080"
+        expose:
+                - "8183"
+        environment:
+            - SPRING_PROFILES_ACTIVE=docker
+            - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY= TRACE
+        command: -p 5000
+        restart: always
+
 
 

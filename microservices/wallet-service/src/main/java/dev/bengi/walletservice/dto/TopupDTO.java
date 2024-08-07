@@ -12,6 +12,7 @@ import java.math.BigDecimal;
  */
 public record TopupDTO(
         @DecimalMin(value = "0.0", inclusive = false) @NotNull BigDecimal amount,
-        Integer userId
+        Integer userId,
+        String idempotentKey
 ) {
 }
