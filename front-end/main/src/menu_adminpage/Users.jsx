@@ -49,14 +49,7 @@ const Users = () => {
           <div className='list-style'>
             <a>List Users</a>
           </div>
-          <div className='Topics-style'>
-            <a>Photo</a>
-            <a>Name</a>
-            <a>Role</a>
-            <a>Create Date</a>
-            <a>UserID</a>
-            <a>Action</a>
-          </div>
+
           <div className='data-grid-container'>
             <DataGrid
               rows={rows}
