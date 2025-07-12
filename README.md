@@ -212,7 +212,7 @@ This project is licensed under the MIT License. See the LICENSE file for details
 - **Role**:
   - Frontend Development
   - Design UX/UI
-- **GitHub**: [Phumiphat Wongsathit](https://github.com/franz1us)
+- **GitHub**: [Phumiphat Wongsathit](https://github.com/frank1nz)
 
 <!-- # - **Admin**: Manages everything.
 # - **Seller**: Manages product prices, customers, shipping, orders, and sales reports.
